@@ -7,7 +7,7 @@
 [![Next.js](https://img.shields.io/badge/next.js-14-black)](https://nextjs.org/)
 [![NextUI](https://img.shields.io/badge/NextUI-2.0-blue)](https://nextui.org)
 [![Python](https://img.shields.io/badge/Python-3.9-green)](https://python.org)
-[![P l a t e   o f   n a c h o s   w i t h   t o p p i n g s . 
+[![P l a t e   o f   n a c h o s   w i t h   t o p p i n g s .
 ](https://img.shields.io/badge/NVIDIA-Orin%20Nano-green)](https://developer.nvidia.com/embedded-computing)
 
 ## Building an open-source autonomous drone dataset and development platform
@@ -73,63 +73,6 @@ We're building a standardized dataset including:
 
 ### Required Hardware Configuration
 
-- 5" FPV Racing Drone Frame
-- NVIDIA Jetson Orin Nano
-- TFmini-S LiDAR Sensor
-- HD FPV Camera (>720p)
-- GPS Module (uBlox NEO-M8N or better)
-- IMU (MPU6050 or better)
-- SDR (YHY 9800 or compatible)
-
-### Data Collection Requirements
-
-```typescript
-interface DroneDataPoint {
-  timestamp: number;        // Unix timestamp (ms)
-  gps: {
-    lat: number;           // Latitude
-    lon: number;           // Longitude
-    alt: number;           // Altitude (m)
-    accuracy: number;      // GPS accuracy (m)
-  };
-  imu: {
-    acceleration: Vec3;    // m/s²
-    gyroscope: Vec3;      // rad/s
-    magnetometer: Vec3;    // μT
-  };
-  lidar: {
-    distance: number;      // Distance in meters
-    strength: number;      // Signal strength
-  };
-  camera: {
-    resolution: string;    // "1280x720"
-    fps: number;          // Frames per second
-    format: string;       // "h264"
-  };
-  radio: {
-    frequency: number;    // MHz
-    signalStrength: number; // dBm
-    bandwidth: number;    // MHz
-  };
-}
-
-[View Full Requirements](./docs/REQUIREMENTS.md)
-Let me plan this step by step:
-
-1. Define dataset structure
-2. Set contribution guidelines
-3. Specify data collection requirements
-4. Add validation process
-5. Include sample data formats
-
-```markdown
-
-
-...existing code...
-
-## 📊 Dataset Contribution Guidelines
-
-### Required Hardware Configuration
 - 5" FPV Racing Drone Frame
 - NVIDIA Jetson Orin Nano
 - TFmini-S LiDAR Sensor
@@ -253,3 +196,5 @@ Please read our [Code of Conduct](CODE_OF_CONDUCT.md) to keep our community appr
 ## 📝 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
+
+[View Full Requirements](./docs/REQUIREMENTS.md)
