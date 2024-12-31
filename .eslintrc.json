@@ -6,13 +6,22 @@
     "node": true
   },
   "extends": [
+    "plugin:tailwindcss/recommended",
     "plugin:react/recommended",
     "plugin:prettier/recommended",
     "plugin:react-hooks/recommended",
     "plugin:jsx-a11y/recommended",
     "plugin:@next/next/recommended"
   ],
-  "plugins": ["react", "unused-imports", "import", "@typescript-eslint", "jsx-a11y", "prettier"],
+  "plugins": [
+    "tailwindcss",
+    "react",
+    "unused-imports",
+    "import",
+    "@typescript-eslint",
+    "jsx-a11y",
+    "prettier"
+  ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": {

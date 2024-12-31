@@ -1,3 +1,54 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 47.4% 11.2%;
+    --default-100: 210 50% 10%; /* Added */
+    --default-400: 210 50% 40%;
+    --default-500: 210 50% 50%; /* Added */
+    --default-600: 210 50% 60%;
+    --primary: 200 100% 50%;
+    --danger: 0 100% 50%; /* Added */
+    --radius: 0.5rem;
+    --font-sans: 'Inter', sans-serif;
+  }
+
+  .dark {
+    --background: 224 71% 4%;
+    --foreground: 213 31% 91%;
+  }
+}
+
+/* Enable smooth scrolling */
+* {
+  @apply scroll-smooth;
+}
+
+/* Apply scrollbar styles */
+::-webkit-scrollbar {
+  @apply w-2 h-2;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-background/50;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-foreground/20 rounded-full hover:bg-foreground/30;
+}
+
+@layer utilities {
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary bg-[300%] animate-gradient;
+  }
+
+  .scrollbar-hide {
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
