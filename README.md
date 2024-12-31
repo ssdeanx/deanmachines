@@ -1,53 +1,255 @@
-# Next.js & NextUI Template
+# Dean Machines: Autonomous FPV Drone Platform
 
-This is a template for creating applications using Next.js 14 (app directory) and NextUI (v2).
+<div align="center">
 
-[Try it on CodeSandbox](https://githubbox.com/nextui-org/next-app-template)
+![Dean Machines](./public/logo.png)
 
-## Technologies Used
+[![Next.js](https://img.shields.io/badge/next.js-14-black)](https://nextjs.org/)
+[![NextUI](https://img.shields.io/badge/NextUI-2.0-blue)](https://nextui.org)
+[![Python](https://img.shields.io/badge/Python-3.9-green)](https://python.org)
+[![P l a t e   o f   n a c h o s   w i t h   t o p p i n g s . 
+](https://img.shields.io/badge/NVIDIA-Orin%20Nano-green)](https://developer.nvidia.com/embedded-computing)
 
-- [Next.js 14](https://nextjs.org/docs/getting-started)
-- [NextUI v2](https://nextui.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Tailwind Variants](https://tailwind-variants.org)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Framer Motion](https://www.framer.com/motion/)
-- [next-themes](https://github.com/pacocoursey/next-themes)
+## Building an open-source autonomous drone dataset and development platform
 
-## How to Use
+</div>
 
-### Use the template with create-next-app
+## 🚁 Project Overview
 
-To create a new project based on this template using `create-next-app`, run the following command:
+Dean Machines is developing an open-source autonomous drone platform using a 5" FPV Racing drone equipped with advanced sensors and AI capabilities. Our mission is to create a comprehensive dataset for drone autonomy research.
 
-```bash
-npx create-next-app -e https://github.com/nextui-org/next-app-template
+### Hardware Stack
+
+- **Drone Platform**: 5" FPV Racing Drone
+- **AI Computer**: NVIDIA Jetson Orin Nano
+- **Sensors**:
+  - TFmini-S LiDAR
+  - AI-enabled Camera Module
+  - IMU/Gyroscope
+  - GPS Module
+- **Communication**:
+  - YHY 9800 Eng D SDR
+  - 433MHz Receiver
+  - FPV Video Receiver
+  - 30ft Monopole Antenna
+
+### Data Collection Framework
+
+We're building a standardized dataset including:
+
+- Visual Data (RGB + Depth)
+- LiDAR Point Clouds
+- Radio Telemetry
+- Flight Controller Data
+- Environmental Metrics
+
+## 🛠️ Technical Architecture
+
+### Onboard Systems
+
+- NVIDIA Orin Nano for real-time processing
+- Custom sensor fusion pipeline
+- Edge AI inference
+- Real-time telemetry streaming
+  
+### Ground Station
+
+- SDR signal processing
+- Real-time data visualization
+- Neural network training
+- Dataset validation tools
+
+## 📊 Dataset Contribution
+
+### Requirements
+
+1. Hardware Compatibility
+2. Sensor Calibration
+3. Data Format Standards
+4. Quality Metrics
+5. Validation Process
+
+## 📊 Dataset Contribution Guidelines
+
+### Required Hardware Configuration
+
+- 5" FPV Racing Drone Frame
+- NVIDIA Jetson Orin Nano
+- TFmini-S LiDAR Sensor
+- HD FPV Camera (>720p)
+- GPS Module (uBlox NEO-M8N or better)
+- IMU (MPU6050 or better)
+- SDR (YHY 9800 or compatible)
+
+### Data Collection Requirements
+
+```typescript
+interface DroneDataPoint {
+  timestamp: number;        // Unix timestamp (ms)
+  gps: {
+    lat: number;           // Latitude
+    lon: number;           // Longitude
+    alt: number;           // Altitude (m)
+    accuracy: number;      // GPS accuracy (m)
+  };
+  imu: {
+    acceleration: Vec3;    // m/s²
+    gyroscope: Vec3;      // rad/s
+    magnetometer: Vec3;    // μT
+  };
+  lidar: {
+    distance: number;      // Distance in meters
+    strength: number;      // Signal strength
+  };
+  camera: {
+    resolution: string;    // "1280x720"
+    fps: number;          // Frames per second
+    format: string;       // "h264"
+  };
+  radio: {
+    frequency: number;    // MHz
+    signalStrength: number; // dBm
+    bandwidth: number;    // MHz
+  };
+}
+
+[View Full Requirements](./docs/REQUIREMENTS.md)
+Let me plan this step by step:
+
+1. Define dataset structure
+2. Set contribution guidelines
+3. Specify data collection requirements
+4. Add validation process
+5. Include sample data formats
+
+```markdown
+
+
+...existing code...
+
+## 📊 Dataset Contribution Guidelines
+
+### Required Hardware Configuration
+- 5" FPV Racing Drone Frame
+- NVIDIA Jetson Orin Nano
+- TFmini-S LiDAR Sensor
+- HD FPV Camera (>720p)
+- GPS Module (uBlox NEO-M8N or better)
+- IMU (MPU6050 or better)
+- SDR (YHY 9800 or compatible)
+
+### Data Collection Requirements
+
+```typescript
+interface DroneDataPoint {
+  timestamp: number;        // Unix timestamp (ms)
+  gps: {
+    lat: number;           // Latitude
+    lon: number;           // Longitude
+    alt: number;           // Altitude (m)
+    accuracy: number;      // GPS accuracy (m)
+  };
+  imu: {
+    acceleration: Vec3;    // m/s²
+    gyroscope: Vec3;      // rad/s
+    magnetometer: Vec3;    // μT
+  };
+  lidar: {
+    distance: number;      // Distance in meters
+    strength: number;      // Signal strength
+  };
+  camera: {
+    resolution: string;    // "1280x720"
+    fps: number;          // Frames per second
+    format: string;       // "h264"
+  };
+  radio: {
+    frequency: number;    // MHz
+    signalStrength: number; // dBm
+    bandwidth: number;    // MHz
+  };
+}
 ```
 
-### Install dependencies
+### Data Submission Process
 
-You can use one of them `npm`, `yarn`, `pnpm`, `bun`, Example using `npm`:
+1. **Data Collection**
+   - Minimum 10 minutes of continuous flight
+   - Various flight patterns required:
+     - Hover
+     - Forward flight
+     - Figure-8
+     - Obstacle navigation
+
+2. **Data Validation**
+
+   ```bash
+   # Validate dataset structure
+   npm run validate-dataset path/to/data
+   
+   # Generate validation report
+   npm run generate-report
+   ```
+
+3. **Submission Format**
+
+   ```plaintext
+   dataset/
+   ├── metadata.json       # Flight information
+   ├── raw/               # Raw sensor data
+   │   ├── camera/        # Video streams
+   │   ├── lidar/         # LiDAR point clouds
+   │   ├── imu/           # IMU readings
+   │   └── radio/         # SDR captures
+   └── processed/         # Processed data
+       ├── trajectory/    # Flight path
+       ├── obstacles/     # Detected obstacles
+       └── annotations/   # Manual annotations
+   ```
+
+### Quality Standards
+
+- Camera: 720p minimum at 30fps
+- LiDAR: 100Hz minimum sampling rate
+- IMU: 200Hz minimum sampling rate
+- GPS: 10Hz minimum update rate
+- Radio: 433MHz band captures at 2MSPS
+
+### Review Process
+
+1. Automated validation check
+2. Data quality assessment
+3. Manual review by core team
+4. Integration into main dataset
+
+View Full Documentation
+
+## 🔧 Development
 
 ```bash
-npm install
-```
-
-### Run the development server
-
-```bash
+# Website Development (Next.js)
 npm run dev
+
+# Python CV Pipeline (Coming Soon)
+python3 setup.py develop
 ```
 
-### Setup pnpm (optional)
+## 🤝 Contributing
 
-If you are using `pnpm`, you need to add the following code to your `.npmrc` file:
+We welcome contributions to Dean Machines! Please follow these steps:
 
-```bash
-public-hoist-pattern[]=*@nextui-org/*
-```
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-After modifying the `.npmrc` file, you need to run `pnpm install` again to ensure that the dependencies are installed correctly.
+Read our [Contributing Guidelines](CONTRIBUTING.md) for detailed information.
 
-## License
+### Code of Conduct
 
-Licensed under the [MIT license](https://github.com/nextui-org/next-app-template/blob/main/LICENSE).
+Please read our [Code of Conduct](CODE_OF_CONDUCT.md) to keep our community approachable and respectable.
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
