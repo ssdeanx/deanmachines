@@ -1,54 +1,142 @@
+/* globals.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 47.4% 11.2%;
-    --default-100: 210 50% 10%; /* Added */
-    --default-400: 210 50% 40%;
-    --default-500: 210 50% 50%; /* Added */
-    --default-600: 210 50% 60%;
-    --primary: 200 100% 50%;
-    --danger: 0 100% 50%; /* Added */
+    /* Theme Tokens */
     --radius: 0.5rem;
-    --font-sans: 'Inter', sans-serif;
+    --font-sans: "Inter", system-ui;
+    
+    /* Animation Tokens */
+    --animation-btn: 0.2s;
+    --animation-input: 0.2s;
+    --transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    /* NextUI Enhanced Theme Colors */
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --default: 210 40% 98%;
+    --default-foreground: 222.2 47.4% 11.2%;
+    
+    /* Semantic Colors */
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --success: 142 72% 29%;
+    --error: 0 84.2% 60.2%;
+    --warning: 38 92% 50%;
+    --info: 198 93% 60%;
+
+    /* State Colors */
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
   }
 
   .dark {
-    --background: 224 71% 4%;
-    --foreground: 213 31% 91%;
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --default: 222.2 47.4% 11.2%;
+    --default-foreground: 210 40% 98%;
+    
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
   }
 }
 
-/* Enable smooth scrolling */
-* {
-  @apply scroll-smooth;
-}
+@layer components {
+  /* Enhanced Card Styles */
+  .card {
+    @apply relative overflow-hidden rounded-lg border bg-background p-6;
+  }
 
-/* Apply scrollbar styles */
-::-webkit-scrollbar {
-  @apply w-2 h-2;
-}
+  .card-hover {
+    @apply hover:border-primary/50 hover:bg-accent/50 
+           transition-colors duration-200;
+  }
 
-::-webkit-scrollbar-track {
-  @apply bg-background/50;
-}
-
-::-webkit-scrollbar-thumb {
-  @apply bg-foreground/20 rounded-full hover:bg-foreground/30;
+  /* Glass Morphism */
+  .glass {
+    @apply bg-background/80 backdrop-blur-lg border border-foreground/10
+           dark:bg-default/80 dark:border-foreground/5;
+  }
 }
 
 @layer utilities {
-  .gradient-text {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary bg-[300%] animate-gradient;
+  /* Advanced Animation Utilities */
+  .animate-slide-up {
+    animation: slideUp 0.5s var(--transition-ease);
   }
 
-  .scrollbar-hide {
-    scrollbar-width: none;
-    &::-webkit-scrollbar {
-      display: none;
-    }
+  .animate-fade {
+    animation: fade 0.3s var(--transition-ease);
+  }
+
+  /* Layout Utilities */
+  .center {
+    @apply flex items-center justify-center;
+  }
+
+  .stack {
+    @apply flex flex-col space-y-4;
+  }
+
+  /* Typography Utilities */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Custom Scrollbar */
+  .custom-scrollbar {
+    @apply scrollbar-thin scrollbar-track-muted 
+           scrollbar-thumb-foreground/20 
+           hover:scrollbar-thumb-foreground/30;
+  }
+}
+
+/* Keyframes */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Media Queries */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    @apply transition-none animate-none;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .no-print {
+    @apply hidden;
   }
 }
