@@ -1,13 +1,16 @@
+// app/data/layout.tsx
+import { Card } from "@nextui-org/react";
+
 export default function DataLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
-      <div className="inline-block max-w-lg justify-center text-center">
-        {children}
-      </div>
+    <section className="container mx-auto max-w-7xl px-6 py-16">
+      <Card className="p-6">
+        <div className="flex flex-col gap-4">{children}</div>
+      </Card>
     </section>
   );
 }
