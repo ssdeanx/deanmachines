@@ -124,7 +124,6 @@ module.exports = {
           },
         },
       }),
-      fontSize: fluidType.fluidTypography(),
     },
   },
 
@@ -163,7 +162,6 @@ module.exports = {
         },
       },
     }),
-    require('@tailwindcss/typography'),
     require('tailwindcss-animate'),
     require('tailwind-scrollbar'),
     require('tailwind-scrollbar-hide'),

@@ -113,11 +113,6 @@
     gap: 1rem;
   }
 
-  /* Typography Utilities */
-  .text-balance {
-    text-wrap: balance;
-  }
-
   /* Custom Scrollbar */
   .custom-scrollbar {
     scrollbar-width: thin;

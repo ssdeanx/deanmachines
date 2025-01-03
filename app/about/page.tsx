@@ -3,16 +3,7 @@ import { Card, CardBody } from "@nextui-org/react";
 
 import { aboutContent } from "../../constants";
 
-// Define animation variants
-const containerVariants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
+import { title } from "@/components/primitives";
 
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -21,19 +12,10 @@ const itemVariants = {
 
 export default function AboutPage() {
   return (
-    <motion.div
-      animate="show"
-      className="space-y-8 p-4 py-8"
-      initial="hidden"
-      variants={containerVariants}
-    >
-      <motion.h1
-        className="bg-gradient-to-r from-gray-200 to-gray-500 bg-clip-text text-4xl font-bold text-transparent dark:from-gray-100 dark:to-gray-400"
-        variants={itemVariants}
-      >
-        About Dean Machines
-      </motion.h1>
-
+    <>
+      <div>
+        <h1 className={title()}>About</h1>
+      </div>
       <section className="space-y-12">
         <motion.div variants={itemVariants}>
           <h2 className="mb-6 text-2xl font-semibold text-gray-800 dark:text-gray-200">
@@ -65,6 +47,6 @@ export default function AboutPage() {
           </div>
         </motion.div>
       </section>
-    </motion.div>
+    </>
   );
 }
