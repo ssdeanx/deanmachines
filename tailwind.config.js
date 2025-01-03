@@ -166,6 +166,7 @@ module.exports = {
     require('@tailwindcss/typography'),
     require('tailwindcss-animate'),
     require('tailwind-scrollbar'),
+    require('tailwind-scrollbar-hide'),
     plugin(({ addUtilities }) => {
       addUtilities({
         '.glass': {

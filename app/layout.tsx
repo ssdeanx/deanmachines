@@ -43,7 +43,7 @@ export default function RootLayout({
         className={clsx(
           "min-h-screen bg-white font-sans antialiased dark:bg-black",
           fontSans.variable,
-          "scrollbar-hide", // Now recognized
+          "overflow-hidden", // Now recognized
         )}
       >
         <Providers

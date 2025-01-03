@@ -8,7 +8,7 @@
     /* Theme Tokens */
     --radius: 0.5rem;
     --font-sans: "Inter", system-ui;
-    
+
     /* Animation Tokens */
     --animation-btn: 0.2s;
     --animation-input: 0.2s;
@@ -20,7 +20,7 @@
     --foreground: 222.2 84% 4.9%;
     --default: 210 40% 98%;
     --default-foreground: 222.2 47.4% 11.2%;
-    
+
     /* Semantic Colors */
     --primary: 221.2 83.2% 53.3%;
     --primary-foreground: 210 40% 98%;
@@ -43,12 +43,12 @@
     --foreground: 210 40% 98%;
     --default: 222.2 47.4% 11.2%;
     --default-foreground: 210 40% 98%;
-    
+
     --primary: 217.2 91.2% 59.8%;
     --primary-foreground: 222.2 47.4% 11.2%;
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
-    
+
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
     --accent: 217.2 32.6% 17.5%;
@@ -57,24 +57,40 @@
 }
 
 @layer components {
+
   /* Enhanced Card Styles */
   .card {
-    @apply relative overflow-hidden rounded-lg border bg-background p-6;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.5rem;
+    border: 1px solid currentColor;
+    background-color: var(--background);
+    padding: 1.5rem;
   }
 
   .card-hover {
-    @apply hover:border-primary/50 hover:bg-accent/50 
-           transition-colors duration-200;
+    transition-property: color, background-color, border-color;
+    transition-duration: 200ms;
+  }
+
+  .card-hover:hover {
+    border-color: rgba(var(--primary), 0.5);
+    background-color: rgba(var(--accent), 0.5);
   }
 
   /* Glass Morphism */
   .glass {
-    @apply bg-background/80 backdrop-blur-lg border border-foreground/10
-           dark:bg-default/80 dark:border-foreground/5;
+    background-color: hsl(var(--background));
+    backdrop-filter: blur(20px);
+    border: 1px solid hsla(var(--foreground), 0.1);
+    opacity: 0.8;
+    background-color: rgba(var(--default), 0.8);
+    border-color: rgba(var(--foreground), 0.05);
   }
 }
 
 @layer utilities {
+
   /* Advanced Animation Utilities */
   .animate-slide-up {
     animation: slideUp 0.5s var(--transition-ease);
@@ -86,11 +102,15 @@
 
   /* Layout Utilities */
   .center {
-    @apply flex items-center justify-center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .stack {
-    @apply flex flex-col space-y-4;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
   }
 
   /* Typography Utilities */
@@ -100,9 +120,25 @@
 
   /* Custom Scrollbar */
   .custom-scrollbar {
-    @apply scrollbar-thin scrollbar-track-muted 
-           scrollbar-thumb-foreground/20 
-           hover:scrollbar-thumb-foreground/30;
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: hsl(var(--muted));
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: hsl(var(--foreground) / 0.2);
+  }
+
+  .custom-scrollbar:hover::-webkit-scrollbar-thumb {
+    background-color: hsl(var(--foreground));
+    opacity: 0.3;
   }
 }
 
@@ -112,6 +148,7 @@
     opacity: 0;
     transform: translateY(10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -122,6 +159,7 @@
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -130,13 +168,14 @@
 /* Media Queries */
 @media (prefers-reduced-motion: reduce) {
   * {
-    @apply transition-none animate-none;
+    transition: none;
+    animation: none;
   }
 }
 
 /* Print Styles */
 @media print {
   .no-print {
-    @apply hidden;
+    display: none;
   }
 }

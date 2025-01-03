@@ -1,91 +1,70 @@
-import { Card, CardBody } from "@nextui-org/card";
 import { motion } from "framer-motion";
+import { Card, CardBody } from "@nextui-org/react";
 
-import { AboutContent } from "@/types/about";
+import { aboutContent } from "../../constants";
+
+// Define animation variants
+const containerVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0 },
+};
 
 export default function AboutPage() {
-  const aboutContent: AboutContent = {
-    hardware: [
-      {
-        title: "Drone Platform",
-        desc: '5" FPV Racing Drone with precision control',
-      },
-      {
-        title: "Edge Computing",
-        desc: "NVIDIA Jetson Orin Nano for real-time AI",
-      },
-    ],
-    features: [
-      {
-        title: "Computer Vision",
-        desc: "Real-time object detection and tracking",
-      },
-      {
-        title: "Autonomous Flight",
-        desc: "AI-powered navigation system",
-      },
-    ],
-  };
-
   return (
-    <main className="container mx-auto px-4 py-8">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5 }}
+    <motion.div
+      animate="show"
+      className="space-y-8 p-4 py-8"
+      initial="hidden"
+      variants={containerVariants}
+    >
+      <motion.h1
+        className="bg-gradient-to-r from-gray-200 to-gray-500 bg-clip-text text-4xl font-bold text-transparent dark:from-gray-100 dark:to-gray-400"
+        variants={itemVariants}
       >
-        <h1 className="mb-8 text-4xl font-bold text-gray-900 dark:text-gray-100">
-          About Dean Machines
-        </h1>
+        About Dean Machines
+      </motion.h1>
 
-        <section className="space-y-8">
-          <div>
-            <h2 className="text-xl text-foreground/90 mb-4 font-semibold">
-              Hardware Specifications
-            </h2>
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-              {aboutContent.hardware.map((item, index) => (
+      <section className="space-y-12">
+        <motion.div variants={itemVariants}>
+          <h2 className="mb-6 text-2xl font-semibold text-gray-800 dark:text-gray-200">
+            Hardware Specifications
+          </h2>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            {aboutContent.hardware.map((spec) => (
+              <motion.div
+                key={spec.title}
+                className="h-full"
+                variants={itemVariants}
+                whileHover={{ scale: 1.02 }}
+              >
                 <Card
-                  key={index}
-                  className="bg-background/60 dark:bg-default-100/50 backdrop-blur-lg"
+                  className="h-full border border-gray-200/20 bg-gray-50/50 backdrop-blur-lg dark:border-gray-700/20 dark:bg-gray-800/50"
+                  shadow="sm"
                 >
-                  <CardBody className="space-y-2">
-                    <h3 className="text-lg text-foreground font-medium">
-                      {item.title}
+                  <CardBody className="space-y-3 p-6">
+                    <h3 className="text-xl font-medium text-gray-900 dark:text-gray-100">
+                      {spec.title}
                     </h3>
-                    <p className="text-base text-foreground/80">
-                      {item.desc}
+                    <p className="text-gray-600 dark:text-gray-300">
+                      {spec.desc}
                     </p>
                   </CardBody>
                 </Card>
-              ))}
-            </div>
+              </motion.div>
+            ))}
           </div>
-
-          <div>
-            <h2 className="text-fluid-xl text-foreground/90 mb-4 font-semibold">
-              Key Features
-            </h2>
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-              {aboutContent.features.map((item, index) => (
-                <Card
-                  key={index}
-                  className="bg-background/60 dark:bg-default-100/50 backdrop-blur-lg"
-                >
-                  <CardBody className="space-y-2">
-                    <h3 className="text-fluid-lg text-foreground font-medium">
-                      {item.title}
-                    </h3>
-                    <p className="text-fluid-base text-foreground/80">
-                      {item.desc}
-                    </p>
-                  </CardBody>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
-      </motion.div>
-    </main>
+        </motion.div>
+      </section>
+    </motion.div>
   );
 }

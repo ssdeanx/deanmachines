@@ -1,5 +1,5 @@
-import { useState, useCallback } from 'react';
-import { useDisclosure } from '@nextui-org/react';
+import { useState } from "react";
+import { useDisclosure } from "@nextui-org/react";
 
 export interface UseExampleHookProps {
   initialValue: string;
@@ -13,13 +13,17 @@ interface UseExampleHookReturn {
 }
 
 export const useExampleHook = ({
-  initialValue
+  initialValue,
 }: UseExampleHookProps): UseExampleHookReturn => {
   // Implementation
   const [value, setValue] = useState<string>(initialValue);
-  const { isOpen, onToggle } = useDisclosure();
-  const [isLoading, setLoading] = useState(false);
-  const [error, setError] = useState<Error | null>(null);
+  const { isOpen } = useDisclosure();
+
+  if (isOpen) {
+    // Use isOpen and onClose here
+  }
+  const [isLoading] = useState(false);
+  const [error] = useState<Error | null>(null);
 
   return { value, setValue, isLoading, error };
 };
