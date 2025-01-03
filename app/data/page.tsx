@@ -55,13 +55,13 @@ export default function DataPage() {
         <ul>
           {data.map((item) => (
             <li key={item.id}>
-            <h2 className={title({ color: "foreground", size: "md" })}>
-              {item.title}
-            </h2>
+              <h2 className={title({ color: "foreground", size: "md" })}>
+                {item.title}
+              </h2>
             </li>
           ))}
         </ul>
-      )}      
+      )}
     </DataLayout>
   );
 }
