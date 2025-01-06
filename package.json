@@ -25,7 +25,9 @@
     "@nextui-org/theme": "2.4.4",
     "@react-aria/ssr": "3.9.7",
     "@react-aria/visually-hidden": "3.8.18",
+    "@react-email/components": "^0.0.31",
     "@react-stately/data": "^3.12.0",
+    "@types/nodemailer": "^6.4.17",
     "@xpd/tailwind-3dtransforms": "^1.0.3",
     "clsx": "2.1.1",
     "fluid-tailwind": "^1.0.4",
@@ -34,6 +36,7 @@
     "next": "15.0.4",
     "next-optimized-classnames": "^1.0.2",
     "next-themes": "^0.4.4",
+    "nodemailer": "^6.9.16",
     "prettier-plugin-tailwindcss": "^0.6.9",
     "react": "18.3.1",
     "react-dom": "18.3.1",
@@ -44,7 +47,8 @@
     "tailwind-scrollbar-hide": "^2.0.0",
     "tailwindcss-animate": "^1.0.7",
     "tailwindcss-motion": "^1.0.0",
-    "usehooks-ts": "^3.1.0"
+    "usehooks-ts": "^3.1.0",
+    "zod": "^3.24.1"
   },
   "devDependencies": {
     "@iconify-json/mdi-light": "^1.2.2",
