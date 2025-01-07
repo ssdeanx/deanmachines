@@ -104,7 +104,7 @@ export function useForm<T extends Record<string, any>>({
       await onSubmit(values);
     } catch (err) {
       if (err instanceof Error) {
-        setErrors({ _form: err.message });
+        setErrors((prev) => ({ ...prev, _form: err.message }));
       }
     } finally {
       setIsSubmitting(false);

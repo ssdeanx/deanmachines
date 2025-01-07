@@ -2,19 +2,16 @@ import { Link } from "@nextui-org/link";
 import { Snippet } from "@nextui-org/snippet";
 import { Code } from "@nextui-org/code";
 import { button as buttonStyles } from "@nextui-org/theme";
-import express from "express";
+import express, { Request, Response } from "express";
 
 import { getItem } from "@/utils/cosmosDB";
-
 import { siteConfig } from "@/config/site";
 import { title, subtitle } from "@/components/primitives";
 import { GithubIcon } from "@/components/icons";
 
-
-
 const app = express();
 
-app.get("/item/:id", async (req, res) => {
+app.get("/item/:id", async (req: Request, res: Response) => {
   try {
     const item = await getItem(req.params.id, "partition-key-value");
 
@@ -28,6 +25,7 @@ app.get("/item/:id", async (req, res) => {
 const port = 3000;
 
 app.listen(port, () => {
+  // eslint-disable-next-line no-console
   console.log(`Server running at http://localhost:${port}`);
 });
 
