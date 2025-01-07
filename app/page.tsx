@@ -2,10 +2,34 @@ import { Link } from "@nextui-org/link";
 import { Snippet } from "@nextui-org/snippet";
 import { Code } from "@nextui-org/code";
 import { button as buttonStyles } from "@nextui-org/theme";
+import express from "express";
+
+import { getItem } from "@/utils/cosmosDB";
 
 import { siteConfig } from "@/config/site";
 import { title, subtitle } from "@/components/primitives";
 import { GithubIcon } from "@/components/icons";
+
+
+
+const app = express();
+
+app.get("/item/:id", async (req, res) => {
+  try {
+    const item = await getItem(req.params.id, "partition-key-value");
+
+    res.json(item);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error retrieving item from Cosmos DB");
+  }
+});
+
+const port = 3000;
+
+app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}`);
+});
 
 export default function Home() {
   return (
