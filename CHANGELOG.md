@@ -9,6 +9,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Updated the requirements page with content from the README.md file.
 - Updated the about page with hardware specifications from the README.md file.
+- Updated the IMUDataDisplay component to include a dropdown menu for selecting the data type to display.
+- Updated the SensorDataDisplay component to include a prop for the text size and to use consistent Tailwind CSS classes for the text.
+- Updated the DroneMap component to include a prop for the zoom level and to use consistent Tailwind CSS classes for the card.
+- Created a new component called `FPVVideoDisplay.tsx` which can be used to display a video stream.
+- Created a new component called `LidarDataDisplay.tsx` which can be used to display lidar data as a 3D scatter plot.
+- Created a new component called `IMUDataDisplay.tsx` which can be used to display IMU data as a 3D scatter plot.
+- Created a new component called `FlightDataDisplay.tsx` which can be used to display a summary of the drone's flight data.
 
 ## [0.2.1] - 2024-04-28
 

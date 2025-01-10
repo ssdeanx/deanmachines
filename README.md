@@ -167,7 +167,22 @@ interface DroneDataPoint {
 
 View Full Documentation on our [GitHub Wiki](https://github.com/your-username/your-repo/wiki)
 
+## Components
+
+This project includes the following components:
+
+- `SensorDataDisplay`: Displays sensor data in a consistent format, and supports units, different display types, and text sizes.
+- `DroneMap`: Displays a map with the drone's location, and supports displaying a path of previous locations and different map types.
+- `TelemetryDisplay`: Displays telemetry data and supports a custom color for the value text.
+- `LidarDataDisplay`: Displays lidar data as a 3D scatter plot with a dropdown menu to select different color scales.
+- `IMUDataDisplay`: Displays IMU data as a 3D scatter plot with a dropdown menu to select different data types to display.
+- `FPVVideoDisplay`: Displays a video stream from the FPV drone.
+
 ## 🔧 Development
+
+[Documentation](https://github.com/your-username/your-repo/wiki)
+[Guides](https://github.com/your-username/your-repo/guides)
+[Contact](https://github.com/your-username/your-repo/contact)
 
 ```bash
 # Website Development (Next.js)
