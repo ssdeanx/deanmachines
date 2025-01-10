@@ -59,6 +59,22 @@ export default function DocsPage() {
             </p>
           </CardBody>
         </Card>
+        <Card>
+          <CardHeader className="text-xl font-semibold">
+            NVIDIA Orin Nano
+          </CardHeader>
+          <CardBody>
+            <p>
+              Learn about using the NVIDIA Orin Nano with PyTorch and TensorFlow
+              in our{" "}
+              <Button
+                onClick={() => (window.location.href = "/docs/nvidia-orin")}
+              >
+                NVIDIA Orin Nano Guide
+              </Button>
+            </p>
+          </CardBody>
+        </Card>
       </div>
       <h2 className="mt-6 text-xl font-semibold">Quick Links</h2>
       <ul className="list-disc pl-5">

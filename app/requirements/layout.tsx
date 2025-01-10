@@ -29,16 +29,15 @@ export default function RequirementsLayout({
           <section className="prose prose-neutral dark:prose-invert max-w-none">
             <Card className="mb-6">
               <CardHeader className="text-xl font-semibold">
-                Technical Requirements
+                Requirements
               </CardHeader>
               <CardBody>
                 <ul className="list-disc space-y-2 pl-4">
-                  <li>
-                    Experience with Python programming (2+ years recommended)
-                  </li>
-                  <li>Understanding of drone technology and FPV systems</li>
-                  <li>Familiarity with computer vision concepts</li>
-                  <li>Basic knowledge of machine learning principles</li>
+                  <li>Hardware Compatibility</li>
+                  <li>Sensor Calibration</li>
+                  <li>Data Format Standards</li>
+                  <li>Quality Metrics</li>
+                  <li>Validation Process</li>
                 </ul>
               </CardBody>
             </Card>
@@ -49,16 +48,13 @@ export default function RequirementsLayout({
               </CardHeader>
               <CardBody>
                 <ul className="list-disc space-y-2 pl-4">
-                  <li>Access to a compatible FPV drone system</li>
-                  <li>
-                    Computer with minimum specifications:
-                    <ul className="mt-2 list-disc pl-4">
-                      <li>8GB RAM (16GB recommended)</li>
-                      <li>Modern multi-core processor</li>
-                      <li>Dedicated GPU (for computer vision processing)</li>
-                    </ul>
-                  </li>
-                  <li>Reliable internet connection</li>
+                  <li>5" FPV Racing Drone Frame</li>
+                  <li>NVIDIA Jetson Orin Nano</li>
+                  <li>TFmini-S LiDAR Sensor</li>
+                  <li>HD FPV Camera (>720p)</li>
+                  <li>GPS Module (uBlox NEO-M8N or better)</li>
+                  <li>IMU (MPU6050 or better)</li>
+                  <li>SDR (YHY 9800 or compatible)</li>
                 </ul>
               </CardBody>
             </Card>
