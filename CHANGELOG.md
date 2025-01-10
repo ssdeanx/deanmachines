@@ -7,9 +7,33 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.1] - 2024-04-28
+
+### Added support for icons
+
+- Added `displayName` to all icon components in `/components/icons.tsx`
+- Implemented `React.memo` for all icon components in `/components/icons.tsx`
+- Updated `/utils/cosmosDB.ts` to include `ItemResponse` import and proper type for `getItem` function
+- Improved error handling in `/app/api/data/route.ts` and updated data fetching logic
+
+### Changed - Refactoring
+
+- Refactored `/components/icons.tsx` to use `memo` from React
+- Updated `/app/api/data/route.ts` to use `toArray()` for fetching items from CosmosDB
+
+### Fixed
+
+- Corrected duplicate `displayName` assignment for `SearchIcon` in `/components/icons.tsx`
+
+## [0.2.0] - 2024-04-27
+
+### Added - Features
+
+- Implemented GET endpoint in `/app/api/data/route.ts` to fetch data from CosmosDB
+
 ## [0.1.0] - 2024-03-19
 
-### Added
+### Added rag
 
 - Created comprehensive RAG document (`copilot-instructions.md`) for GitHub Copilot
 - Implemented `/app/requirements/layout.tsx` with proper styling and structure
@@ -17,27 +41,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Set up API route for form submissions with rate limiting
 - Created documentation standards for components and API routes
 
-### Changed
+### Changed y
 
 - Updated form handling with better TypeScript types and validation
 - Improved error handling in contact form
 - Enhanced requirements page layout with better UI components
 - Refactored API routes with better error handling
 
-### Fixed
+### Fixed new
 
 - Rate limiting implementation in form submission API
 - Form validation error messages
 - Layout styling issues in requirements page
 - TypeScript type definitions for form data
 
-### Security
+### Security new
 
 - Added rate limiting to form submissions
 - Implemented proper form validation
 - Added secure headers to API routes
 
-### Documentation
+### Documentation ooonce
 
 - Added comprehensive project documentation
 - Created documentation standards for components
@@ -52,5 +76,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Consider adding loading state components
 - Implement more comprehensive form validation
 
-[Unreleased]: https://github.com/ssdeanx/deanmachines/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/ssdeanx/deanmachines/compare/v0.2.1...HEAD
+[0.2.1]: https://github.com/ssdeanx/deanmachines/releases/tag/v0.2.1
+[0.2.0]: https://github.com/ssdeanx/deanmachines/releases/tag/v0.2.0
 [0.1.0]: https://github.com/ssdeanx/deanmachines/releases/tag/v0.1.0

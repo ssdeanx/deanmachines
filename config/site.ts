@@ -1,24 +1,24 @@
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-  name: "Next.js + NextUI",
-  description: "Make beautiful websites regardless of your design experience.",
+  name: "Dean Machines",
+  description: "Open-source autonomous drone platform.",
   navItems: [
     {
       label: "Home",
       href: "/",
     },
     {
-      label: "Docs",
-      href: "/docs",
+      label: "Data",
+      href: "/data",
     },
     {
-      label: "Pricing",
-      href: "/pricing",
+      label: "Requirements",
+      href: "/requirements",
     },
     {
-      label: "Blog",
-      href: "/blog",
+      label: "Guides",
+      href: "/guides",
     },
     {
       label: "About",
@@ -29,22 +29,6 @@ export const siteConfig = {
     {
       label: "Profile",
       href: "/profile",
-    },
-    {
-      label: "Dashboard",
-      href: "/dashboard",
-    },
-    {
-      label: "Projects",
-      href: "/projects",
-    },
-    {
-      label: "Team",
-      href: "/team",
-    },
-    {
-      label: "Calendar",
-      href: "/calendar",
     },
     {
       label: "Settings",
@@ -60,10 +44,10 @@ export const siteConfig = {
     },
   ],
   links: {
-    github: "https://github.com/nextui-org/nextui",
-    twitter: "https://twitter.com/getnextui",
-    docs: "https://nextui.org",
-    discord: "https://discord.gg/9b6yyZKmH4",
-    sponsor: "https://patreon.com/jrgarciadev",
+    github: "https://github.com/your-username/your-repo",
+    twitter: "https://twitter.com/your-twitter",
+    docs: "https://github.com/your-username/your-repo/wiki",
+    discord: "https://discord.gg/your-discord",
+    sponsor: "https://patreon.com/your-patreon",
   },
 };

@@ -7,14 +7,14 @@ export default function App() {
   return (
     <div className="flex w-full max-w-[240px] flex-col gap-2">
       <Textarea
-        label="Description"
+        label="Message"
         labelPlacement="outside"
-        placeholder="Enter your description"
+        placeholder="Enter your message"
         value={value}
         variant="underlined"
         onValueChange={setValue}
       />
-      <p className="text-sm text-gray-500">Textarea value: {value}</p>
+      <p className="text-sm text-gray-500">Message value: {value}</p>
     </div>
   );
 }

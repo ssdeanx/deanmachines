@@ -1,16 +1,21 @@
-import { Button } from "@nextui-org/react";
+import { Button, ButtonProps } from "@nextui-org/react";
 
-export default function App() {
+interface CustomButtonProps extends ButtonProps {
+  onClick?: () => void;
+}
+
+export default function App({ onClick, ...props }: CustomButtonProps) {
   return (
     <Button
-      className="bg-gradient-to-tr from-red-500 to-yellow-500 text-white shadow-lg"
+      className="bg-gradient-to-r from-primary-500 to-primary-700 text-white shadow-lg transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl"
       color="primary"
       radius="full"
       size="lg"
-      variant="ghost"
-      onClick={() => alert("Button Clicked!")}
+      variant="solid"
+      onClick={onClick}
+      {...props}
     >
-      Button
+      Explore
     </Button>
   );
 }

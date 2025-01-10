@@ -20,9 +20,7 @@ export default function DocsPage() {
 
   return (
     <div className="p-4">
-      <h1 className={title({ color: "violet", size: "lg", fullWidth: true })}>
-        Docs
-      </h1>
+      <h1 className={title({ color: "violet", size: "lg" })}>Docs</h1>
       <ul>
         {data.map((item) => (
           <li key={item.id}>

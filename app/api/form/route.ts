@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import nodemailer from "nodemailer";
-import { render } from "@react-email/render";
+import { render } from "@react-email/components";
 
 import { rateLimit } from "@/lib/rate-limit";
 import logger from "@/lib/logger";

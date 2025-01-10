@@ -2,45 +2,22 @@ import { Link } from "@nextui-org/link";
 import { Snippet } from "@nextui-org/snippet";
 import { Code } from "@nextui-org/code";
 import { button as buttonStyles } from "@nextui-org/theme";
-import express, { Request, Response } from "express";
 
-import { getItem } from "@/utils/cosmosDB";
 import { siteConfig } from "@/config/site";
 import { title, subtitle } from "@/components/primitives";
 import { GithubIcon } from "@/components/icons";
-
-const app = express();
-
-app.get("/item/:id", async (req: Request, res: Response) => {
-  try {
-    const item = await getItem(req.params.id, "partition-key-value");
-
-    res.json(item);
-  } catch (err) {
-    console.error(err);
-    res.status(500).send("Error retrieving item from Cosmos DB");
-  }
-});
-
-const port = 3000;
-
-app.listen(port, () => {
-  // eslint-disable-next-line no-console
-  console.log(`Server running at http://localhost:${port}`);
-});
 
 export default function Home() {
   return (
     <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
       <div className="inline-block max-w-xl justify-center text-center">
-        <span className={title()}>Make&nbsp;</span>
-        <span className={title({ color: "violet" })}>beautiful&nbsp;</span>
+        <span className={title()}>Welcome to&nbsp;</span>
+        <span className={title({ color: "primary" })}>Dean Machines&nbsp;</span>
         <br />
-        <span className={title()}>
-          websites regardless of your design experience.
-        </span>
+        <span className={title()}>Autonomous Drone Platform.</span>
         <div className={subtitle({ class: "mt-4" })}>
-          Beautiful, fast and modern React UI library.
+          Building an open-source autonomous drone dataset and development
+          platform.
         </div>
       </div>
 
@@ -69,7 +46,7 @@ export default function Home() {
       <div className="mt-8">
         <Snippet hideCopyButton hideSymbol variant="bordered">
           <span>
-            Get started by editing <Code color="primary">app/page.tsx</Code>
+            Explore the code in <Code color="primary">app/page.tsx</Code>
           </span>
         </Snippet>
       </div>

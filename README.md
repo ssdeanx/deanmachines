@@ -1,6 +1,6 @@
 # Dean Machines: Autonomous FPV Drone Platform
 
-<div align="center">
+<p align="center">
 
 ![Dean Machines](./public/logo.png)
 
@@ -10,9 +10,9 @@
 [![P l a t e   o f   n a c h o s   w i t h   t o p p i n g s .
 ](https://img.shields.io/badge/NVIDIA-Orin%20Nano-green)](https://developer.nvidia.com/embedded-computing)
 
-## Building an open-source autonomous drone dataset and development platform
+## Open-Source Autonomous Drone Platform
 
-</div>
+</p>
 
 ## 🚁 Project Overview
 
@@ -165,7 +165,7 @@ interface DroneDataPoint {
 3. Manual review by core team
 4. Integration into main dataset
 
-View Full Documentation
+View Full Documentation on our [GitHub Wiki](https://github.com/your-username/your-repo/wiki)
 
 ## 🔧 Development
 

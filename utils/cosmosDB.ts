@@ -1,5 +1,5 @@
 // services/cosmosDB.ts
-import { CosmosClient } from "@azure/cosmos";
+import { CosmosClient, ItemResponse } from "@azure/cosmos"; // Added ItemResponse import
 
 import config from "../config/config";
 
@@ -14,7 +14,9 @@ export async function getItem(
 ): Promise<any> {
   const database = client.database(config.cosmosDB.databaseId);
   const container = database.container(config.cosmosDB.containerId);
-  const { body: item } = await container.item(itemId, partitionKeyValue).read();
+  const response: ItemResponse<any> = await container
+    .item(itemId, partitionKeyValue)
+    .read();
 
-  return item;
+  return response.body;
 }

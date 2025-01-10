@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import React, { FC, useState } from "react";
 import { z } from "zod";
 import {
   Button,
@@ -19,10 +19,10 @@ interface FormValues {
 
 // Define category options
 const categories = [
+  { value: "hardware", label: "Hardware Inquiry" },
+  { value: "software", label: "Software Inquiry" },
+  { value: "data", label: "Data Inquiry" },
   { value: "general", label: "General Inquiry" },
-  { value: "technical", label: "Technical Question" },
-  { value: "bug", label: "Bug Report" },
-  { value: "feature", label: "Feature Request" },
 ] as const;
 
 // Zod schema for form validation
@@ -116,10 +116,18 @@ export const ContactForm: FC = () => {
   };
 
   return (
-    <form noValidate className="space-y-6" onSubmit={handleSubmit}>
+    <form
+      noValidate
+      className="rounded-lg bg-white p-6 shadow-md dark:bg-gray-800"
+      style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}
+      onSubmit={handleSubmit}
+    >
       <Input
         isRequired
         aria-label="Name"
+        classNames={{
+          inputWrapper: "bg-gray-100 dark:bg-gray-700",
+        }}
         errorMessage={errors.name}
         isInvalid={!!errors.name}
         label="Name"
@@ -131,6 +139,9 @@ export const ContactForm: FC = () => {
       <Input
         isRequired
         aria-label="Email"
+        classNames={{
+          inputWrapper: "bg-gray-100 dark:bg-gray-700",
+        }}
         errorMessage={errors.email}
         isInvalid={!!errors.email}
         label="Email"
@@ -143,6 +154,9 @@ export const ContactForm: FC = () => {
       <Select
         isRequired
         aria-label="Category"
+        classNames={{
+          trigger: "bg-gray-100 dark:bg-gray-700",
+        }}
         errorMessage={errors.category}
         isInvalid={!!errors.category}
         label="Category"
@@ -160,6 +174,9 @@ export const ContactForm: FC = () => {
       <Textarea
         isRequired
         aria-label="Message"
+        classNames={{
+          inputWrapper: "bg-gray-100 dark:bg-gray-700",
+        }}
         errorMessage={errors.message}
         isInvalid={!!errors.message}
         label="Message"
@@ -183,15 +200,15 @@ export const ContactForm: FC = () => {
 
         {submitStatus === "success" && (
           <div
-            className="rounded-lg bg-success/10 p-4 text-success"
+            className="rounded-md bg-green-100 p-4 text-green-700"
             role="alert"
           >
-            Thanks for your message! We&apos;ll get back to you soon.
+            Thanks for your inquiry! We&#39;ll get back to you soon.
           </div>
         )}
 
         {submitStatus === "error" && (
-          <div className="rounded-lg bg-danger/10 p-4 text-danger" role="alert">
+          <div className="rounded-md bg-red-100 p-4 text-red-700" role="alert">
             Sorry, something went wrong. Please try again later.
           </div>
         )}

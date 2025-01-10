@@ -1,3 +1,6 @@
+"use client";
+import { metadata } from "./metadata";
+
 export default function PricingLayout({
   children,
 }: {

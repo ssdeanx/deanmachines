@@ -2,7 +2,7 @@ import "@/styles/globals.css";
 import { Metadata, Viewport } from "next";
 import { Link } from "@nextui-org/link";
 import { Divider } from "@nextui-org/divider"; // Import Divider
-import { Switch } from "@nextui-org/switch"; // Import Switch
+import ClientSwitch from "@/components/client-switch";
 import clsx from "clsx";
 
 import { Providers } from "./providers";
@@ -62,7 +62,7 @@ export default function RootLayout({
               {children}
               <Divider className="my-4" /> {/* Add Divider */}
               <div className="flex items-center gap-2">
-                <Switch checked={true} className="my-4" onChange={() => {}} />
+                <ClientSwitch checked={true} />
                 <span>Toggle Switch</span>
               </div>{" "}
               {/* Add Switch */}
@@ -72,11 +72,11 @@ export default function RootLayout({
               <Link
                 isExternal
                 className="flex items-center gap-1 text-current"
-                href="https://nextui-docs-v2.vercel.app?utm_source=next-app-template"
-                title="nextui.org homepage"
+                href="https://github.com/your-username/your-repo"
+                title="Dean Machines GitHub Repository"
               >
-                <span className="text-gray-600">Powered by</span>
-                <p className="text-blue-500">NextUI</p>
+                <span className="text-gray-600">View on</span>
+                <p className="text-blue-500">GitHub</p>
               </Link>
             </footer>
           </div>

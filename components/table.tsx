@@ -1,4 +1,4 @@
-import { useAsyncList } from "@react-stately/data";
+import { useAsyncList, AsyncListLoadOptions } from "@react-stately/data";
 import React from "react";
 import {
   Table,
@@ -12,27 +12,45 @@ import {
 } from "@nextui-org/react";
 import { SortDescriptor } from "@nextui-org/react";
 
-interface Person {
-  name: string;
-  height: string;
-  mass: string;
-  birth_year: string;
-  [key: string]: string; // Add index signature
+interface SensorData {
+  timestamp: string;
+  sensor: string;
+  value: string;
+  unit: string;
+  [key: string]: string;
 }
 
 export default function App() {
   const [isLoading, setIsLoading] = React.useState(true);
 
-  const load = async ({ signal }: { signal: AbortSignal }) => {
-    let res = await fetch("https://swapi.py4e.com/api/people/?search", {
-      signal,
-    });
-    let json = await res.json();
+  const load = async ({}: AsyncListLoadOptions<SensorData, string>) => {
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
+    const sensorData = [
+      {
+        timestamp: new Date().toISOString(),
+        sensor: "LiDAR",
+        value: "10.5",
+        unit: "m",
+      },
+      {
+        timestamp: new Date().toISOString(),
+        sensor: "IMU",
+        value: "2.3",
+        unit: "rad/s",
+      },
+      {
+        timestamp: new Date().toISOString(),
+        sensor: "GPS",
+        value: "34.0522,-118.2437",
+        unit: "lat,lon",
+      },
+    ];
 
     setIsLoading(false);
 
     return {
-      items: json.results,
+      items: sensorData,
     };
   };
 
@@ -40,13 +58,13 @@ export default function App() {
     items,
     sortDescriptor,
   }: {
-    items: Person[];
+    items: SensorData[];
     sortDescriptor: SortDescriptor;
   }) => {
     return {
       items: items.sort((a, b) => {
-        let first = a[sortDescriptor.column as keyof Person];
-        let second = b[sortDescriptor.column as keyof Person];
+        let first = a[sortDescriptor.column as keyof SensorData];
+        let second = b[sortDescriptor.column as keyof SensorData];
         let cmp = first < second ? -1 : 1;
 
         if (sortDescriptor.direction === "descending") {
@@ -58,11 +76,11 @@ export default function App() {
     };
   };
 
-  let list = useAsyncList<Person, string>({ load, sort });
+  let list = useAsyncList<SensorData, string>({ load, sort });
 
   return (
     <Table
-      aria-label="Example table with client side sorting"
+      aria-label="Sensor Data Table"
       classNames={{
         table: "min-h-[400px]",
       }}
@@ -70,17 +88,17 @@ export default function App() {
       onSortChange={list.sort}
     >
       <TableHeader>
-        <TableColumn key="name" allowsSorting>
-          Name
+        <TableColumn key="timestamp" allowsSorting>
+          Timestamp
         </TableColumn>
-        <TableColumn key="height" allowsSorting>
-          Height
+        <TableColumn key="sensor" allowsSorting>
+          Sensor
         </TableColumn>
-        <TableColumn key="mass" allowsSorting>
-          Mass
+        <TableColumn key="value" allowsSorting>
+          Value
         </TableColumn>
-        <TableColumn key="birth_year" allowsSorting>
-          Birth year
+        <TableColumn key="unit" allowsSorting>
+          Unit
         </TableColumn>
       </TableHeader>
       <TableBody
@@ -89,7 +107,7 @@ export default function App() {
         loadingContent={<Spinner label="Loading..." />}
       >
         {(item) => (
-          <TableRow key={item.name}>
+          <TableRow key={item.timestamp}>
             {(columnKey) => (
               <TableCell key={columnKey}>
                 {getKeyValue(item, columnKey)}
