@@ -5,8 +5,10 @@ All notable changes to the DeanMachines project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
-### Changed
+## [0.2.2] - 2024-04-29
+
+### Big Updates
+
 - Updated the requirements page with content from the README.md file.
 - Updated the about page with hardware specifications from the README.md file.
 - Updated the IMUDataDisplay component to include a dropdown menu for selecting the data type to display.
@@ -61,7 +63,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Improved error handling in contact form
 - Enhanced requirements page layout with better UI components
 - Refactored API routes with better error handling
-2
+
 ### Fixed new
 
 - Rate limiting implementation in form submission API
@@ -90,7 +92,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Consider adding loading state components
 - Implement more comprehensive form validation
 
-[Unreleased]: https://github.com/ssdeanx/deanmachines/compare/v0.2.1...HEAD
 [0.2.1]: https://github.com/ssdeanx/deanmachines/releases/tag/v0.2.1
 [0.2.0]: https://github.com/ssdeanx/deanmachines/releases/tag/v0.2.0
 [0.1.0]: https://github.com/ssdeanx/deanmachines/releases/tag/v0.1.0
