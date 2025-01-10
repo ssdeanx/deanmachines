@@ -1,91 +1,116 @@
-import { SVGProps } from "react";
+export interface D3ChartProps {
+  data: number[];
+  width?: number;
+  height?: number;
+  margin?: { top: number; right: number; bottom: number; left: number };
+  lineColor?: string;
+  axisColor?: string;
+  xAxisLabel?: string;
+  yAxisLabel?: string;
+}
 
-// Component Props Types
-export interface BasePageProps {
+export interface DataChartDisplayProps {
   title: string;
-  description: string;
+  data: number[];
+  xAxisLabel?: string;
+  yAxisLabel?: string;
+  colorScale: string;
+}
+
+export interface EmailTemplateProps {
+  name: string;
+  email: string;
+  category: string;
+  message: string;
+  timestamp: string;
+}
+
+export interface DroneMapProps {
+  latitude: number;
+  longitude: number;
+  path?: { lat: number; lng: number }[];
+  mapType?: "roadmap" | "satellite" | "hybrid" | "terrain";
+}
+
+export interface FormValues {
+  name: string;
+  email: string;
+  category: string;
+  message: string;
+}
+
+export interface FlightDataDisplayProps {
+  distance: number;
+  maxAltitude: number;
+  flightTime: number;
+}
+
+export interface FPVVideoDisplayProps {
+  videoUrl: string;
+}
+
+export interface IMUDataDisplayProps {
+  data: {
+    acceleration: { x: number; y: number; z: number };
+    gyroscope: { x: number; y: number; z: number };
+    magnetometer: { x: number; y: number; z: number };
+  }[];
+}
+
+export interface LidarDataDisplayProps {
+  data: { distance: number; strength: number }[];
+}
+
+export interface SensorData {
+  timestamp: string;
+  sensor: string;
+  value: string;
+  unit: string;
+  [key: string]: string;
+}
+
+import { SwitchProps } from "@nextui-org/switch";
+
+export interface ThemeSwitchProps {
   className?: string;
+  classNames?: SwitchProps["classNames"];
 }
 
-export type IconSvgProps = SVGProps<SVGSVGElement> & {
+export interface SensorDataDisplayProps {
+  title: string;
+  data: { [key: string]: number };
+  units?: { [key: string]: string };
+}
+
+export interface TelemetryDisplayProps {
+  title: string;
+  data: { [key: string]: string | number };
+}
+
+export interface IconSvgProps extends React.SVGProps<SVGSVGElement> {
   size?: number;
-};
-export interface HardwareItem {
-  title: string;
-  desc: string;
-  icon?: string;
-  status?: "active" | "inactive" | "maintenance";
-}
-
-export interface AboutDetail {
-  title: string;
-  desc: string;
-  icon?: string;
 }
 
 export interface AboutContent {
-  hardware: HardwareItem[];
-  features: AboutDetail[];
-  metadata?: {
-    lastUpdated?: Date;
-    version?: string;
-  };
+  hardware: { title: string; desc: string }[];
+  features: { title: string; desc: string }[];
 }
 
-export interface DataPageProps extends BasePageProps {
-  data: Record<string, unknown>;
-  isLoading?: boolean;
-  error?: string;
-  layout?: "grid" | "list";
+export interface FormData {
+  name: string;
+  email: string;
+  category: "general" | "technical" | "bug" | "feature" | "other";
+  message: string;
 }
 
-export interface DocsPageProps extends BasePageProps {
-  content: string;
-  category?: string;
-  tags?: string[];
-  lastModified?: Date;
+export interface DataItem {
+  id: number;
+  title: string;
+  description: string;
 }
 
-// Theme & Styling Types
-export interface ThemeConfig {
-  color?:
-    | "default"
-    | "primary"
-    | "secondary"
-    | "success"
-    | "warning"
-    | "danger";
-  radius?: "none" | "sm" | "md" | "lg" | "full";
-  variant?: "solid" | "bordered" | "light" | "flat" | "faded" | "shadow";
-  size?: "sm" | "md" | "lg";
-}
-
-// Navigation Types
-export interface NavItem {
-  label: string;
-  href: string;
-  icon?: string;
-  disabled?: boolean;
-  external?: boolean;
-  children?: NavItem[];
-}
-
-// Card Types
-export interface CardProps extends ThemeConfig {
-  title?: string;
-  subtitle?: string;
-  footer?: React.ReactNode;
-  hoverable?: boolean;
-  isPressable?: boolean;
-}
-
-// Form Types
-export interface InputProps extends ThemeConfig {
-  label?: string;
-  placeholder?: string;
-  errorMessage?: string;
-  helperText?: string;
-  isRequired?: boolean;
-  isDisabled?: boolean;
-  isReadOnly?: boolean;
+export interface RequirementItem {
+  id: number;
+  title: string;
+  description: string;
 }

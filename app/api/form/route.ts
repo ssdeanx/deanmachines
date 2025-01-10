@@ -7,13 +7,6 @@ import { rateLimit } from "@/lib/rate-limit";
 import logger from "@/lib/logger";
 import { EmailTemplate } from "@/components/email";
 
-// Types
-interface FormData {
-  name: string;
-  email: string;
-  category: "general" | "technical" | "bug" | "feature" | "other";
-  message: string;
-}
 
 // Validation Schema
 const formSchema = z.object({

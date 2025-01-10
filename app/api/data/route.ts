@@ -1,26 +1,11 @@
-// Create a proper API endpoint for data
-// app/api/data/route.ts
 import { NextResponse } from "next/server";
-import { CosmosClient } from "@azure/cosmos";
-
-import config from "../../../config/config";
-
-const client = new CosmosClient({
-  endpoint: config.cosmosDB.endpoint,
-  key: config.cosmosDB.key,
-});
+import type { DataItem } from "@/types";
 
 export async function GET() {
-  try {
-    const database = client.database(config.cosmosDB.databaseId);
-    const container = database.container(config.cosmosDB.containerId);
-    const items = await container.items.readAll().toArray();
+  const mockData: DataItem[] = [
+    { id: 1, title: "Data Point 1", description: "Description 1" },
+    { id: 2, title: "Data Point 2", description: "Description 2" },
+  ];
 
-    return NextResponse.json(items);
-  } catch {
-    return NextResponse.json(
-      { error: "Failed to fetch data." },
-      { status: 500 },
-    );
-  }
+  return NextResponse.json(mockData);
 }

@@ -5,13 +5,7 @@ import { Card, CardHeader, CardBody } from "@nextui-org/react";
 
 import D3Chart from "./D3Chart";
 
-interface DataChartDisplayProps {
-  title: string;
-  data: number[];
-  xAxisLabel?: string;
-  yAxisLabel?: string;
-  colorScale: string; // Add this line
-}
+import type { DataChartDisplayProps } from "@/types";
 
 const DataChartDisplay: React.FC<DataChartDisplayProps> = ({
   title,

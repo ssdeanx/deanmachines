@@ -16,6 +16,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Created a new component called `LidarDataDisplay.tsx` which can be used to display lidar data as a 3D scatter plot.
 - Created a new component called `IMUDataDisplay.tsx` which can be used to display IMU data as a 3D scatter plot.
 - Created a new component called `FlightDataDisplay.tsx` which can be used to display a summary of the drone's flight data.
+- Created API endpoints for `app/data/page.tsx` and `app/requirements/page.tsx`.
+- Moved the `FormData`, `DataItem`, and `RequirementItem` interfaces to `types/index.ts`.
+- Updated import statements in `app/api/form/route.ts` and `app/api/requirements/route.ts` to use types from `types/index.ts`.
+- Ensured all data components are using the correct types from `types/index.ts` for their data props.
 
 ## [0.2.1] - 2024-04-28
 
@@ -57,7 +61,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Improved error handling in contact form
 - Enhanced requirements page layout with better UI components
 - Refactored API routes with better error handling
-
+2
 ### Fixed new
 
 - Rate limiting implementation in form submission API
