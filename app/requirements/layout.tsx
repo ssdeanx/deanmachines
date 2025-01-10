@@ -48,10 +48,10 @@ export default function RequirementsLayout({
               </CardHeader>
               <CardBody>
                 <ul className="list-disc space-y-2 pl-4">
-                  <li>5" FPV Racing Drone Frame</li>
+                  <li>5&quot; FPV Racing Drone Frame</li>
                   <li>NVIDIA Jetson Orin Nano</li>
                   <li>TFmini-S LiDAR Sensor</li>
-                  <li>HD FPV Camera (>720p)</li>
+                  <li>HD FPV Camera ({">"}720p)</li>
                   <li>GPS Module (uBlox NEO-M8N or better)</li>
                   <li>IMU (MPU6050 or better)</li>
                   <li>SDR (YHY 9800 or compatible)</li>

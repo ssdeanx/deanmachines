@@ -38,6 +38,11 @@
     --accent-foreground: 222.2 47.4% 11.2%;
   }
 
+.chart-container {
+  width: 90%;
+  height: 24rem;
+}
+
   .dark {
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;

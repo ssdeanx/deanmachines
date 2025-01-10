@@ -15,6 +15,7 @@ import {
 import { motion } from "framer-motion";
 
 import { title } from "@/components/primitives";
+import D3Chart from "@/components/D3Chart";
 
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -95,6 +96,7 @@ export default function DataPage() {
               </TableBody>
             </Table>
           )}
+          <D3Chart data={[10, 30, 50, 20, 60, 40, 80, 70, 90, 100]} />
         </CardBody>
       </Card>
     </motion.div>

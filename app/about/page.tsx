@@ -1,8 +1,6 @@
 import { motion } from "framer-motion";
 import { Card, CardBody, CardHeader, Link } from "@nextui-org/react";
 
-import { aboutContent } from "../../constants";
-
 import { title } from "@/components/primitives";
 
 const itemVariants = {
@@ -22,80 +20,84 @@ export default function AboutPage() {
             Hardware Specifications
           </h2>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-              <motion.div
-                key="drone-platform"
-                className="h-full"
-                variants={itemVariants}
-                whileHover={{ scale: 1.02 }}
-              >
-                <Card className="h-full border border-gray-200/20 bg-gray-50/50 backdrop-blur-lg dark:border-gray-700/20 dark:bg-gray-800/50">
-                  <CardHeader>
-                    <h3 className="text-xl font-medium text-gray-900 dark:text-gray-100">
-                      Drone Platform
-                    </h3>
-                  </CardHeader>
-                  <CardBody className="space-y-3 p-6">5" FPV Racing Drone</CardBody>
-                </Card>
-              </motion.div>
-              <motion.div
-                key="ai-computer"
-                className="h-full"
-                variants={itemVariants}
-                whileHover={{ scale: 1.02 }}
-              >
-                <Card className="h-full border border-gray-200/20 bg-gray-50/50 backdrop-blur-lg dark:border-gray-700/20 dark:bg-gray-800/50">
-                  <CardHeader>
-                    <h3 className="text-xl font-medium text-gray-900 dark:text-gray-100">
-                      AI Computer
-                    </h3>
-                  </CardHeader>
-                  <CardBody className="space-y-3 p-6">NVIDIA Jetson Orin Nano</CardBody>
-                </Card>
-              </motion.div>
-              <motion.div
-                key="sensors"
-                className="h-full"
-                variants={itemVariants}
-                whileHover={{ scale: 1.02 }}
-              >
-                <Card className="h-full border border-gray-200/20 bg-gray-50/50 backdrop-blur-lg dark:border-gray-700/20 dark:bg-gray-800/50">
-                  <CardHeader>
-                    <h3 className="text-xl font-medium text-gray-900 dark:text-gray-100">
-                      Sensors
-                    </h3>
-                  </CardHeader>
-                  <CardBody className="space-y-3 p-6">
-                    <ul>
-                      <li>TFmini-S LiDAR</li>
-                      <li>AI-enabled Camera Module</li>
-                      <li>IMU/Gyroscope</li>
-                      <li>GPS Module</li>
-                    </ul>
-                  </CardBody>
-                </Card>
-              </motion.div>
-              <motion.div
-                key="communication"
-                className="h-full"
-                variants={itemVariants}
-                whileHover={{ scale: 1.02 }}
-              >
-                <Card className="h-full border border-gray-200/20 bg-gray-50/50 backdrop-blur-lg dark:border-gray-700/20 dark:bg-gray-800/50">
-                  <CardHeader>
-                    <h3 className="text-xl font-medium text-gray-900 dark:text-gray-100">
-                      Communication
-                    </h3>
-                  </CardHeader>
-                  <CardBody className="space-y-3 p-6">
-                    <ul>
-                      <li>YHY 9800 Eng D SDR</li>
-                      <li>433MHz Receiver</li>
-                      <li>FPV Video Receiver</li>
-                      <li>30ft Monopole Antenna</li>
-                    </ul>
-                  </CardBody>
-                </Card>
-              </motion.div>
+            <motion.div
+              key="drone-platform"
+              className="h-full"
+              variants={itemVariants}
+              whileHover={{ scale: 1.02 }}
+            >
+              <Card className="h-full border border-gray-200/20 bg-gray-50/50 backdrop-blur-lg dark:border-gray-700/20 dark:bg-gray-800/50">
+                <CardHeader>
+                  <h3 className="text-xl font-medium text-gray-900 dark:text-gray-100">
+                    Drone Platform
+                  </h3>
+                </CardHeader>
+                <CardBody className="space-y-3 p-6">
+                  5&quot; FPV Racing Drone
+                </CardBody>
+              </Card>
+            </motion.div>
+            <motion.div
+              key="ai-computer"
+              className="h-full"
+              variants={itemVariants}
+              whileHover={{ scale: 1.02 }}
+            >
+              <Card className="h-full border border-gray-200/20 bg-gray-50/50 backdrop-blur-lg dark:border-gray-700/20 dark:bg-gray-800/50">
+                <CardHeader>
+                  <h3 className="text-xl font-medium text-gray-900 dark:text-gray-100">
+                    AI Computer
+                  </h3>
+                </CardHeader>
+                <CardBody className="space-y-3 p-6">
+                  NVIDIA Jetson Orin Nano
+                </CardBody>
+              </Card>
+            </motion.div>
+            <motion.div
+              key="sensors"
+              className="h-full"
+              variants={itemVariants}
+              whileHover={{ scale: 1.02 }}
+            >
+              <Card className="h-full border border-gray-200/20 bg-gray-50/50 backdrop-blur-lg dark:border-gray-700/20 dark:bg-gray-800/50">
+                <CardHeader>
+                  <h3 className="text-xl font-medium text-gray-900 dark:text-gray-100">
+                    Sensors
+                  </h3>
+                </CardHeader>
+                <CardBody className="space-y-3 p-6">
+                  <ul>
+                    <li>TFmini-S LiDAR</li>
+                    <li>AI-enabled Camera Module</li>
+                    <li>IMU/Gyroscope</li>
+                    <li>GPS Module</li>
+                  </ul>
+                </CardBody>
+              </Card>
+            </motion.div>
+            <motion.div
+              key="communication"
+              className="h-full"
+              variants={itemVariants}
+              whileHover={{ scale: 1.02 }}
+            >
+              <Card className="h-full border border-gray-200/20 bg-gray-50/50 backdrop-blur-lg dark:border-gray-700/20 dark:bg-gray-800/50">
+                <CardHeader>
+                  <h3 className="text-xl font-medium text-gray-900 dark:text-gray-100">
+                    Communication
+                  </h3>
+                </CardHeader>
+                <CardBody className="space-y-3 p-6">
+                  <ul>
+                    <li>YHY 9800 Eng D SDR</li>
+                    <li>433MHz Receiver</li>
+                    <li>FPV Video Receiver</li>
+                    <li>30ft Monopole Antenna</li>
+                  </ul>
+                </CardBody>
+              </Card>
+            </motion.div>
           </div>
         </motion.div>
       </section>
@@ -119,12 +121,12 @@ export default function AboutPage() {
             <h2>About the Creator</h2>
           </CardHeader>
           <CardBody>
-            Hi, I'm Sean Dean, the creator of DeanMachines. I have a
-            passion for technology and autonomous
-            systems, and this project is the culmination of my interests in
-            drone technology and web development. With a background in software
-            engineering, I aim to create innovative solutions that push the
-            boundaries of what's possible with autonomous drones.
+            Hi, I&apos;m Sean Dean, the creator of DeanMachines. I have a
+            passion for technology and autonomous systems, and this project is
+            the culmination of my interests in drone technology and web
+            development. With a background in software engineering, I aim to
+            create create innovative solutions that push the boundaries of
+            what&apos;s with autonomous drones.
           </CardBody>
         </Card>
 
