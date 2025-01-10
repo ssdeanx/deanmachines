@@ -1,0 +1,1 @@
+*.tsx,[[:space:]]*.ts,[[:space:]]*.js,[[:space:]]*.css,[[:space:]]*.json,[[:space:]]*.md filter=lfs diff=lfs merge=lfs -text

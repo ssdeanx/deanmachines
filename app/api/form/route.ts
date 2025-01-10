@@ -1,10 +1,11 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import nodemailer from "nodemailer";
+import { render } from "@react-email/render";
+
 import { rateLimit } from "@/lib/rate-limit";
 import logger from "@/lib/logger";
-import { EmailTemplate } from "@/components/email/template";
-import { renderToString } from "@react-email/render";
+import { EmailTemplate } from "@/components/email";
 
 // Types
 interface FormData {
@@ -56,7 +57,10 @@ export async function POST(request: Request) {
   try {
     // Apply rate limiting
     try {
-      await rateLimiter.check(request);
+      const token = request.headers.get("x-forwarded-for") || "";
+      const limit = 100;
+
+      await rateLimiter.check(request, limit, token);
     } catch {
       logger.warn("Rate limit exceeded for contact form");
 
@@ -71,7 +75,7 @@ export async function POST(request: Request) {
     const validatedData = formSchema.parse(body) as FormData;
 
     // Render email template
-    const htmlContent = await renderToString(
+    const htmlContent = await render(
       EmailTemplate({
         name: validatedData.name,
         email: validatedData.email,

@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Card, CardBody, CardHeader, Link } from "@nextui-org/react";
+import { Card, CardBody, CardHeader, Link, Text } from "@nextui-org/react/text";
 
 import { aboutContent } from "../../constants";
 
@@ -70,11 +70,12 @@ export default function AboutPage() {
           <CardBody>
             <Text>
               Hi, I&apos;m Sean Dean, the creator of DeanMachines. I have a
-              passion for technology and autonomous systems, and this project is
-              culmination of my interests in drone technology and web
-              development. With a background in software engineering, I aim to
-              create innovative solutions that push the boundaries of
-              what&apos;spossible with autonomous drones.
+              passion for passion for passion for technology and autonomous
+              systems, and this project is the culmination of my interests in
+              drone technology and web development. With a background in
+              software engineering, I aim to create innovative solutions that
+              push the boundaries of what&apos;s possible with autonomous
+              drones.
             </Text>
           </CardBody>
         </Card>
