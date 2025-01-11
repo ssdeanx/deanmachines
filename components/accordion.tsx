@@ -2,7 +2,7 @@ import { Accordion as NextUIAccordion } from "@nextui-org/react";
 import React from "react";
 
 interface AccordionProps {
-  children: React.ReactNode | React.ReactNode[];
+  children: React.ReactElement | React.ReactElement[];
 }
 
 const Accordion: React.FC<AccordionProps> = ({ children }) => {

@@ -170,7 +170,7 @@ module.exports = {
         ".glass": {
           "@apply bg-background/80 backdrop-blur-lg border border-foreground/10":
             {},
-          "@apply dark:bg-default/80 dark:border-foreground/5": {},
+          "@apply dark:bg-[hsl(var(--default)/0.8)] dark:border-foreground/5": {},
         },
         ".center": {
           "@apply flex items-center justify-center": {},
