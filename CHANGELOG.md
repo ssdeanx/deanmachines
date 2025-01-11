@@ -5,6 +5,34 @@ All notable changes to the DeanMachines project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.3] - 2024-04-29
+
+### Added 0.2.3
+
+- Enhanced logger implementation with advanced features and better error handling
+- Added comprehensive utility functions in `utils.ts`
+- Created rate limiting functionality with improved error handling
+- Added VS Code configuration for better development experience
+
+### Changed 0.2.3
+
+- Updated TypeScript configuration for better type safety
+- Improved error handling in API routes
+- Enhanced logging capabilities with structured logging
+- Updated VS Code settings for optimal development workflow
+
+### Fixed 0.2.3
+
+- Resolved rate limiting implementation issues
+- Fixed TypeScript type definitions
+- Corrected Tailwind CSS class recognition issues
+
+### Documentation 0.2.3
+
+- Added detailed comments to utility functions
+- Improved code documentation standards
+- Updated configuration documentation
+
 ## [0.2.2] - 2024-04-29
 
 ### Big Updates
@@ -103,6 +131,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Updated the `FPVVideoDisplay` component to use best practices, including a loading state, error handling, and a responsive video element.
 - Added security by ensuring the video URL is valid and adding a `referrerPolicy="no-referrer"` attribute to the video element.
 
+[0.2.3]: https://github.com/ssdeanx/deanmachines/compare/v0.2.2...v0.2.3
+[0.2.2]: https://github.com/ssdeanx/deanmachines/releases/tag/v0.2.2
 [0.2.1]: https://github.com/ssdeanx/deanmachines/releases/tag/v0.2.1
 [0.2.0]: https://github.com/ssdeanx/deanmachines/releases/tag/v0.2.0
 [0.1.0]: https://github.com/ssdeanx/deanmachines/releases/tag/v0.1.0

@@ -1,11 +1,9 @@
 "use client";
 
 import React from "react";
-import DashboardSidebar from "@/components/dashboard-sidebar";
 import { Card, CardHeader, CardBody } from "@nextui-org/react";
-import { AccordionItem } from "@nextui-org/react";
-import Link from "next/link";
 
+import DashboardSidebar from "@/components/dashboard-sidebar";
 import { useDataFetch } from "@/hooks";
 import DroneMap from "@/components/DroneMap";
 import FlightDataDisplay from "@/components/FlightDataDisplay";
@@ -16,7 +14,6 @@ import TelemetryDisplay from "@/components/TelemetryDisplay";
 import CustomTooltip from "@/components/tooltip";
 import AppTable from "@/components/table";
 import { DashboardData } from "@/types";
-import Accordion from "@/components/accordion";
 
 const DashboardPage = () => {
   // Fetch mock data

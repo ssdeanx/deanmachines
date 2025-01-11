@@ -1,6 +1,5 @@
 # Dean Machines: Autonomous FPV Drone Platform
 
- 
 ![Dean Machines](./public/logo.png)
 
 [![Next.js](https://img.shields.io/badge/next.js-14-black)](https://nextjs.org/)

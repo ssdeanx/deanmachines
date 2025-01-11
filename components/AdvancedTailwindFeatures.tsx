@@ -33,33 +33,20 @@ const AdvancedTailwindFeatures: React.FC = () => {
               <label className="mb-1 block" htmlFor="message">
                 Message
               </label>
-              <textarea
-                className="w-full"
-                id="message"
-                name="message"
-              />
+              <textarea className="w-full" id="message" name="message" />
             </div>
             <div>
               <label className="mb-1 block" htmlFor="country">
                 Country
               </label>
-              <select
-                className="w-full"
-                id="country"
-                name="country"
-              >
+              <select className="w-full" id="country" name="country">
                 <option value="us">United States</option>
                 <option value="ca">Canada</option>
                 <option value="mx">Mexico</option>
               </select>
             </div>
             <div>
-              <input
-                className=""
-                id="terms"
-                name="terms"
-                type="checkbox"
-              />
+              <input className="" id="terms" name="terms" type="checkbox" />
               <label className="ml-2" htmlFor="terms">
                 I agree to the terms and conditions
               </label>

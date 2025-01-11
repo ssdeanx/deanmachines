@@ -18,6 +18,7 @@ import { motion } from "framer-motion";
 import { dataContent } from "@/constants/index";
 import { title } from "@/components/primitives";
 import D3Chart from "@/components/D3Chart";
+import DashboardSidebar from "@/components/dashboard-sidebar";
 
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -30,19 +31,21 @@ interface DataItem {
   description: string;
 }
 
-import DashboardSidebar from "@/components/dashboard-sidebar";
-
 export default function DataPage() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [data, setData] = useState<DataItem[]>(dataContent);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-
   return (
     <div className="flex">
       <DashboardSidebar />
-      <motion.div className="flex-1" animate="show" initial="hidden" variants={itemVariants}>
+      <motion.div
+        animate="show"
+        className="flex-1"
+        initial="hidden"
+        variants={itemVariants}
+      >
         <Card className="mb-8">
           <CardBody>
             <h1 className={title({ color: "violet", size: "lg" })}>

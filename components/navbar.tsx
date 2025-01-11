@@ -49,15 +49,15 @@ export const Navbar = () => {
 
   return (
     <NextUINavbar
+      className="bg-gradient-to-r from-purple-500 to-blue-500"
       maxWidth="xl"
       position="sticky"
-      className="bg-gradient-to-r from-purple-500 to-blue-500"
     >
       <NavbarContent className="sm:basis-full" justify="start">
         <NavbarBrand as="li" className="gap-3">
           <NextLink className="flex items-center justify-start gap-1" href="/">
             <Logo />
-            <p className="font-bold text-xl font-serif text-white">
+            <p className="font-serif text-xl font-bold text-white">
               DeanMachines
             </p>
           </NextLink>
@@ -67,10 +67,9 @@ export const Navbar = () => {
             <NavbarItem key={item.href}>
               <NextLink
                 className={clsx(
-                  "text-white hover:text-blue-200 transition-colors duration-300",
+                  "text-white transition-colors duration-300 hover:text-blue-200",
                   "data-[active=true]:text-blue-500",
                   "font-medium",
-                  "navbar-link",
                 )}
                 color="foreground"
                 href={item.href}
@@ -97,8 +96,8 @@ export const Navbar = () => {
         </NavbarItem>
         <NavbarItem className="hidden lg:flex">
           <Link
+            className="rounded-md bg-gray-200 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
             href="/dashboard"
-            className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-200 rounded-md hover:bg-gray-300 dark:text-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600"
           >
             Dashboard
           </Link>
@@ -108,7 +107,7 @@ export const Navbar = () => {
           <Button
             isExternal
             as={Link}
-            className="text-sm font-normal text-white bg-gray-600"
+            className="bg-gray-600 text-sm font-normal text-white"
             href={siteConfig.links.sponsor}
             startContent={<HeartFilledIcon className="text-red-500" />}
             variant="flat"

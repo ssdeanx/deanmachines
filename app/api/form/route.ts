@@ -4,7 +4,7 @@ import nodemailer from "nodemailer";
 import { render } from "@react-email/components";
 
 import { rateLimit } from "@/lib/rate-limit";
-import logger from "@/lib/logger";
+import { logger } from "@/lib/logger";
 import { EmailTemplate } from "@/components/email";
 
 // Validation Schema
@@ -42,7 +42,7 @@ const transporter = nodemailer.createTransport(emailConfig);
 // Rate limiter configuration
 const rateLimiter = rateLimit({
   interval: 60 * 1000, // 1 minute
-  _uniqueTokenPerInterval: 500,
+  uniqueTokenPerInterval: 500,
 });
 
 export async function POST(request: Request) {
