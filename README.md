@@ -1,7 +1,6 @@
 # Dean Machines: Autonomous FPV Drone Platform
 
-<p align="center">
-
+ 
 ![Dean Machines](./public/logo.png)
 
 [![Next.js](https://img.shields.io/badge/next.js-14-black)](https://nextjs.org/)
@@ -11,8 +10,6 @@
 ](https://img.shields.io/badge/NVIDIA-Orin%20Nano-green)](https://developer.nvidia.com/embedded-computing)
 
 ## Open-Source Autonomous Drone Platform
-
-</p>
 
 ## 🚁 Project Overview
 
@@ -176,7 +173,7 @@ This project includes the following components:
 - `TelemetryDisplay`: Displays telemetry data and supports a custom color for the value text.
 - `LidarDataDisplay`: Displays lidar data as a 3D scatter plot with a dropdown menu to select different color scales.
 - `IMUDataDisplay`: Displays IMU data as a 3D scatter plot with a dropdown menu to select different data types to display.
-- `FPVVideoDisplay`: Displays a video stream from the FPV drone.
+- `FPVVideoDisplay`: Displays a video stream from the FPV drone, with a loading state, error handling, and a responsive video element. The FPV page also includes an input box to allow the user to enter a video URL and save it for later use, and checkboxes for advanced options for receiving and displaying FPV video in real time.
 
 ## 🔧 Development
 

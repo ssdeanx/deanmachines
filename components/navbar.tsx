@@ -95,6 +95,14 @@ export const Navbar = () => {
           </Link>
           <ThemeSwitch />
         </NavbarItem>
+        <NavbarItem className="hidden lg:flex">
+          <Link
+            href="/dashboard"
+            className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-200 rounded-md hover:bg-gray-300 dark:text-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600"
+          >
+            Dashboard
+          </Link>
+        </NavbarItem>
         <NavbarItem className="hidden lg:flex">{searchInput}</NavbarItem>
         <NavbarItem className="hidden md:flex">
           <Button

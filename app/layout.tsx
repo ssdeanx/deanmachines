@@ -1,8 +1,6 @@
 import "@/styles/globals.css";
 import { Metadata, Viewport } from "next";
 import { Link } from "@nextui-org/link";
-import { Divider } from "@nextui-org/divider"; // Import Divider
-import ClientSwitch from "@/components/client-switch";
 import clsx from "clsx";
 
 import { Providers } from "./providers";
@@ -10,7 +8,7 @@ import { Providers } from "./providers";
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 import { Navbar } from "@/components/navbar";
-import CustomTooltip from "@/components/tooltip"; // Import the tooltip component
+// Import the tooltip component
 
 export const metadata: Metadata = {
   title: {
@@ -44,9 +42,8 @@ export default function RootLayout({
       <head />
       <body
         className={clsx(
-          "min-h-screen bg-white font-sans antialiased dark:bg-black",
+          "min-h-screen font-sans antialiased overflow-hidden bg-background",
           fontSans.variable,
-          "overflow-hidden", // Now recognized
         )}
       >
         <Providers
@@ -58,8 +55,10 @@ export default function RootLayout({
         >
           <div className="relative flex h-screen flex-col">
             <Navbar />
-            <main className="container mx-auto max-w-7xl grow px-6 pt-16 section-container">
-              {children}
+            <main className="container mx-auto max-w-7xl grow px-6 pt-16">
+              <section className="section-container">
+                {children}
+              </section>
             </main>
             <footer className="flex w-full items-center justify-center py-3">
               <Link

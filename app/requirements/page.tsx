@@ -1,70 +1,84 @@
 "use client";
+import { useState } from "react";
 import {
-  useState,
-  type AwaitedReactNode,
-  type JSXElementConstructor,
-  type Key,
-  type ReactElement,
-  type ReactNode,
-  type ReactPortal,
-} from "react";
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+  Divider,
+  Skeleton,
+} from "@nextui-org/react";
+import { useEffect } from "react";
 
-import { title } from "@/components/primitives";
+import { RequirementItem } from "@/types/index";
+import { requirementsContent } from "@/constants/index";
+export default function RequirementsPage() {
+  const [requirements, setRequirements] =
+    useState<RequirementItem[]>(requirementsContent);
+  const [isLoading, setIsLoading] = useState(false);
 
-export default function DocsPage() {
-  const [data] = useState<Array<any>>([
-    {
-      id: 1,
-      title: "Loading...",
-      description: "Please wait while we fetch data.",
-    },
-  ]);
+  useEffect(() => {
+    const fetchRequirements = async () => {
+      setIsLoading(true);
+      try {
+        const response = await fetch("/api/requirements");
+        const data: RequirementItem[] = await response.json();
 
-  //This fetch call will need to be handled on the server side for Server Components
-  // fetch("https://api.example.com/data")
-  //   .then((response) => response.json())
-  //   .then((data) => setData(data))
-  //   .catch((error) => console.error("Error fetching data:", error));
+        setRequirements(data);
+      } catch (error) {
+        // eslint-disable-next-line no-console
+        console.error(error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchRequirements();
+  }, []);
 
   return (
-    <div className="p-4">
-      <h1 className={title({ color: "violet", size: "lg" })}>Docs</h1>
-      <ul>
-        {data.map(
-          (item: {
-            id: Key | null | undefined;
-            title:
-              | string
-              | number
-              | bigint
-              | boolean
-              | ReactElement<any, string | JSXElementConstructor<any>>
-              | Iterable<ReactNode>
-              | ReactPortal
-              | Promise<AwaitedReactNode>
-              | null
-              | undefined;
-            description:
-              | string
-              | number
-              | bigint
-              | boolean
-              | ReactElement<any, string | JSXElementConstructor<any>>
-              | Iterable<ReactNode>
-              | ReactPortal
-              | Promise<AwaitedReactNode>
-              | null
-              | undefined;
-          }) => (
-            <li key={item.id}>
-              <h2 className={title({ color: "foreground", size: "md" })}>
-                {item.title}
-              </h2>
-              <p>{item.description}</p>
-            </li>
-          ),
-        )}
-      </ul>
+    <div className="py-8">
+      <h1 className="mb-4 text-2xl font-bold">Requirements</h1>
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {isLoading
+          ? Array.from({ length: 3 }).map((_, i) => (
+              <Card key={i}>
+                <CardHeader>
+                  <Skeleton className="h-5 w-3/5 rounded-lg" />
+                </CardHeader>
+                <Divider />
+                <CardBody>
+                  <Skeleton className="h-10 w-full rounded-lg" />
+                </CardBody>
+                <Divider />
+                <CardFooter>
+                  <Skeleton className="h-4 w-2/5 rounded-lg" />
+                </CardFooter>
+              </Card>
+            ))
+          : requirements.map((item) => (
+              <Card key={item.id}>
+                <CardHeader>
+                  <h2 className="text-lg font-bold">{item.title}</h2>
+                </CardHeader>
+                <Divider />
+                <CardBody>
+                  <p>{item.description}</p>
+                </CardBody>
+                <Divider />
+                <CardFooter>
+                  <p className="text-sm text-gray-500">
+                    Last updated:{" "}
+                    {new Date().toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })}
+                  </p>
+                </CardFooter>
+              </Card>
+            ))}
+      </div>
     </div>
   );
 }

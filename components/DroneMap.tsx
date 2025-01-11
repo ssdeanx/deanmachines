@@ -29,6 +29,7 @@ const DroneMap: React.FC<DroneMapProps> = ({
 
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "",
+    libraries: ['drawing'],
   });
 
   const mapContainerStyle = {
@@ -59,20 +60,24 @@ const DroneMap: React.FC<DroneMapProps> = ({
           zoom={15}
         >
           <DrawingManager
-            options={{
-              drawingControl: true,
-              drawingControlOptions: {
-                drawingModes: [google.maps.drawing.OverlayType.POLYGON],
-              },
-              polygonOptions: {
-                fillColor: "#0000FF",
-                fillOpacity: 0.2,
-                strokeWeight: 2,
-                clickable: true,
-                editable: true,
-                zIndex: 1,
-              },
-            }}
+            options={
+              google && google.maps && google.maps.drawing
+                ? {
+                    drawingControl: true,
+                    drawingControlOptions: {
+                      drawingModes: [google.maps.drawing.OverlayType.POLYGON],
+                    },
+                    polygonOptions: {
+                      fillColor: "#0000FF",
+                      fillOpacity: 0.2,
+                      strokeWeight: 2,
+                      clickable: true,
+                      editable: true,
+                      zIndex: 1,
+                    },
+                  }
+                : {}
+            }
             onPolygonComplete={onPolygonComplete}
           />
           <Marker position={center} />

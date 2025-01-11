@@ -1,4 +1,4 @@
-import { Inter as FontSans, Fira_Code as FontMono } from 'next/font/google';
+import { Inter as FontSans, Fira_Code as FontMono } from "next/font/google";
 
 export const fontSans = FontSans({
   subsets: ["latin"],

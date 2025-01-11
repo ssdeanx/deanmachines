@@ -92,6 +92,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Consider adding loading state components
 - Implement more comprehensive form validation
 
+### Added - FPV Video Page
+
+- Created a new page for FPV video in the dashboard at `/dashboard/fpv`.
+- Added a link to the FPV video page in the dashboard sidebar.
+- Created a shared `DashboardSidebar` component and used it in the dashboard, data, and FPV pages.
+- Added an input box to the FPV page to allow the user to enter a video URL.
+- Added a button to the FPV page to save the video URL.
+- Added checkboxes to the FPV page for advanced options for receiving and displaying FPV video in real time.
+- Updated the `FPVVideoDisplay` component to use best practices, including a loading state, error handling, and a responsive video element.
+- Added security by ensuring the video URL is valid and adding a `referrerPolicy="no-referrer"` attribute to the video element.
+
 [0.2.1]: https://github.com/ssdeanx/deanmachines/releases/tag/v0.2.1
 [0.2.0]: https://github.com/ssdeanx/deanmachines/releases/tag/v0.2.0
 [0.1.0]: https://github.com/ssdeanx/deanmachines/releases/tag/v0.1.0

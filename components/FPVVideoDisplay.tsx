@@ -1,11 +1,23 @@
-import React from "react";
-import { Card, CardHeader, CardBody } from "@nextui-org/react";
+import React, { useState } from "react";
+import { Card, CardHeader, CardBody, Spinner } from "@nextui-org/react";
 
 interface FPVVideoDisplayProps {
   videoUrl: string;
 }
 
 const FPVVideoDisplay: React.FC<FPVVideoDisplayProps> = ({ videoUrl }) => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleVideoLoad = () => {
+    setIsLoading(false);
+  };
+
+  const handleVideoError = () => {
+    setIsLoading(false);
+    setError("Error loading video.");
+  };
+
   return (
     <Card className="border border-gray-200/20 bg-gray-50/50 backdrop-blur-lg dark:border-gray-700/20 dark:bg-gray-800/50">
       <CardHeader>
@@ -14,11 +26,27 @@ const FPVVideoDisplay: React.FC<FPVVideoDisplayProps> = ({ videoUrl }) => {
         </h3>
       </CardHeader>
       <CardBody className="p-6">
-        <video controls width="100%" height="400px">
-          <source src={videoUrl} type="video/mp4" />
-          <track kind="captions" />
-          Your browser does not support the video tag.
-        </video>
+        {isLoading ? (
+          <div className="flex justify-center p-8">
+            <Spinner color="primary" label="Loading video..." />
+          </div>
+        ) : error ? (
+          <p className="text-red-500">{error}</p>
+        ) : (
+          videoUrl && (
+            <video
+              controls
+              className="aspect-video"
+              width="100%"
+              onError={handleVideoError}
+              onLoadedData={handleVideoLoad}
+            >
+              <source src={videoUrl} type="video/mp4" />
+              <track kind="captions" />
+              Your browser does not support the video tag.
+            </video>
+          )
+        )}
       </CardBody>
     </Card>
   );

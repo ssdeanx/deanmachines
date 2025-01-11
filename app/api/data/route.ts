@@ -1,5 +1,6 @@
-import { NextResponse } from "next/server";
 import type { DataItem } from "@/types";
+
+import { NextResponse } from "next/server";
 
 export async function GET() {
   const mockData: DataItem[] = [

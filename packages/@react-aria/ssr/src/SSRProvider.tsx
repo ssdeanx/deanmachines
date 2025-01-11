@@ -1,6 +1,6 @@
 "use client";
 
-import * as React from 'react';
+import * as React from "react";
 
 interface SSRContextValue {
   isSSR?: boolean;
@@ -20,7 +20,19 @@ export interface SSRProviderProps {
  * SSRProvider enables components that rely on useSSRSafeId to work correctly in an SSR environment.
  * It should be placed at the root of your app.
  */
-export const SSRProvider: React.FC<SSRProviderProps> = (props: { children: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<React.AwaitedReactNode> | null | undefined; }) => {
+export const SSRProvider: React.FC<SSRProviderProps> = (props: {
+  children:
+    | string
+    | number
+    | bigint
+    | boolean
+    | React.ReactElement<any, string | React.JSXElementConstructor<any>>
+    | Iterable<React.ReactNode>
+    | React.ReactPortal
+    | Promise<React.AwaitedReactNode>
+    | null
+    | undefined;
+}) => {
   const [isSSR, setSSR] = React.useState(true);
 
   return (

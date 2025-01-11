@@ -5,6 +5,10 @@ export const siteConfig = {
   description: "Open-source autonomous drone platform.",
   navItems: [
     {
+      label: "FPV",
+      href: "/dashboard/fpv",
+    },
+    {
       label: "Home",
       href: "/",
     },

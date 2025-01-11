@@ -1,15 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
-import {
-  useState,
-  useEffect,
-  type AwaitedReactNode,
-  type JSXElementConstructor,
-  type Key,
-  type ReactElement,
-  type ReactNode,
-  type ReactPortal,
-} from "react";
+import { useState } from "react";
 import {
   Card,
   CardBody,
@@ -23,6 +15,7 @@ import {
 } from "@nextui-org/react";
 import { motion } from "framer-motion";
 
+import { dataContent } from "@/constants/index";
 import { title } from "@/components/primitives";
 import D3Chart from "@/components/D3Chart";
 
@@ -37,110 +30,57 @@ interface DataItem {
   description: string;
 }
 
+import DashboardSidebar from "@/components/dashboard-sidebar";
+
 export default function DataPage() {
-  const [data, setData] = useState<DataItem[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [data, setData] = useState<DataItem[]>(dataContent);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setIsLoading(true);
-        setError(null);
-        // Simulated API call - replace with your actual API endpoint
-        const mockData = [
-          { id: 1, title: "Data Point 1", description: "Description 1" },
-          { id: 2, title: "Data Point 2", description: "Description 2" },
-        ];
-
-        // Simulate network delay
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-
-        setData(mockData);
-      } catch {
-        setError("Failed to load data. Please try again later.");
-        // Log the error to an external service or handle it appropriately
-        // Example: logErrorToService(error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
 
   return (
-    <motion.div animate="show" initial="hidden" variants={itemVariants}>
-      <Card className="mb-8">
-        <CardBody>
-          <h1 className={title({ color: "violet", size: "lg" })}>
-            Data Overview
-          </h1>
-          {error ? (
-            <p className="text-danger">{error}</p>
-          ) : isLoading ? (
-            <div className="flex justify-center p-8">
-              <Spinner color="primary" label="Loading data..." />
-            </div>
-          ) : (
-            <Table
-              aria-label="Data table"
-              classNames={{
-                wrapper: "min-h-[400px]",
-              }}
-            >
-              <TableHeader>
-                <TableColumn>ID</TableColumn>
-                <TableColumn>TITLE</TableColumn>
-                <TableColumn>DESCRIPTION</TableColumn>
-              </TableHeader>
-              <TableBody>
-                {data.map(
-                  (item: {
-                    id:
-                      | boolean
-                      | ReactElement<any, string | JSXElementConstructor<any>>
-                      | Iterable<ReactNode>
-                      | Promise<AwaitedReactNode>
-                      | Key
-                      | null
-                      | undefined;
-                    title:
-                      | string
-                      | number
-                      | bigint
-                      | boolean
-                      | ReactElement<any, string | JSXElementConstructor<any>>
-                      | Iterable<ReactNode>
-                      | ReactPortal
-                      | Promise<AwaitedReactNode>
-                      | null
-                      | undefined;
-                    description:
-                      | string
-                      | number
-                      | bigint
-                      | boolean
-                      | ReactElement<any, string | JSXElementConstructor<any>>
-                      | Iterable<ReactNode>
-                      | ReactPortal
-                      | Promise<AwaitedReactNode>
-                      | null
-                      | undefined;
-                  }) => (
+    <div className="flex">
+      <DashboardSidebar />
+      <motion.div className="flex-1" animate="show" initial="hidden" variants={itemVariants}>
+        <Card className="mb-8">
+          <CardBody>
+            <h1 className={title({ color: "violet", size: "lg" })}>
+              Data Overview
+            </h1>
+            {error ? (
+              <p className="">{error}</p>
+            ) : isLoading ? (
+              <div className="flex justify-center p-8">
+                <Spinner color="primary" label="Loading data..." />
+              </div>
+            ) : (
+              <Table
+                aria-label="Data table"
+                classNames={{
+                  wrapper: "min-h-[400px]",
+                }}
+              >
+                <TableHeader>
+                  <TableColumn>ID</TableColumn>
+                  <TableColumn>TITLE</TableColumn>
+                  <TableColumn>DESCRIPTION</TableColumn>
+                </TableHeader>
+                <TableBody>
+                  {data.map((item) => (
                     <TableRow key={item.id}>
                       <TableCell>{item.id}</TableCell>
                       <TableCell>{item.title}</TableCell>
                       <TableCell>{item.description}</TableCell>
                     </TableRow>
-                  ),
-                )}
-              </TableBody>
-            </Table>
-          )}
-          <D3Chart data={[10, 30, 50, 20, 60, 40, 80, 70, 90, 100]} />
-        </CardBody>
-      </Card>
-    </motion.div>
+                  ))}
+                </TableBody>
+              </Table>
+            )}
+            <D3Chart data={[10, 30, 50, 20, 60, 40, 80, 70, 90, 100]} />
+          </CardBody>
+        </Card>
+      </motion.div>
+    </div>
   );
 }

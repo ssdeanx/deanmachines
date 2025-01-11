@@ -2,8 +2,6 @@
 "use client";
 import { Card } from "@nextui-org/react";
 
-import { metadata } from "./metadata";
-
 export default function DataLayout({
   children,
 }: {

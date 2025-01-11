@@ -27,6 +27,9 @@ module.exports = {
       },
     },
     extend: {
+      spacing: {
+        128: "32rem",
+      },
       fontFamily: {
         sans: ["var(--font-sans)", "system-ui"],
         mono: ["var(--font-mono)", "monospace"],
@@ -77,14 +80,12 @@ module.exports = {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
         },
-        ring: "#yourRingColor",
-        destructive: "#yourDestructiveColor",
-        "destructive-foreground": "#yourDestructiveForegroundColor",
-        input: "#yourInputColor",
+        ring: "hsl(var(--ring))",
+        destructive: "hsl(var(--destructive))",
+        "destructive-foreground": "hsl(var(--destructive-foreground))",
+        input: "hsl(var(--input))",
+        ringOffset: "hsl(var(--ring-offset))",
         "navbar-gradient": "linear-gradient(to right, #8360c3, #2ebf91)",
-      },
-      ringColor: {
-        ring: "#yourRingColor",
       },
       animation: {
         "slide-up": "slideUp 0.5s var(--transition-ease)",
@@ -162,6 +163,7 @@ module.exports = {
     require("tailwindcss-animate"),
     require("tailwind-scrollbar"),
     require("tailwind-scrollbar-hide"),
+    require("@tailwindcss/forms"),
     plugin(({ addUtilities }) => {
       addUtilities({
         ".glass": {
@@ -190,7 +192,14 @@ module.exports = {
         ".section-container": {
           "@apply py-16 px-4 sm:px-6 lg:px-8": {},
         },
-      });
+        ".debug-screens": {
+          "@apply before:fixed before:top-0 before:left-0 before:z-50 before:block before:px-1 before:text-xs before:font-mono before:text-white before:bg-black before:shadow-lg before:content-['screen:_']":
+            {},
+          "&::after": {
+            content: "theme('screens')",
+          },
+        },
+      })
     }),
   ],
   future: {
@@ -198,6 +207,8 @@ module.exports = {
     respectDefaultRingColorOpacity: true,
     disableColorOpacityUtilitiesByDefault: true,
     removeDeprecatedGapUtilities: true,
+    relativeContentPathsByDefault: true,
+    optimizeUniversalDefaults: true,
   },
   darkMode: "class",
 };
