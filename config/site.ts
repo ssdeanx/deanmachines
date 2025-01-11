@@ -5,10 +5,6 @@ export const siteConfig = {
   description: "Open-source autonomous drone platform.",
   navItems: [
     {
-      label: "FPV",
-      href: "/dashboard/fpv",
-    },
-    {
       label: "Home",
       href: "/",
     },
@@ -92,10 +88,10 @@ export const siteConfig = {
     },
   ],
   links: {
-    github: "https://github.com/your-username/your-repo",
+    github: "https://github.com/ssdeanx/deanmachines",
     twitter: "https://twitter.com/your-twitter",
-    docs: "https://github.com/your-username/your-repo/wiki",
+    docs: "https://github.com/ssdeanx/deanmachines/wiki",
     discord: "https://discord.gg/your-discord",
-    sponsor: "https://patreon.com/your-patreon",
+    sponsor: "https://patreon.com/DeanMachines",
   },
 };

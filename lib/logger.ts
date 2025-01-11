@@ -1,4 +1,5 @@
 import winston from "winston";
+// eslint-disable-next-line import/order
 import { format } from "winston";
 import "winston-daily-rotate-file";
 
@@ -28,10 +29,10 @@ const colors = {
 winston.addColors(colors);
 
 // Define log format with enhanced features
-interface LogInfo {
-  message: string;
-  level: string;
-  timestamp: string;
+import { TransformableInfo } from "logform";
+
+interface LogInfo extends TransformableInfo {
+  timestamp?: string;
   stack?: string;
   metadata?: Record<string, any>;
 }

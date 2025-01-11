@@ -6,6 +6,7 @@ import { button as buttonStyles } from "@nextui-org/theme";
 import { siteConfig } from "@/config/site";
 import { title, subtitle } from "@/components/primitives";
 import { GithubIcon } from "@/components/icons";
+import BlogList from "@/components/BlogList";
 
 export default function Home() {
   return (
@@ -50,6 +51,7 @@ export default function Home() {
           </span>
         </Snippet>
       </div>
+      <BlogList />
     </section>
   );
 }

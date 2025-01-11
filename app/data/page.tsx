@@ -19,6 +19,9 @@ import { dataContent } from "@/constants/index";
 import { title } from "@/components/primitives";
 import D3Chart from "@/components/D3Chart";
 import DashboardSidebar from "@/components/dashboard-sidebar";
+import SensorDataPanel from "@/components/SensorDataPanel";
+import PointCloudChart from "@/components/PointCloudChart";
+import Divider from "@/components/divider";
 
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -81,8 +84,16 @@ export default function DataPage() {
               </Table>
             )}
             <D3Chart data={[10, 30, 50, 20, 60, 40, 80, 70, 90, 100]} />
-          </CardBody>
-        </Card>
+            <SensorDataPanel initialData={{
+                temperature: 25,
+                humidity: 60,
+                pressure: 1010,
+                altitude: 100,
+              }} />
+            <Divider my-8 />
+            <PointCloudChart />
+            </CardBody>
+          </Card>
       </motion.div>
     </div>
   );
