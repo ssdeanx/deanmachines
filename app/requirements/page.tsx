@@ -1,5 +1,13 @@
 "use client";
-import { useState } from "react";
+import {
+  useState,
+  type AwaitedReactNode,
+  type JSXElementConstructor,
+  type Key,
+  type ReactElement,
+  type ReactNode,
+  type ReactPortal,
+} from "react";
 
 import { title } from "@/components/primitives";
 
@@ -22,14 +30,40 @@ export default function DocsPage() {
     <div className="p-4">
       <h1 className={title({ color: "violet", size: "lg" })}>Docs</h1>
       <ul>
-        {data.map((item) => (
-          <li key={item.id}>
-            <h2 className={title({ color: "foreground", size: "md" })}>
-              {item.title}
-            </h2>
-            <p>{item.description}</p>
-          </li>
-        ))}
+        {data.map(
+          (item: {
+            id: Key | null | undefined;
+            title:
+              | string
+              | number
+              | bigint
+              | boolean
+              | ReactElement<any, string | JSXElementConstructor<any>>
+              | Iterable<ReactNode>
+              | ReactPortal
+              | Promise<AwaitedReactNode>
+              | null
+              | undefined;
+            description:
+              | string
+              | number
+              | bigint
+              | boolean
+              | ReactElement<any, string | JSXElementConstructor<any>>
+              | Iterable<ReactNode>
+              | ReactPortal
+              | Promise<AwaitedReactNode>
+              | null
+              | undefined;
+          }) => (
+            <li key={item.id}>
+              <h2 className={title({ color: "foreground", size: "md" })}>
+                {item.title}
+              </h2>
+              <p>{item.description}</p>
+            </li>
+          ),
+        )}
       </ul>
     </div>
   );

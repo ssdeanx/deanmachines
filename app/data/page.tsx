@@ -1,6 +1,15 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import {
+  useState,
+  useEffect,
+  type AwaitedReactNode,
+  type JSXElementConstructor,
+  type Key,
+  type ReactElement,
+  type ReactNode,
+  type ReactPortal,
+} from "react";
 import {
   Card,
   CardBody,
@@ -86,13 +95,46 @@ export default function DataPage() {
                 <TableColumn>DESCRIPTION</TableColumn>
               </TableHeader>
               <TableBody>
-                {data.map((item) => (
-                  <TableRow key={item.id}>
-                    <TableCell>{item.id}</TableCell>
-                    <TableCell>{item.title}</TableCell>
-                    <TableCell>{item.description}</TableCell>
-                  </TableRow>
-                ))}
+                {data.map(
+                  (item: {
+                    id:
+                      | boolean
+                      | ReactElement<any, string | JSXElementConstructor<any>>
+                      | Iterable<ReactNode>
+                      | Promise<AwaitedReactNode>
+                      | Key
+                      | null
+                      | undefined;
+                    title:
+                      | string
+                      | number
+                      | bigint
+                      | boolean
+                      | ReactElement<any, string | JSXElementConstructor<any>>
+                      | Iterable<ReactNode>
+                      | ReactPortal
+                      | Promise<AwaitedReactNode>
+                      | null
+                      | undefined;
+                    description:
+                      | string
+                      | number
+                      | bigint
+                      | boolean
+                      | ReactElement<any, string | JSXElementConstructor<any>>
+                      | Iterable<ReactNode>
+                      | ReactPortal
+                      | Promise<AwaitedReactNode>
+                      | null
+                      | undefined;
+                  }) => (
+                    <TableRow key={item.id}>
+                      <TableCell>{item.id}</TableCell>
+                      <TableCell>{item.title}</TableCell>
+                      <TableCell>{item.description}</TableCell>
+                    </TableRow>
+                  ),
+                )}
               </TableBody>
             </Table>
           )}

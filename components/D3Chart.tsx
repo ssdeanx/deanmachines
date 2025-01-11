@@ -29,7 +29,6 @@ const D3Chart: React.FC<D3ChartProps> = ({
   useEffect(() => {
     if (!svgRef.current || !containerRef.current) return;
 
-    const container = d3.select(containerRef.current);
     const svg = d3.select(svgRef.current);
 
     svg.selectAll("*").remove(); // Clear previous chart
@@ -67,17 +66,18 @@ const D3Chart: React.FC<D3ChartProps> = ({
     svg.append("g").call(yAxis).selectAll("line").attr("stroke", axisColor);
 
     const line = d3
-      .line()
-      .x((d: number, i: number) => xScale(i))
-      .y((d: number) => yScale(d));
+      .line<[number, number]>()
+      .x((d) => xScale(d[0]))
+      .y((d) => yScale(d[1]));
+
+    const lineData: [number, number][] = data.map((d, i) => [i, d]);
 
     svg
       .append("path")
-      .datum(data)
       .attr("fill", "none")
       .attr("stroke", lineColor)
       .attr("stroke-width", 1.5)
-      .attr("d", line);
+      .attr("d", line(lineData));
 
     svg
       .append("text")

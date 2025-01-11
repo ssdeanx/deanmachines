@@ -1,6 +1,6 @@
 "use client";
 import "@/styles/globals.css";
-import { Metadata, Viewport } from "next";
+import { Viewport } from "next";
 import { Link } from "@nextui-org/link";
 import { Divider } from "@nextui-org/divider";
 import { Switch } from "@nextui-org/switch";
@@ -8,11 +8,9 @@ import clsx from "clsx";
 
 import { Providers } from "../providers";
 
-import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 import { Navbar } from "@/components/navbar";
 import CustomTooltip from "@/components/tooltip";
-import { metadata } from "./metadata";
 
 export const viewport: Viewport = {
   themeColor: [

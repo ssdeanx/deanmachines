@@ -58,15 +58,8 @@ export default function RootLayout({
         >
           <div className="relative flex h-screen flex-col">
             <Navbar />
-            <main className="container mx-auto max-w-7xl grow px-6 pt-16">
+            <main className="container mx-auto max-w-7xl grow px-6 pt-16 section-container">
               {children}
-              <Divider className="my-4" /> {/* Add Divider */}
-              <div className="flex items-center gap-2">
-                <ClientSwitch checked={true} />
-                <span>Toggle Switch</span>
-              </div>{" "}
-              {/* Add Switch */}
-              <CustomTooltip /> {/* Add the tooltip component */}
             </main>
             <footer className="flex w-full items-center justify-center py-3">
               <Link

@@ -48,21 +48,29 @@ export const Navbar = () => {
   );
 
   return (
-    <NextUINavbar maxWidth="xl" position="sticky">
-      <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
-        <NavbarBrand as="li" className="max-w-fit gap-3">
+    <NextUINavbar
+      maxWidth="xl"
+      position="sticky"
+      className="bg-gradient-to-r from-purple-500 to-blue-500"
+    >
+      <NavbarContent className="sm:basis-full" justify="start">
+        <NavbarBrand as="li" className="gap-3">
           <NextLink className="flex items-center justify-start gap-1" href="/">
             <Logo />
-            <p className="font-bold text-inherit">ACME</p>
+            <p className="font-bold text-xl font-serif text-white">
+              DeanMachines
+            </p>
           </NextLink>
         </NavbarBrand>
-        <ul className="ml-2 hidden justify-start gap-4 lg:flex">
+        <ul className="hidden justify-start gap-4 lg:flex">
           {siteConfig.navItems.map((item) => (
             <NavbarItem key={item.href}>
               <NextLink
                 className={clsx(
-                  linkStyles({ color: "foreground" }),
-                  "font-medium text-blue-500",
+                  "text-white hover:text-blue-200 transition-colors duration-300",
+                  "data-[active=true]:text-blue-500",
+                  "font-medium",
+                  "navbar-link",
                 )}
                 color="foreground"
                 href={item.href}
@@ -80,10 +88,10 @@ export const Navbar = () => {
       >
         <NavbarItem className="hidden gap-2 sm:flex">
           <Link isExternal aria-label="Twitter" href={siteConfig.links.twitter}>
-            <TwitterIcon className="text-gray-500" />
+            <TwitterIcon className="text-white" />
           </Link>
           <Link isExternal aria-label="Github" href={siteConfig.links.github}>
-            <GithubIcon className="text-gray-500" />
+            <GithubIcon className="text-white" />
           </Link>
           <ThemeSwitch />
         </NavbarItem>
@@ -92,7 +100,7 @@ export const Navbar = () => {
           <Button
             isExternal
             as={Link}
-            className="bg-gray-100 text-sm font-normal text-gray-600"
+            className="text-sm font-normal text-white bg-gray-600"
             href={siteConfig.links.sponsor}
             startContent={<HeartFilledIcon className="text-red-500" />}
             variant="flat"
@@ -104,7 +112,7 @@ export const Navbar = () => {
 
       <NavbarContent className="basis-1 pl-4 sm:hidden" justify="end">
         <Link isExternal aria-label="Github" href={siteConfig.links.github}>
-          <GithubIcon className="text-gray-500" />
+          <GithubIcon className="text-white" />
         </Link>
         <ThemeSwitch />
         <NavbarMenuToggle />
@@ -114,14 +122,13 @@ export const Navbar = () => {
         {searchInput}
         <div className="mx-4 mt-2 flex flex-col gap-2">
           {siteConfig.navMenuItems.map((item, index) => (
-            <NavbarMenuItem
-              key={`${item}-${index}`}
-              className={clsx(
-                "text-gray-400",
-                "data-[active=true]:text-blue-500",
-              )}
-            >
+            <NavbarMenuItem key={`${item.label}-${index}`}>
               <Link
+                className={clsx(
+                  linkStyles({ color: "foreground" }),
+                  "data-[active=true]:text-blue-500",
+                  "text-gray-400",
+                )}
                 color={
                   index === 2
                     ? "primary"
@@ -129,7 +136,7 @@ export const Navbar = () => {
                       ? "danger"
                       : "foreground"
                 }
-                href="#"
+                href={item.href}
                 size="lg"
               >
                 {item.label}

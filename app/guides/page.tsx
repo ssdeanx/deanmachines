@@ -1,7 +1,8 @@
+"use client";
 import { Card, CardBody, CardHeader } from "@nextui-org/react";
 
 import { title } from "@/components/primitives";
-import Button from "@/components/button";
+import { Button } from "@/components/button";
 
 export default function GuidesPage() {
   return (

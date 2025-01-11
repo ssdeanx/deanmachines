@@ -21,7 +21,7 @@ const DroneMap: React.FC<DroneMapProps> = ({
   path = [],
   mapType = "roadmap",
 }) => {
-  const [polygons, setPolygons] = useState<any[]>([]);
+  const [, setPolygons] = useState<any[]>([]);
 
   const onPolygonComplete = useCallback((polygon: any) => {
     setPolygons((current) => [...current, polygon]);
@@ -62,8 +62,7 @@ const DroneMap: React.FC<DroneMapProps> = ({
             options={{
               drawingControl: true,
               drawingControlOptions: {
-                position: 9,
-                drawingModes: ["polygon"],
+                drawingModes: [google.maps.drawing.OverlayType.POLYGON],
               },
               polygonOptions: {
                 fillColor: "#0000FF",

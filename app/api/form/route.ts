@@ -7,7 +7,6 @@ import { rateLimit } from "@/lib/rate-limit";
 import logger from "@/lib/logger";
 import { EmailTemplate } from "@/components/email";
 
-
 // Validation Schema
 const formSchema = z.object({
   name: z
@@ -65,7 +64,7 @@ export async function POST(request: Request) {
 
     // Parse and validate request body
     const body = await request.json();
-    const validatedData = formSchema.parse(body) as FormData;
+    const validatedData = formSchema.parse(body);
 
     // Render email template
     const htmlContent = await render(
@@ -141,7 +140,12 @@ export async function POST(request: Request) {
 }
 
 // Helper function to generate plain text email
-function generatePlainTextEmail(data: FormData): string {
+function generatePlainTextEmail(data: {
+  name: string;
+  email: string;
+  category: "general" | "technical" | "bug" | "feature" | "other";
+  message: string;
+}): string {
   return `
 Name: ${data.name}
 Email: ${data.email}
