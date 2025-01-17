@@ -89,7 +89,7 @@ export const ContactForm: FC = () => {
     setSubmitStatus("idle");
 
     try {
-      const response = await fetch("/api/contact", {
+      const response = await fetch("/api/form", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(values),
@@ -118,7 +118,7 @@ export const ContactForm: FC = () => {
   return (
     <form
       noValidate
-      className="rounded-lg bg-white p-4 md:p-6 shadow-md dark:bg-gray-800"
+      className="rounded-lg bg-white p-4 shadow-md dark:bg-gray-800 md:p-6"
       style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}
       onSubmit={handleSubmit}
     >
@@ -126,7 +126,8 @@ export const ContactForm: FC = () => {
         isRequired
         aria-label="Name"
         classNames={{
-          inputWrapper: "bg-gray-100 dark:bg-gray-700 focus:ring-2 focus:ring-blue-500",
+          inputWrapper:
+            "bg-gray-100 dark:bg-gray-700 focus:ring-2 focus:ring-blue-500",
         }}
         errorMessage={errors.name}
         isInvalid={!!errors.name}
@@ -140,7 +141,8 @@ export const ContactForm: FC = () => {
         isRequired
         aria-label="Email"
         classNames={{
-          inputWrapper: "bg-gray-100 dark:bg-gray-700 focus:ring-2 focus:ring-blue-500",
+          inputWrapper:
+            "bg-gray-100 dark:bg-gray-700 focus:ring-2 focus:ring-blue-500",
         }}
         errorMessage={errors.email}
         isInvalid={!!errors.email}
@@ -155,7 +157,8 @@ export const ContactForm: FC = () => {
         isRequired
         aria-label="Category"
         classNames={{
-          trigger: "bg-gray-100 dark:bg-gray-700 focus:ring-2 focus:ring-blue-500",
+          trigger:
+            "bg-gray-100 dark:bg-gray-700 focus:ring-2 focus:ring-blue-500",
         }}
         errorMessage={errors.category}
         isInvalid={!!errors.category}
@@ -174,8 +177,9 @@ export const ContactForm: FC = () => {
       <Textarea
         isRequired
         aria-label="Message"
-         classNames={{
-          inputWrapper: "bg-gray-100 dark:bg-gray-700 focus:ring-2 focus:ring-blue-500",
+        classNames={{
+          inputWrapper:
+            "bg-gray-100 dark:bg-gray-700 focus:ring-2 focus:ring-blue-500",
         }}
         errorMessage={errors.message}
         isInvalid={!!errors.message}
@@ -189,7 +193,7 @@ export const ContactForm: FC = () => {
         <div className="flex justify-end">
           <Button
             aria-label={isSubmitting ? "Submitting..." : "Submit form"}
-            className="min-w-[120px] bg-blue-600 hover:bg-blue-700 text-white"
+            className="min-w-[120px] bg-blue-600 text-white hover:bg-blue-700"
             color="primary"
             disabled={isSubmitting}
             type="submit"
@@ -208,7 +212,10 @@ export const ContactForm: FC = () => {
         )}
 
         {submitStatus === "error" && (
-          <div className="rounded-md bg-red-100 p-4 text-red-700 dark:bg-red-900 dark:text-red-300" role="alert">
+          <div
+            className="rounded-md bg-red-100 p-4 text-red-700 dark:bg-red-900 dark:text-red-300"
+            role="alert"
+          >
             Sorry, something went wrong. Please try again later.
           </div>
         )}

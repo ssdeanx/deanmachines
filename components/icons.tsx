@@ -137,4 +137,70 @@ export const SunFilledIcon: React.FC<IconSvgProps> & { displayName?: string } =
     </svg>
   ));
 SunFilledIcon.displayName = "SunFilledIcon";
-G&&^%&
+
+export const RocketIcon: React.FC<IconSvgProps> & { displayName?: string } =
+  memo(({ size, width, height, ...props }) => (
+    <svg
+      className="transition-transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+      height={size || height}
+      viewBox="0 0 24 24"
+      width={size || width}
+      {...props}
+    >
+      <path
+        d="M14 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L14 21.35z"
+        fill="currentColor"
+      />
+    </svg>
+  ));
+RocketIcon.displayName = "RocketIcon";
+
+export const ClipboardCheckIcon: React.FC<IconSvgProps> & {
+  displayName?: string;
+} = memo(({ size, width, height, ...props }) => (
+  <svg
+    className="transition-transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+    height={size || height}
+    viewBox="0 0 24 24"
+    width={size || width}
+    {...props}
+  >
+    <path
+      d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
+      fill="currentColor"
+    />
+  </svg>
+));
+ClipboardCheckIcon.displayName = "ClipboardCheckIcon";
+
+export const BookOpenIcon: React.FC<IconSvgProps> & { displayName?: string } =
+  memo(({ size, width, height, ...props }) => (
+    <svg
+      className="transition-transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+      height={size || height}
+      viewBox="0 0 24 24"
+      width={size || width}
+      {...props}
+    >
+      <path
+        d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7V7h10v2z"
+        fill="currentColor"
+      />
+    </svg>
+  ));
+BookOpenIcon.displayName = "BookOpenIcon";
+
+export const ChipIcon: React.FC<IconSvgProps> & { displayName?: string } = memo(
+  ({ size, width, height, ...props }) => (
+    <svg
+      className="transition-transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+      height={size || height}
+      viewBox="0 0 24 24"
+      width={size || width}
+      {...props}
+    >
+      <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" fill="currentColor" />
+    </svg>
+  ),
+);
+ChipIcon.displayName = "ChipIcon";

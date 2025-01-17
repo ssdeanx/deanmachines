@@ -18,12 +18,30 @@ export const title = tv({
       md: "text-[2.3rem] leading-9 lg:text-5xl",
       lg: "text-4xl lg:text-6xl",
     },
+    fontWeight: {
+      normal: "font-normal",
+      bold: "font-bold",
+      extrabold: "font-extrabold",
+    },
+    textAlign: {
+      left: "text-left",
+      center: "text-center",
+      right: "text-right",
+    },
+    letterSpacing: {
+      normal: "tracking-normal",
+      wide: "tracking-wide",
+      tight: "tracking-tight",
+    },
     fullWidth: {
       true: "block w-full",
     },
   },
   defaultVariants: {
     size: "md",
+    fontWeight: "bold",
+    textAlign: "left",
+    letterSpacing: "tight",
   },
   compoundVariants: [
     {
@@ -43,13 +61,19 @@ export const title = tv({
 });
 
 export const subtitle = tv({
-  base: "my-2 block w-full max-w-full text-lg text-gray-600 md:w-1/2 lg:text-xl",
+  base: "my-2 block w-full max-w-full text-lg text-gray-600 dark:text-gray-400 md:w-1/2 lg:text-xl",
   variants: {
     fullWidth: {
       true: "!w-full",
     },
+    textAlign: {
+      left: "text-left",
+      center: "text-center",
+      right: "text-right",
+    },
   },
   defaultVariants: {
     fullWidth: true,
+    textAlign: "left",
   },
 });

@@ -82,7 +82,7 @@ export default function App() {
     <Table
       aria-label="Sensor Data Table"
       classNames={{
-        table: "min-h-[400px]",
+        table: "min-h-[400px] dark:bg-gray-800",
       }}
       sortDescriptor={list.sortDescriptor}
       onSortChange={list.sort}

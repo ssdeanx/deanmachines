@@ -30,7 +30,7 @@ export const Navbar = () => {
     <Input
       aria-label="Search"
       classNames={{
-        inputWrapper: "bg-default-100",
+        inputWrapper: "bg-default-100 dark:bg-gray-700",
         input: "text-sm",
       }}
       endContent={
@@ -134,7 +134,7 @@ export const Navbar = () => {
                 className={clsx(
                   linkStyles({ color: "foreground" }),
                   "data-[active=true]:text-blue-500",
-                  "text-gray-400",
+                  "text-gray-400 dark:text-gray-300",
                 )}
                 color={
                   index === 2

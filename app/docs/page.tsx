@@ -1,14 +1,22 @@
 "use client";
 import { Card, CardBody, CardHeader } from "@nextui-org/react";
 
-import { title } from "@/components/primitives";
+import { title, subtitle } from "@/components/primitives";
 import { Button } from "@/components/button";
+import { BookOpenIcon } from "@/components/icons";
 
 export default function DocsPage() {
   return (
     <div>
-      <h1 className={title()}>Documentation</h1>
-      <p>This page contains the documentation for the Dean Machines project.</p>
+      <div className="text-center">
+        <h1 className={title({ size: "lg" })}>
+          <BookOpenIcon className="mr-2 inline-block" size={30} />
+          Documentation
+        </h1>
+        <div className={subtitle({ class: "mt-4" })}>
+          Explore the documentation for the Dean Machines project.
+        </div>
+      </div>
       <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
         <Card>
           <CardHeader className="text-xl font-semibold">

@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Card,
   CardBody,
@@ -8,10 +8,12 @@ import {
   Divider,
   Skeleton,
 } from "@nextui-org/react";
-import { useEffect } from "react";
 
 import { RequirementItem } from "@/types/index";
 import { requirementsContent } from "@/constants/index";
+import { title, subtitle } from "@/components/primitives";
+import { ClipboardCheckIcon } from "@/components/icons";
+
 export default function RequirementsPage() {
   const [requirements, setRequirements] =
     useState<RequirementItem[]>(requirementsContent);
@@ -38,8 +40,17 @@ export default function RequirementsPage() {
 
   return (
     <div className="py-8">
-      <h1 className="mb-4 text-2xl font-bold">Requirements</h1>
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <div className="text-center">
+        <h1 className={title({ size: "lg" })}>
+          <ClipboardCheckIcon className="inline-block mr-2" size={30} />
+          Project Requirements
+        </h1>
+        <div className={subtitle({ class: "mt-4" })}>
+          Essential guidelines and requirements for participating in the
+          DeanMachines project.
+        </div>
+      </div>
+      <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
         {isLoading
           ? Array.from({ length: 3 }).map((_, i) => (
               <Card key={i}>

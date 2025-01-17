@@ -2,7 +2,8 @@
 import { motion } from "framer-motion";
 import { Card, CardBody, CardHeader, Link } from "@nextui-org/react";
 
-import { title } from "@/components/primitives";
+import { title, subtitle } from "@/components/primitives";
+import { RocketIcon } from "@/components/icons";
 
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -12,10 +13,17 @@ const itemVariants = {
 export default function AboutPage() {
   return (
     <>
-      <div>
-        <h1 className={title()}>About</h1>
+      <div className="text-center">
+        <h1 className={title({ size: "lg" })}>
+          <RocketIcon className="mr-2 inline-block" size={30} />
+          About Dean Machines
+        </h1>
+        <div className={subtitle({ class: "mt-4" })}>
+          Our mission is to create a comprehensive dataset for drone autonomy
+          research and build an open-source autonomous drone platform.
+        </div>
       </div>
-      <section className="space-y-12">
+      <section className="mt-12 space-y-12">
         <motion.div variants={itemVariants}>
           <h2 className="mb-6 text-2xl font-semibold text-gray-800 dark:text-gray-200">
             Hardware Specifications

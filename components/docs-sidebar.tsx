@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import clsx from "clsx";
 
 const sidebarItems = [
   {
@@ -42,11 +43,14 @@ export default function DocsSidebar() {
             {section.items.map((item) => (
               <Link
                 key={item.href}
-                className={`block rounded-md px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-700 ${
-                  pathname === item.href
-                    ? "bg-gray-200 font-semibold dark:bg-gray-700"
-                    : ""
-                }`}
+                className={clsx(
+                  "block rounded-md px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-700",
+                  {
+                    "bg-gray-200 font-semibold dark:bg-gray-700":
+                      pathname === item.href,
+                  },
+                  "text-gray-700 dark:text-gray-300",
+                )}
                 href={item.href}
               >
                 {item.label}

@@ -39,7 +39,7 @@ const BlogList: React.FC = () => {
           {blogPosts.map((post) => (
             <li key={post.slug}>
               <Link
-                className="text-blue-500 hover:text-blue-700"
+                className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
                 href={post.slug}
               >
                 {post.title}
