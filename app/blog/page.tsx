@@ -12,7 +12,7 @@ export default function BlogPage() {
             fill
             alt="Blog Post"
             className="size-full object-cover"
-            src="https://images.unsplash.com/photo-1508873778024-770028d8e015?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+            src="https://placekitten.com/1920/1080"
           />
         </div>
         <h1 className={title()}>My Awesome Blog Post</h1>

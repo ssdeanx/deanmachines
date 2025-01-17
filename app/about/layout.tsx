@@ -1,6 +1,5 @@
 "use client";
 import "@/styles/globals.css";
-import { Viewport } from "next";
 import { Link } from "@nextui-org/link";
 import { Divider } from "@nextui-org/divider";
 import { Switch } from "@nextui-org/switch";
@@ -11,13 +10,6 @@ import { Providers } from "../providers";
 import { fontSans } from "@/config/fonts";
 import { Navbar } from "@/components/navbar";
 import CustomTooltip from "@/components/tooltip";
-
-export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "white" },
-    { media: "(prefers-color-scheme: dark)", color: "black" },
-  ],
-};
 
 export default function AboutLayout({
   children,

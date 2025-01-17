@@ -1,6 +1,5 @@
 import "@/styles/globals.css";
 import { Metadata, Viewport } from "next";
-import { Link } from "@nextui-org/link";
 import clsx from "clsx";
 
 import { Providers } from "./providers";
@@ -8,7 +7,7 @@ import { Providers } from "./providers";
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 import { Navbar } from "@/components/navbar";
-// Import the tooltip component
+import Footer from "@/components/footer";
 
 export const metadata: Metadata = {
   title: {
@@ -55,22 +54,10 @@ export default function RootLayout({
         >
           <div className="relative flex h-screen flex-col">
             <Navbar />
-            <main className="container mx-auto max-w-7xl grow px-6 pt-16">
-              <section className="container mx-auto px-4 py-8">
-                {children}
-              </section>
+            <main className="container mx-auto grow pt-16">
+              <section className="px-4 py-8">{children}</section>
             </main>
-            <footer className="flex w-full items-center justify-center py-3">
-              <Link
-                isExternal
-                className="flex items-center gap-1 text-current"
-                href="https://github.com/your-username/your-repo"
-                title="Dean Machines GitHub Repository"
-              >
-                <span className="text-gray-600">View on</span>
-                <p className="text-blue-500">GitHub</p>
-              </Link>
-            </footer>
+            <Footer />
           </div>
         </Providers>
       </body>

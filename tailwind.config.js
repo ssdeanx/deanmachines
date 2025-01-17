@@ -197,7 +197,7 @@ module.exports = {
           "@apply before:fixed before:top-0 before:left-0 before:z-50 before:block before:px-1 before:text-xs before:font-mono before:text-white before:bg-black before:shadow-lg before:content-['screen:_']":
             {},
           "&::after": {
-            content: "theme('screens')",
+            content: "'sm: 640px, md: 768px, lg: 1024px, xl: 1280px, 2xl: 1400px'",
           },
         },
       })
