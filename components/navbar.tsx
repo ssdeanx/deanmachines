@@ -49,7 +49,7 @@ export const Navbar = () => {
 
   return (
     <NextUINavbar
-      className="bg-gradient-to-r from-purple-500 to-blue-500"
+      className="navbar-gradient shadow-md"
       maxWidth="xl"
       position="sticky"
     >
@@ -57,7 +57,7 @@ export const Navbar = () => {
         <NavbarBrand as="li" className="gap-3">
           <NextLink className="flex items-center justify-start gap-1" href="/">
             <Logo />
-            <p className="font-serif text-xl font-bold text-white">
+            <p className="text-xl font-bold text-white text-stroke dark:text-white navbar-title">
               DeanMachines
             </p>
           </NextLink>

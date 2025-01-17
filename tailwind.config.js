@@ -34,6 +34,27 @@ module.exports = {
       fontFamily: {
         sans: ["var(--font-sans)", "system-ui"],
         mono: ["var(--font-mono)", "monospace"],
+        bebas: ["Bebas Neue", "sans-serif"],
+        mplus: ['"M PLUS Rounded 1c"', "sans-serif"],
+        noto: ['"Noto Sans JP"', "sans-serif"],
+        sawarabi: ['"Sawarabi Mincho"', "serif"],
+        kosugi: ['"Kosugi Maru"', "sans-serif"],
+        shippori: ['"Shippori Mincho"', "serif"],
+        hina: ['"Hina Mincho"', "serif"],
+        yuji: ['"Yuji Syuku"', "serif"],
+        zen: ['"Zen Maru Gothic"', "sans-serif"],
+        kaisei: ['"Kaisei Opti"', "serif"],
+        rocknroll: ['"RocknRoll One"', "sans-serif"],
+        roboto: ['Roboto', "sans-serif"],
+        opensans: ['"Open Sans"', "sans-serif"],
+        lato: ['Lato', "sans-serif"],
+        montserrat: ['Montserrat', "sans-serif"],
+        oswald: ['Oswald', "sans-serif"],
+        raleway: ['Raleway', "sans-serif"],
+        poppins: ['Poppins', "sans-serif"],
+        sourcesans: ['"Source Sans Pro"', "sans-serif"],
+        merriweather: ['Merriweather', "serif"],
+        playfair: ['"Playfair Display"', "serif"],
       },
       colors: {
         background: "hsl(var(--background))",
@@ -200,6 +221,17 @@ module.exports = {
             content: "'sm: 640px, md: 768px, lg: 1024px, xl: 1280px, 2xl: 1400px'",
           },
         },
+      })
+    }),
+    plugin(({ addUtilities }) => {
+      addUtilities({
+        ".text-stroke": {
+          "-webkit-text-stroke": "2px black",
+          "color": "transparent",
+        },
+        ".dark .text-stroke": {
+          "-webkit-text-stroke": "2px white",
+        }
       })
     }),
   ],

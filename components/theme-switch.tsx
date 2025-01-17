@@ -19,9 +19,16 @@ export const ThemeSwitch: FC<ThemeSwitchProps> = ({
   classNames,
 }) => {
   const { theme, setTheme } = useTheme();
-  const initialTheme = theme === 'dark' ? 'dark' : 'light';
-  
-  
+  const isSSR = useIsSSR();
+  const initialTheme = isSSR
+    ? "light"
+    : localStorage.getItem("theme") || "light";
+
+  useEffect(() => {
+    if (!isSSR) {
+      localStorage.setItem("theme", theme || "light");
+    }
+  }, [theme, isSSR]);
 
   const onChange = () => {
     theme === "light" ? setTheme("dark") : setTheme("light");
