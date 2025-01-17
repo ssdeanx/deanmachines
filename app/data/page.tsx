@@ -84,16 +84,18 @@ export default function DataPage() {
               </Table>
             )}
             <D3Chart data={[10, 30, 50, 20, 60, 40, 80, 70, 90, 100]} />
-            <SensorDataPanel initialData={{
+            <SensorDataPanel
+              initialData={{
                 temperature: 25,
                 humidity: 60,
                 pressure: 1010,
                 altitude: 100,
-              }} />
+              }}
+            />
             <Divider my-8 />
             <PointCloudChart />
-            </CardBody>
-          </Card>
+          </CardBody>
+        </Card>
       </motion.div>
     </div>
   );

@@ -11,9 +11,8 @@ interface SensorDataDisplayProps {
 const SensorDataDisplay: React.FC<SensorDataDisplayProps> = ({
   title,
   data,
-  units = {},
 }) => {
-  const chartData = Object.entries(data).map(([key, value]) => {
+  const chartData = Object.entries(data).map(([, value]) => {
     if (typeof value === "number") {
       return value;
     }
@@ -22,7 +21,7 @@ const SensorDataDisplay: React.FC<SensorDataDisplayProps> = ({
   });
 
   return (
-    <div className="chart-container">
+    <div className="bg-gray-100 rounded-lg p-4 md:p-6 shadow-md">
       <DataChartDisplay
         colorScale={""}
         data={chartData}

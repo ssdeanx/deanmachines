@@ -3,7 +3,7 @@ import React from "react";
 const AdvancedTailwindFeatures: React.FC = () => {
   return (
     // eslint-disable-next-line tailwindcss/no-custom-classname
-    <div className="debug-screens p-4">
+    <div className="p-4 debug-screens">
       <h1 className="mb-4 text-2xl font-bold">Advanced Tailwind Features</h1>
 
       <div className="space-y-32">

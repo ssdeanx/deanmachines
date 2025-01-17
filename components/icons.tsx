@@ -6,7 +6,7 @@ import { IconSvgProps } from "@/types";
 export const Logo: React.FC<IconSvgProps> & { displayName?: string } = memo(
   ({ size, width, height, ...props }) => (
     <svg
-      className="transition-transform hover:scale-110"
+      className="transition-transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
       fill="none"
       height={size || height}
       viewBox="0 0 32 32"
@@ -27,7 +27,7 @@ Logo.displayName = "Logo";
 export const TwitterIcon: React.FC<IconSvgProps> & { displayName?: string } =
   memo(({ size, width, height, ...props }) => (
     <svg
-      className="transition-transform hover:scale-110"
+      className="transition-transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
       height={size || height}
       viewBox="0 0 24 24"
       width={size || width}
@@ -44,7 +44,7 @@ TwitterIcon.displayName = "TwitterIcon";
 export const GithubIcon: React.FC<IconSvgProps> & { displayName?: string } =
   memo(({ size, width, height, ...props }) => (
     <svg
-      className="transition-transform hover:scale-110"
+      className="transition-transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
       height={size || height}
       viewBox="0 0 24 24"
       width={size || width}
@@ -64,7 +64,7 @@ export const HeartFilledIcon: React.FC<IconSvgProps> & {
   displayName?: string;
 } = memo(({ size, width, height, ...props }) => (
   <svg
-    className="transition-transform hover:scale-110"
+    className="transition-transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
     height={size || height}
     viewBox="0 0 24 24"
     width={size || width}
@@ -81,7 +81,7 @@ HeartFilledIcon.displayName = "HeartFilledIcon";
 export const SearchIcon: React.FC<IconSvgProps> & { displayName?: string } =
   memo(({ size, width, height, ...props }) => (
     <svg
-      className="transition-transform hover:scale-110"
+      className="transition-transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
       height={size || height}
       viewBox="0 0 24 24"
       width={size || width}
@@ -94,13 +94,12 @@ export const SearchIcon: React.FC<IconSvgProps> & { displayName?: string } =
     </svg>
   ));
 SearchIcon.displayName = "SearchIcon";
-SearchIcon.displayName = "SearchIcon";
 
 export const MoonFilledIcon: React.FC<IconSvgProps> & { displayName?: string } =
   memo(({ size, width, height, ...props }) => (
     <svg
       aria-hidden="true"
-      className="transition-transform hover:scale-110"
+      className="transition-transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
       focusable="false"
       height={size || height}
       role="presentation"
@@ -116,11 +115,14 @@ export const MoonFilledIcon: React.FC<IconSvgProps> & { displayName?: string } =
   ));
 MoonFilledIcon.displayName = "MoonFilledIcon";
 
+/**
+ * The display name for the SunFilledIcon component.
+ */
 export const SunFilledIcon: React.FC<IconSvgProps> & { displayName?: string } =
   memo(({ size, width, height, ...props }) => (
     <svg
       aria-hidden="true"
-      className="transition-transform hover:scale-110"
+      className="transition-transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
       focusable="false"
       height={size || height}
       role="presentation"
@@ -130,8 +132,9 @@ export const SunFilledIcon: React.FC<IconSvgProps> & { displayName?: string } =
     >
       <g fill="currentColor">
         <path d="M19 12a7 7 0 11-7-7 7 7 0 017 7z" />
-        <path d="M12 22.96a.969.969 0 01-1-.96v-.08a1 1 0 012 0 1.038 1.038 0 01-1 1.04zm7.14-2.82a1.024 1.024 0 01-.71-.29l-.13-.13a1 1 0 011.41-1.41l.13.13a1 1 0 010 1.41.984.984 0 01-.7.29zm-14.28 0a1.024 1.024 0 01-.71-.29 1 1 0 010-1.41l.13-.13a1 1 0 011.41 1.41l-.13.13a1 1 0 01-.7.29zM22 13h-.08a1 1 0 010-2 1.038 1.038 0 011.04 1 .969.969 0 01-.96 1zM2.08 13H2a1 1 0 010-2 1.038 1.038 0 011.04 1 .969.969 0 01-.96 1zm16.93-7.01a1.024 1.024 0 01-.71-.29 1 1 0 010-1.41l.13-.13a1 1 0 011.41 1.41l-.13.13a.984.984 0 01-.7.29zm-14.02 0a1.024 1.024 0 01-.71-.29l-.13-.14a1 1 0 011.41-1.41l.13.13a1 1 0 010 1.41.97.97 0 01-.7.3zM12 3.04a.969.969 0 01-1-.96V2a1 1 0 012 0 1.038 1.038 0 01-1 1.04z" />
+        <path d="M12 22.96a.969.969 0 01-1-.96v-.08a1 1 0 012 0 1.038 1.038 0 01-1 1.04zm7.14-2.82a1.024 1.024 0 01-.71-.29l-.13-.13a1 1 0 011.41-1.41l.13.13a1 1 0 010 1.41.984.984 0 01-.7.29zm-14.28 0a1.024 1.024 0 01-.71-.29l-.13-.14a1 1 0 011.41-1.41l.13.13a1 1 0 010 1.41.97.97 0 01-.7.3zM22 13h-.08a1 1 0 010-2 1.038 1.038 0 011.04 1 .969.969 0 01-.96 1zM2.08 13H2a1 1 0 010-2 1.038 1.038 0 011.04 1 .969.969 0 01-.96 1zm16.93-7.01a1.024 1.024 0 01-.71-.29 1 1 0 010-1.41l.13-.13a1 1 0 011.41 1.41l-.13.13a.984.984 0 01-.7.29zm-14.02 0a1.024 1.024 0 01-.71-.29l-.13-.14a1 1 0 011.41-1.41l.13.13a1 1 0 010 1.41.97.97 0 01-.7.3zM12 3.04a.969.969 0 01-1-.96V2a1 1 0 012 0 1.038 1.038 0 01-1 1.04z" />
       </g>
     </svg>
   ));
 SunFilledIcon.displayName = "SunFilledIcon";
+G&&^%&

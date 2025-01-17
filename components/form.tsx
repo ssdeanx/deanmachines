@@ -118,7 +118,7 @@ export const ContactForm: FC = () => {
   return (
     <form
       noValidate
-      className="rounded-lg bg-white p-6 shadow-md dark:bg-gray-800"
+      className="rounded-lg bg-white p-4 md:p-6 shadow-md dark:bg-gray-800"
       style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}
       onSubmit={handleSubmit}
     >
@@ -126,7 +126,7 @@ export const ContactForm: FC = () => {
         isRequired
         aria-label="Name"
         classNames={{
-          inputWrapper: "bg-gray-100 dark:bg-gray-700",
+          inputWrapper: "bg-gray-100 dark:bg-gray-700 focus:ring-2 focus:ring-blue-500",
         }}
         errorMessage={errors.name}
         isInvalid={!!errors.name}
@@ -140,7 +140,7 @@ export const ContactForm: FC = () => {
         isRequired
         aria-label="Email"
         classNames={{
-          inputWrapper: "bg-gray-100 dark:bg-gray-700",
+          inputWrapper: "bg-gray-100 dark:bg-gray-700 focus:ring-2 focus:ring-blue-500",
         }}
         errorMessage={errors.email}
         isInvalid={!!errors.email}
@@ -155,7 +155,7 @@ export const ContactForm: FC = () => {
         isRequired
         aria-label="Category"
         classNames={{
-          trigger: "bg-gray-100 dark:bg-gray-700",
+          trigger: "bg-gray-100 dark:bg-gray-700 focus:ring-2 focus:ring-blue-500",
         }}
         errorMessage={errors.category}
         isInvalid={!!errors.category}
@@ -174,8 +174,8 @@ export const ContactForm: FC = () => {
       <Textarea
         isRequired
         aria-label="Message"
-        classNames={{
-          inputWrapper: "bg-gray-100 dark:bg-gray-700",
+         classNames={{
+          inputWrapper: "bg-gray-100 dark:bg-gray-700 focus:ring-2 focus:ring-blue-500",
         }}
         errorMessage={errors.message}
         isInvalid={!!errors.message}
@@ -189,7 +189,7 @@ export const ContactForm: FC = () => {
         <div className="flex justify-end">
           <Button
             aria-label={isSubmitting ? "Submitting..." : "Submit form"}
-            className="min-w-[120px]"
+            className="min-w-[120px] bg-blue-600 hover:bg-blue-700 text-white"
             color="primary"
             disabled={isSubmitting}
             type="submit"
@@ -200,7 +200,7 @@ export const ContactForm: FC = () => {
 
         {submitStatus === "success" && (
           <div
-            className="rounded-md bg-green-100 p-4 text-green-700"
+            className="rounded-md bg-green-100 p-4 text-green-700 dark:bg-green-900 dark:text-green-300"
             role="alert"
           >
             Thanks for your inquiry! We&#39;ll get back to you soon.
@@ -208,7 +208,7 @@ export const ContactForm: FC = () => {
         )}
 
         {submitStatus === "error" && (
-          <div className="rounded-md bg-red-100 p-4 text-red-700" role="alert">
+          <div className="rounded-md bg-red-100 p-4 text-red-700 dark:bg-red-900 dark:text-red-300" role="alert">
             Sorry, something went wrong. Please try again later.
           </div>
         )}

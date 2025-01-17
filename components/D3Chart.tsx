@@ -25,13 +25,17 @@ const D3Chart: React.FC<D3ChartProps> = ({
 }) => {
   const svgRef = useRef<SVGSVGElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const lineData: [number, number][] = React.useMemo(() => data.map((d, i) => [i, d]), [data]);
 
   useEffect(() => {
     if (!svgRef.current || !containerRef.current) return;
 
     const svg = d3.select(svgRef.current);
 
-    svg.selectAll("*").remove(); // Clear previous chart
+    const previousData = svg.selectAll("path").data();
+    if (JSON.stringify(previousData) !== JSON.stringify(data)) {
+      svg.selectAll("*").remove(); // Clear previous chart
+    }
 
     const chartWidth =
       containerRef.current.offsetWidth - margin.left - margin.right;
@@ -53,27 +57,25 @@ const D3Chart: React.FC<D3ChartProps> = ({
       .domain([0, Math.max(...data)])
       .range([chartHeight, 0]);
 
-    const xAxis = d3.axisBottom(xScale).tickSize(-chartHeight);
-    const yAxis = d3.axisLeft(yScale).tickSize(-chartWidth);
+    const xAxis = d3.axisBottom(xScale).tickSize(-5);
+    const yAxis = d3.axisLeft(yScale).tickSize(-5);
 
     svg
       .append("g")
       .attr("transform", `translate(0,${chartHeight})`)
       .call(xAxis)
       .selectAll("line")
-      .attr("stroke", axisColor);
+      .attr("stroke", axisColor)
+      .attr("stroke-opacity", 0.5);
 
-    svg.append("g").call(yAxis).selectAll("line").attr("stroke", axisColor);
+    svg.append("g").call(yAxis).selectAll("line").attr("stroke", axisColor).attr("stroke-opacity", 0.5);
 
     const line = d3
       .line<[number, number]>()
       .x((d) => xScale(d[0]))
       .y((d) => yScale(d[1]));
 
-    const lineData: [number, number][] = data.map((d, i) => [i, d]);
-
-    svg
-      .append("path")
+    const path = svg.append("path")
       .attr("fill", "none")
       .attr("stroke", lineColor)
       .attr("stroke-width", 1.5)
@@ -96,8 +98,10 @@ const D3Chart: React.FC<D3ChartProps> = ({
   }, [data, height, margin, lineColor, axisColor, xAxisLabel, yAxisLabel]);
 
   return (
-    <div ref={containerRef}>
-      <svg ref={svgRef} height={height} />
+    <div className="rounded-lg bg-white p-4 md:p-6 shadow-md dark:bg-gray-800">
+      <div ref={containerRef}>
+        <svg ref={svgRef} height={height} />
+      </div>
     </div>
   );
 };

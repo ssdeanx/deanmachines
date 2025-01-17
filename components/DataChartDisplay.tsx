@@ -1,11 +1,11 @@
 "use client";
 
+import type { DataChartDisplayProps } from "@/types";
+
 import React from "react";
 import { Card, CardHeader, CardBody } from "@nextui-org/react";
 
 import D3Chart from "./D3Chart";
-
-import type { DataChartDisplayProps } from "@/types";
 
 const DataChartDisplay: React.FC<DataChartDisplayProps> = ({
   title,
@@ -14,14 +14,14 @@ const DataChartDisplay: React.FC<DataChartDisplayProps> = ({
   yAxisLabel,
 }) => {
   return (
-    <Card className="border border-gray-200/20 bg-gray-50/50 backdrop-blur-lg dark:border-gray-700/20 dark:bg-gray-800/50">
-      <CardHeader>
+    <Card className="border border-gray-200/20 bg-gray-50/50 backdrop-blur-lg dark:border-gray-700/20 dark:bg-gray-800/50 rounded-lg shadow-md p-4 md:p-6">
+      <CardHeader className="pb-0">
         <h3 className="text-xl font-medium text-gray-900 dark:text-gray-100">
           {title}
         </h3>
       </CardHeader>
-      <CardBody className="p-6">
-        <div className="chart-container">
+      <CardBody className="p-4 md:p-6">
+        <div className="rounded-md">
           <D3Chart
             data={data}
             xAxisLabel={xAxisLabel}

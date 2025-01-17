@@ -1,7 +1,5 @@
 "use client";
-import { Metadata } from "next";
 import { Card, CardBody, CardHeader, Link } from "@nextui-org/react";
-import { metadata } from "./metadata";
 
 interface RequirementsLayoutProps {
   children: React.ReactNode;

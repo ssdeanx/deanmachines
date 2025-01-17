@@ -42,7 +42,7 @@ export const ThemeSwitch: FC<ThemeSwitchProps> = ({
     <Component
       {...getBaseProps({
         className: clsx(
-          "cursor-pointer px-px transition-opacity hover:opacity-80",
+          "cursor-pointer px-px transition-all hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2",
           className,
           classNames?.base,
         ),
@@ -71,9 +71,9 @@ export const ThemeSwitch: FC<ThemeSwitchProps> = ({
         })}
       >
         {!isSelected || isSSR ? (
-          <SunFilledIcon size={22} />
+          <SunFilledIcon size={22} className="text-gray-700 dark:text-gray-300" />
         ) : (
-          <MoonFilledIcon size={22} />
+          <MoonFilledIcon size={22} className="text-gray-700 dark:text-gray-300" />
         )}
       </div>
     </Component>

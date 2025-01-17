@@ -1,5 +1,4 @@
 "use client";
-import { metadata } from "./metadata";
 
 export default function GuidesLayout({
   children,

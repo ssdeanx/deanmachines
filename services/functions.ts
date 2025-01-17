@@ -4,8 +4,7 @@
  * @module services/functions
  */
 
-import { type ClassValue, clsx } from "clsx";
-import { twMerge } from "tailwind-merge";
+import { cn } from "../lib/utils";
 
 // Types
 type ResponsiveValue = string | null | undefined;
@@ -17,26 +16,6 @@ interface VariantProps {
   variant?: string;
   size?: string;
   color?: string;
-}
-
-/**
- * Combines multiple class names using clsx and tailwind-merge
- * @param inputs - Array of class names or class value objects
- * @returns Merged and deduplicated class string
- */
-export function cn(...inputs: ClassValue[]): string {
-  return twMerge(clsx(inputs));
-}
-
-/**
- * Creates a CSS variable reference for NextUI colors
- * @param value - Color variable name
- * @returns Formatted HSL color string
- */
-export function color(value: string): string {
-  if (!value) throw new Error("Color value is required");
-
-  return `hsl(var(--${value}))`;
 }
 
 /**
@@ -187,31 +166,6 @@ export function opacity(value: number): string {
   }
 
   return `var(--nextui-opacity-${value})`;
-}
-
-/**
- * Debounces a function
- * @param func - Function to debounce
- * @param wait - Wait time in milliseconds
- * @returns Debounced function
- */
-export function debounce<T extends (...args: any[]) => any>(
-  func: T,
-  wait: number,
-): (...args: Parameters<T>) => void {
-  let timeout: NodeJS.Timeout | null = null;
-
-  return function executedFunction(...args: Parameters<T>) {
-    const later = () => {
-      timeout = null;
-      func(...args);
-    };
-
-    if (timeout) {
-      clearTimeout(timeout);
-    }
-    timeout = setTimeout(later, wait);
-  };
 }
 
 /**

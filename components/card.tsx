@@ -5,10 +5,18 @@ import {
   CardFooter as NextUICardFooter,
   CardHeader as NextUICardHeader,
 } from "@nextui-org/card";
+
 import { cn } from "../lib/utils";
 
 export const Card = ({ className, ...props }: CardProps) => (
-  <NextUICard className={cn("card", className)} {...props}>
+  <NextUICard
+    className={cn(
+      "card bg-white rounded-lg shadow-md transition-shadow hover:shadow-lg",
+      "p-4 md:p-6",
+      className
+    )}
+    {...props}
+  >
     {props.children}
   </NextUICard>
 );
