@@ -75,24 +75,24 @@ const SensorDataPanel: React.FC<SensorDataPanelProps> = ({ initialData }) => {
     : {};
 
   return (
-    <div className="rounded-lg bg-white p-4 md:p-6 shadow-md dark:bg-gray-800">
+    <div className="rounded-lg bg-[hsl(var(--background))] p-4 md:p-6 shadow-md dark:bg-[hsl(var(--default))]">
       <div className="mb-4 flex items-center justify-between">
-        <h3 className="text-xl font-medium text-gray-900 dark:text-gray-100">
+        <h3 className="text-xl font-medium text-foreground dark:text-muted-foreground">
           Sensor Data
         </h3>
         <Dropdown>
           <DropdownTrigger>
-            <Button className="capitalize bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300" size="sm" variant="flat">
+            <Button className="capitalize bg-[hsl(var(--gray-100))] hover:bg-[hsl(var(--gray-200))] dark:bg-[hsl(var(--gray-700))] dark:hover:bg-[hsl(var(--gray-600))] text-foreground dark:text-muted-foreground" size="sm" variant="flat">
               Settings
             </Button>
           </DropdownTrigger>
-          <DropdownMenu aria-label="Sensor Settings" className="bg-white dark:bg-gray-700 shadow-md rounded-md">
+          <DropdownMenu aria-label="Sensor Settings" className="bg-[hsl(var(--background))] dark:bg-[hsl(var(--default))] shadow-md rounded-md">
             {sensorData &&
               Object.keys(sensorData).map((sensor) => (
                 <DropdownItem
                   key={sensor}
                   className={
-                    selectedSensors.includes(sensor) ? "font-semibold text-gray-900 dark:text-gray-100" : "text-gray-700 dark:text-gray-300"
+                    selectedSensors.includes(sensor) ? "font-semibold text-foreground dark:text-muted-foreground" : "text-foreground dark:text-muted-foreground"
                   }
                   onClick={() => handleSensorToggle(sensor)}
                 >
@@ -103,7 +103,7 @@ const SensorDataPanel: React.FC<SensorDataPanelProps> = ({ initialData }) => {
         </Dropdown>
       </div>
       {error ? (
-        <p className="text-red-500 p-4 rounded-md bg-red-100 dark:bg-red-900 dark:text-red-300">{error}</p>
+        <p className="text-[hsl(var(--error))] p-4 rounded-md bg-[hsl(var(--error))] dark:bg-[hsl(var(--error))] dark:text-muted-foreground">{error}</p>
       ) : isLoading ? (
         <div className="flex justify-center p-8">
           <Spinner color="primary" label="Loading data..." />

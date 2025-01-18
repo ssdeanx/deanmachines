@@ -15,33 +15,33 @@ const FlightDataDisplay: React.FC<FlightDataDisplayProps> = ({
   return (
     <Card className="card">
       <CardHeader className="pb-0">
-        <h3 className="text-xl font-medium text-gray-900 dark:text-gray-100">
+        <h3 className="text-xl font-medium text-foreground dark:text-muted-foreground">
           Flight Data
         </h3>
       </CardHeader>
       <CardBody className="p-4 md:p-6">
         <ul className="space-y-2">
-          <li className="flex justify-between border-b border-gray-200 py-1 dark:border-gray-700">
-            <span className="font-medium text-gray-700 dark:text-gray-300">
+          <li className="flex justify-between border-b border-[hsl(var(--gray-200))] py-1 dark:border-[hsl(var(--gray-700))]">
+            <span className="font-medium text-foreground dark:text-muted-foreground">
               Distance Traveled
             </span>
-            <span className="text-gray-900 dark:text-gray-100">
+            <span className="text-foreground dark:text-muted-foreground">
               {distance.toFixed(2)} m
             </span>
           </li>
-          <li className="flex justify-between border-b border-gray-200 py-1 dark:border-gray-700">
-            <span className="font-medium text-gray-700 dark:text-gray-300">
+          <li className="flex justify-between border-b border-[hsl(var(--gray-200))] py-1 dark:border-[hsl(var(--gray-700))]">
+            <span className="font-medium text-foreground dark:text-muted-foreground">
               Maximum Altitude
             </span>
-            <span className="text-gray-900 dark:text-gray-100">
+            <span className="text-foreground dark:text-muted-foreground">
               {maxAltitude.toFixed(2)} m
             </span>
           </li>
           <li className="flex justify-between py-1">
-            <span className="font-medium text-gray-700 dark:text-gray-300">
+            <span className="font-medium text-foreground dark:text-muted-foreground">
               Flight Time
             </span>
-            <span className="text-gray-900 dark:text-gray-100">
+            <span className="text-foreground dark:text-muted-foreground">
               {flightTime.toFixed(2)} s
             </span>
           </li>

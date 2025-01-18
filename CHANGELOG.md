@@ -146,3 +146,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [0.1.0]: https://github.com/ssdeanx/deanmachines/releases/tag/v0.1.0
 
 [0.2.4]: https://github.com/ssdeanx/deanmachines/compare/v0.2.3...v0.2.4
+
+## [0.2.5] - 2025-01-18 04:17 PM
+
+### Changed
+
+- Configured a robust, project-wide Tailwind CSS theming setup.
+- Added "light" and "dark" themes to `tailwind.config.js`.
+- Implemented dynamic theme switching that affects all elements.
+- The `app/layout.tsx` file now uses a `ThemeContext` component to apply the current theme globally to the `html` tag.
+- Demonstrated component-level theming in `components/navbar.tsx`.
+- The `ThemeSwitch` component manages the theme state and persists it to local storage.
+- Resolved errors regarding `useTheme` being called from the server by moving the theme logic to client components and making `Navbar` a client component.
+- Resolved the background color issue by updating `styles/globals.css` to use the correct CSS variable for the body background.
+- Updated all hardcoded colors in the `components/` directory to use CSS variables, ensuring consistency throughout the project.
+- Used a Tree of Thoughts approach with backtracking to ensure cohesive Chain of Thought reasoning, and incorporating Few-Shot Prompting, ReACT (Reason + Act), and iterative Refinement.
+
+[0.2.5]: https://github.com/ssdeanx/deanmachines/compare/v0.2.4...v0.2.5

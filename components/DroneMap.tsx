@@ -48,7 +48,7 @@ const DroneMap: React.FC<DroneMapProps> = ({
   return (
     <Card className="card">
       <CardHeader>
-        <h3 className="text-xl font-medium text-gray-900 dark:text-gray-100">
+        <h3 className="text-xl font-medium text-foreground dark:text-muted-foreground">
           Drone Location
         </h3>
       </CardHeader>
@@ -68,7 +68,7 @@ const DroneMap: React.FC<DroneMapProps> = ({
                       drawingModes: [google.maps.drawing.OverlayType.POLYGON],
                     },
                     polygonOptions: {
-                      fillColor: "#0000FF",
+                      fillColor: "hsl(var(--primary))",
                       fillOpacity: 0.2,
                       strokeWeight: 2,
                       clickable: true,
@@ -84,7 +84,7 @@ const DroneMap: React.FC<DroneMapProps> = ({
           {path.length > 1 && (
             <Polyline
               options={{
-                strokeColor: "#FF0000",
+                strokeColor: "hsl(var(--secondary))",
                 strokeWeight: 3,
               }}
               path={path}

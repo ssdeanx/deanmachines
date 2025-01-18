@@ -7,7 +7,7 @@ interface AccordionProps {
 
 const Accordion: React.FC<AccordionProps> = ({ children }) => {
   return (
-    <NextUIAccordion className="rounded-lg bg-white shadow-md dark:bg-gray-800">
+    <NextUIAccordion className="rounded-lg bg-[hsl(var(--background))] shadow-md dark:bg-[hsl(var(--default))]">
       {children}
     </NextUIAccordion>
   );

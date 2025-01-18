@@ -29,13 +29,13 @@ export function EmailTemplate({
       <Preview>New Dean Machines Inquiry from {name}</Preview>
       <Body
         style={{
-          backgroundColor: "#f9f9f9",
+          backgroundColor: "hsl(var(--background))",
           fontFamily:
             '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif',
         }}
       >
         <Container
-          className="rounded-lg bg-white shadow-md"
+          className="rounded-lg bg-[hsl(var(--background))] shadow-md"
           style={{
             margin: "0 auto",
             padding: "20px 0 48px",
@@ -96,7 +96,7 @@ export function EmailTemplate({
             <Text
               style={{
                 fontSize: "14px",
-                color: "#666666",
+                color: "hsl(var(--muted-foreground))",
                 marginTop: "24px",
               }}
             >

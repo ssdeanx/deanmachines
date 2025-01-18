@@ -32,7 +32,7 @@ const BlogList: React.FC = () => {
   return (
     <Card className="card">
       <CardHeader>
-        <h3 className="text-xl font-medium text-gray-900 dark:text-gray-100">
+        <h3 className="text-xl font-medium text-foreground dark:text-muted-foreground">
           Recent Blog Posts
         </h3>
       </CardHeader>
@@ -41,12 +41,12 @@ const BlogList: React.FC = () => {
           {blogPosts.map((post) => (
             <li key={post.slug}>
               <Link
-                className="text-gray-600 hover:text-gray-900 dark:text-gray-500 dark:hover:text-gray-200"
+                className="text-foreground hover:text-primary dark:text-muted-foreground dark:hover:text-primary"
                 href={post.slug}
               >
                 {post.title}
               </Link>
-              <p className="text-sm text-gray-600 dark:text-gray-500">
+              <p className="text-sm text-foreground dark:text-muted-foreground">
                 {post.date}
               </p>
             </li>

@@ -107,14 +107,14 @@ const PointCloudChart: React.FC = () => {
   }, [pointSize]);
 
   return (
-    <div className="flex flex-col rounded-lg bg-white p-4 shadow-md dark:bg-gray-800 md:p-6">
+    <div className="flex flex-col rounded-lg bg-[hsl(var(--background))] p-4 shadow-md dark:bg-[hsl(var(--default))] md:p-6">
       <div ref={containerRef} />
       <div className="mt-4">
         <Slider
           classNames={{
-            thumb: "bg-blue-500",
-            track: "bg-gray-200 dark:bg-gray-700",
-            filler: "bg-blue-500",
+            thumb: "bg-[hsl(var(--primary))]",
+            track: "bg-[hsl(var(--gray-200))] dark:bg-[hsl(var(--gray-700))]",
+            filler: "bg-[hsl(var(--primary))]",
           }}
           label="Point Size"
           maxValue={3}

@@ -20,7 +20,7 @@
     --foreground: 14 14 16;
     --default: 255 255 255;
     --default-foreground: 14 14 16;
-    --primary: 250 250 250;
+    --primary: 9 9 11;
     --primary-light: 250 250 250;
     --primary-dark: 9 9 11;
     --secondary: 120 40% 40%;
@@ -33,7 +33,6 @@
     --muted-foreground: 240 20% 65%;
     --accent: 220 20% 12%;
     --accent-foreground: 240 20% 88%;
-    --dark-grey: 243 243 243; /* Added dark grey color */
     --gray-50: 243 243 243;
     --gray-100: 238 238 238;
     --gray-200: 222 222 222;
@@ -45,48 +44,48 @@
     --gray-800: 37 37 37;
     --gray-900: 23 23 23;
     --gray-950: 10 10 10;
+    --background-light: 255 255 255;
+    --background-dark: 14 14 16;
   }
 
   .chart-container {
     width: 90%;
     height: 24rem;
   }
-
-  .dark {
-    --background: 14 14 16;
-    --foreground: 250 250 250;
-    --default: 14 14 16;
-    --default-foreground: 250 250 250;
-    --primary: 9 9 11;
-    --primary-light: 250 250 250;
-    --primary-dark: 9 9 11;
-    --secondary: 120 40% 60%;
-    --secondary-foreground: 240 20% 98%;
-    --muted: 240 20% 98%;
-    --muted-foreground: 220 14% 65%;
-    --accent: 240 20% 98%;
-    --accent-foreground: 220 14% 15%;
-    --dark-grey: 10 10 10; /* Added dark grey color for dark mode */
-  }
+.dark {
+  --background: 14 14 16;
+  --foreground: 250 250 250;
+  --default: 14 14 16;
+  --default-foreground: 250 250 250;
+  --primary: 9 9 11;
+  --primary-light: 250 250 250;
+  --primary-dark: 9 9 11;
+  --secondary: 120 40% 60%;
+  --secondary-foreground: 240 20% 98%;
+  --muted: 240 20% 98%;
+  --muted-foreground: 220 14% 65%;
+  --accent: 240 20% 98%;
+  --accent-foreground: 220 14% 15%;
+}
 
   body {
     font-family: var(--font-sans);
     color: #111827;
-    background-color: var(--dark-grey); /* Set dark grey background */
+    background-color: var(--background);
   }
   .dark body {
     color: #f9fafb;
   }
 
   a {
-    color: #6b7280;
+    color: hsl(var(--foreground));
     transition-property: color;
     transition-duration: 200ms;
     transition-timing-function: ease-in-out;
   }
-
+ 
   a:hover {
-    color: #4b5563;
+    color: hsl(var(--primary));
   }
 }
 
@@ -112,8 +111,8 @@
   }
 
   .card-hover:hover {
-    border-color: rgba(var(--primary), 0.5);
-    background-color: rgba(var(--accent), 0.5);
+    border-color: hsla(var(--primary), 0.5);
+    background-color: hsla(var(--accent), 0.5);
   }
 
   /* Glass Morphism */
@@ -212,7 +211,7 @@
   }
 
   .text-stroke {
-    -webkit-text-stroke: 2px black;
+    -webkit-text-stroke: 2px hsl(var(--foreground));
     color: transparent;
   }
 
@@ -263,13 +262,13 @@
   .border-gradient {
     border-width: 2px;
     border-style: solid;
-    border-color: black;
+    border-color: hsl(var(--foreground));
   }
   .dark .border-gradient {
-    border-color: #ddd;
+    border-color: hsl(var(--foreground));
   }
   .navbar-gradient {
-    background-image: linear-gradient(to right, #333, red, #333);
+    background-image: linear-gradient(to right, hsl(var(--primary)), hsl(var(--secondary)), hsl(var(--primary)));
   }
   .navbar-title {
     font-family: Montserrat, sans-serif;

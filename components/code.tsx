@@ -6,7 +6,7 @@ export const Code = ({ className, ...props }: CodeProps) => (
   <NextUICode
     {...props}
     className={cn(
-      "bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200",
+      "bg-[hsl(var(--gray-100))] dark:bg-[hsl(var(--default))] text-foreground dark:text-muted-foreground",
       className,
     )}
   />

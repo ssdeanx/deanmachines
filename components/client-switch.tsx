@@ -11,7 +11,7 @@ export default function ClientSwitch({ checked }: { checked: boolean }) {
   return (
     <Switch
       checked={isChecked}
-      className="my-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+      className="my-4 focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary))] focus:ring-offset-2"
       color="primary"
       onChange={onChange}
     />

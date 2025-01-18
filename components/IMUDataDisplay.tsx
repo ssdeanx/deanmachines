@@ -31,27 +31,27 @@ const IMUDataDisplay: React.FC<IMUDataDisplayProps> = ({ data }) => {
   const title = dataType.charAt(0).toUpperCase() + dataType.slice(1);
 
   return (
-    <div className="rounded-lg bg-white p-4 md:p-6 shadow-md dark:bg-gray-800">
+    <div className="rounded-lg bg-[hsl(var(--background))] p-4 md:p-6 shadow-md dark:bg-[hsl(var(--default))]">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-xl font-medium text-gray-900 dark:text-gray-100">
+        <h3 className="text-xl font-medium text-foreground dark:text-muted-foreground">
           IMU Data
         </h3>
         <Dropdown>
           <DropdownTrigger>
-            <Button className="capitalize bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300" size="sm" variant="flat">
+            <Button className="capitalize bg-[hsl(var(--gray-100))] hover:bg-[hsl(var(--gray-200))] dark:bg-[hsl(var(--gray-700))] dark:hover:bg-[hsl(var(--gray-600))] text-foreground dark:text-muted-foreground" size="sm" variant="flat">
               Data Type
             </Button>
           </DropdownTrigger>
           <DropdownMenu
             aria-label="Data Type"
-            className="bg-white dark:bg-gray-700 shadow-md rounded-md"
+            className="bg-[hsl(var(--background))] dark:bg-[hsl(var(--default))] shadow-md rounded-md"
             onAction={(key) =>
               setDataType(key as "acceleration" | "gyroscope" | "magnetometer")
             }
           >
-            <DropdownItem key="acceleration" className="text-gray-700 dark:text-gray-300">Acceleration</DropdownItem>
-            <DropdownItem key="gyroscope" className="text-gray-700 dark:text-gray-300">Gyroscope</DropdownItem>
-            <DropdownItem key="magnetometer" className="text-gray-700 dark:text-gray-300">Magnetometer</DropdownItem>
+            <DropdownItem key="acceleration" className="text-foreground dark:text-muted-foreground">Acceleration</DropdownItem>
+            <DropdownItem key="gyroscope" className="text-foreground dark:text-muted-foreground">Gyroscope</DropdownItem>
+            <DropdownItem key="magnetometer" className="text-foreground dark:text-muted-foreground">Magnetometer</DropdownItem>
           </DropdownMenu>
         </Dropdown>
       </div>

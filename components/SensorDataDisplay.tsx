@@ -21,7 +21,7 @@ const SensorDataDisplay: React.FC<SensorDataDisplayProps> = ({
   });
 
   return (
-    <div className="bg-gray-100 rounded-lg p-4 md:p-6 shadow-md">
+    <div className="bg-[hsl(var(--gray-100))] rounded-lg p-4 md:p-6 shadow-md dark:bg-[hsl(var(--default))]">
       <DataChartDisplay
         colorScale={""}
         data={chartData}

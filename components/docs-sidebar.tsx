@@ -33,23 +33,23 @@ export default function DocsSidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="w-64 bg-gray-100 p-4 dark:bg-gray-800">
+    <aside className="w-64 bg-[hsl(var(--gray-100))] p-4 dark:bg-[hsl(var(--default))]">
       <nav>
         {sidebarItems.map((section) => (
           <div key={section.label}>
-            <h3 className="mb-2 font-semibold text-gray-600 dark:text-gray-400">
+            <h3 className="mb-2 font-semibold text-foreground dark:text-muted-foreground">
               {section.label}
             </h3>
             {section.items.map((item) => (
               <Link
                 key={item.href}
                 className={clsx(
-                  "block rounded-md px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-700",
+                  "block rounded-md px-4 py-2 hover:bg-[hsl(var(--gray-200))] dark:hover:bg-[hsl(var(--gray-700))]",
                   {
-                    "bg-gray-200 font-semibold dark:bg-gray-700":
+                    "bg-[hsl(var(--gray-200))] font-semibold dark:bg-[hsl(var(--gray-700))]":
                       pathname === item.href,
                   },
-                  "text-gray-700 dark:text-gray-300",
+                  "text-foreground dark:text-muted-foreground",
                 )}
                 href={item.href}
               >

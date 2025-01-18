@@ -6,7 +6,7 @@ import { IconSvgProps } from "@/types";
 export const Logo: React.FC<IconSvgProps> & { displayName?: string } = memo(
   ({ size, width, height, ...props }) => (
     <svg
-      className="transition-transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+      className="transition-transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary))] focus:ring-offset-2"
       fill="none"
       height={size || height}
       viewBox="0 0 32 32"
@@ -20,14 +20,14 @@ export const Logo: React.FC<IconSvgProps> & { displayName?: string } = memo(
         fillRule="evenodd"
       />
     </svg>
-  ),
+  )
 );
 Logo.displayName = "Logo";
 
 export const TwitterIcon: React.FC<IconSvgProps> & { displayName?: string } =
   memo(({ size, width, height, ...props }) => (
     <svg
-      className="transition-transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+      className="transition-transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary))] focus:ring-offset-2"
       height={size || height}
       viewBox="0 0 24 24"
       width={size || width}
@@ -44,7 +44,7 @@ TwitterIcon.displayName = "TwitterIcon";
 export const GithubIcon: React.FC<IconSvgProps> & { displayName?: string } =
   memo(({ size, width, height, ...props }) => (
     <svg
-      className="transition-transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+      className="transition-transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary))] focus:ring-offset-2"
       height={size || height}
       viewBox="0 0 24 24"
       width={size || width}
@@ -64,7 +64,7 @@ export const HeartFilledIcon: React.FC<IconSvgProps> & {
   displayName?: string;
 } = memo(({ size, width, height, ...props }) => (
   <svg
-    className="transition-transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+    className="transition-transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary))] focus:ring-offset-2"
     height={size || height}
     viewBox="0 0 24 24"
     width={size || width}
@@ -81,7 +81,7 @@ HeartFilledIcon.displayName = "HeartFilledIcon";
 export const SearchIcon: React.FC<IconSvgProps> & { displayName?: string } =
   memo(({ size, width, height, ...props }) => (
     <svg
-      className="transition-transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+      className="transition-transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary))] focus:ring-offset-2"
       height={size || height}
       viewBox="0 0 24 24"
       width={size || width}
@@ -99,7 +99,7 @@ export const MoonFilledIcon: React.FC<IconSvgProps> & { displayName?: string } =
   memo(({ size, width, height, ...props }) => (
     <svg
       aria-hidden="true"
-      className="transition-transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+      className="transition-transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary))] focus:ring-offset-2"
       focusable="false"
       height={size || height}
       role="presentation"
@@ -122,7 +122,7 @@ export const SunFilledIcon: React.FC<IconSvgProps> & { displayName?: string } =
   memo(({ size, width, height, ...props }) => (
     <svg
       aria-hidden="true"
-      className="transition-transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+      className="transition-transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary))] focus:ring-offset-2"
       focusable="false"
       height={size || height}
       role="presentation"
@@ -141,7 +141,7 @@ SunFilledIcon.displayName = "SunFilledIcon";
 export const RocketIcon: React.FC<IconSvgProps> & { displayName?: string } =
   memo(({ size, width, height, ...props }) => (
     <svg
-      className="transition-transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+      className="transition-transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary))] focus:ring-offset-2"
       height={size || height}
       viewBox="0 0 24 24"
       width={size || width}
@@ -159,7 +159,7 @@ export const ClipboardCheckIcon: React.FC<IconSvgProps> & {
   displayName?: string;
 } = memo(({ size, width, height, ...props }) => (
   <svg
-    className="transition-transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+    className="transition-transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary))] focus:ring-offset-2"
     height={size || height}
     viewBox="0 0 24 24"
     width={size || width}
@@ -176,7 +176,7 @@ ClipboardCheckIcon.displayName = "ClipboardCheckIcon";
 export const BookOpenIcon: React.FC<IconSvgProps> & { displayName?: string } =
   memo(({ size, width, height, ...props }) => (
     <svg
-      className="transition-transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+      className="transition-transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary))] focus:ring-offset-2"
       height={size || height}
       viewBox="0 0 24 24"
       width={size || width}
@@ -193,7 +193,7 @@ BookOpenIcon.displayName = "BookOpenIcon";
 export const ChipIcon: React.FC<IconSvgProps> & { displayName?: string } = memo(
   ({ size, width, height, ...props }) => (
     <svg
-      className="transition-transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+      className="transition-transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary))] focus:ring-offset-2"
       height={size || height}
       viewBox="0 0 24 24"
       width={size || width}

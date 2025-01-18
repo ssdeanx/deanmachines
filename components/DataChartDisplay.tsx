@@ -16,7 +16,7 @@ const DataChartDisplay: React.FC<DataChartDisplayProps> = ({
   return (
     <Card className="card">
       <CardHeader className="pb-0">
-        <h3 className="text-xl font-medium text-gray-900 dark:text-gray-100">
+        <h3 className="text-xl font-medium text-foreground dark:text-muted-foreground">
           {title}
         </h3>
       </CardHeader>

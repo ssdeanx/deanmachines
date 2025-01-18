@@ -9,7 +9,7 @@ export default function App() {
       <Textarea
         classNames={{
           inputWrapper:
-            "bg-gray-100 dark:bg-gray-700 focus:ring-2 focus:ring-blue-500",
+            "bg-[hsl(var(--gray-100))] dark:bg-[hsl(var(--gray-700))] focus:ring-2 focus:ring-[hsl(var(--primary))]",
         }}
         label="Message"
         labelPlacement="outside"
@@ -18,7 +18,7 @@ export default function App() {
         variant="underlined"
         onValueChange={setValue}
       />
-      <p className="text-sm text-gray-600 dark:text-gray-500">
+        <p className="text-sm text-foreground dark:text-muted-foreground">
         Message value: {value}
       </p>
     </div>

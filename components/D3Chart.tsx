@@ -18,8 +18,8 @@ const D3Chart: React.FC<D3ChartProps> = ({
   data,
   height = 300,
   margin = { top: 20, right: 20, bottom: 30, left: 40 },
-  lineColor = "steelblue",
-  axisColor = "black",
+  lineColor = "hsl(var(--primary))",
+  axisColor = "hsl(var(--foreground))",
   xAxisLabel = "Time",
   yAxisLabel = "Value",
 }) => {
@@ -98,7 +98,7 @@ const D3Chart: React.FC<D3ChartProps> = ({
   }, [data, height, margin, lineColor, axisColor, xAxisLabel, yAxisLabel]);
 
   return (
-    <div className="rounded-lg bg-white p-4 md:p-6 shadow-md dark:bg-gray-800">
+    <div className="rounded-lg bg-[hsl(var(--background))] p-4 md:p-6 shadow-md dark:bg-[hsl(var(--default))]">
       <div ref={containerRef}>
         <svg ref={svgRef} height={height} />
       </div>

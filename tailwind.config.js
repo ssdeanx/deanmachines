@@ -2,7 +2,10 @@ const { nextui } = require("@nextui-org/theme");
 const plugin = require("tailwindcss/plugin");
 
 /** @type {import('tailwindcss').Config} */
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 module.exports = {
+  darkMode: ["class"],
   content: [
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx}",
@@ -28,8 +31,12 @@ module.exports = {
       },
     },
     extend: {
-      spacing: {
-        128: "32rem",
+      colors: {
+        'primary': '#0070f3', // Default primary color
+        'secondary': '#1c64f2', // Default secondary color
+      },
+      fontFamily: {
+        sans: ['Inter', ...defaultTheme.fontFamily.sans],
       },
       fontFamily: {
         sans: ["var(--font-sans)", "system-ui"],
@@ -107,7 +114,10 @@ module.exports = {
         "destructive-foreground": "hsl(var(--destructive-foreground))",
         input: "hsl(var(--input))",
         ringOffset: "hsl(var(--ring-offset))",
-        "navbar-gradient": "linear-gradient(to right, #8360c3, #2ebf91)",
+        "navbar-gradient": {
+          DEFAULT: "linear-gradient(to right, #8360c3, #2ebf91)",
+          "dark": "linear-gradient(to right, #2ebf91, #8360c3)",
+        },
       },
       animation: {
         "slide-up": "slideUp 0.5s var(--transition-ease)",
@@ -163,21 +173,15 @@ module.exports = {
       },
       themes: {
         light: {
-          layout: {
-            boxShadow: {
-              small: "0 1px 2px 0 rgb(0 0 0 / 0.05)",
-              medium: "0 4px 6px -1px rgb(0 0 0 / 0.1)",
-              large: "0 10px 15px -3px rgb(0 0 0 / 0.1)",
-            },
+          colors: {
+            primary: '#0070f3', // Light theme primary color
+            secondary: '#ff0000', // Light theme secondary color,
           },
         },
         dark: {
-          layout: {
-            boxShadow: {
-              small: "0 1px 2px 0 rgb(0 0 0 / 0.4)",
-              medium: "0 4px 6px -1px rgb(0 0 0 / 0.4)",
-              large: "0 10px 15px -3px rgb(0 0 0 / 0.4)",
-            },
+          colors: {
+            primary: '#003060', // Dark theme primary color
+            secondary: '#008000', // Dark theme secondary color
           },
         },
       },

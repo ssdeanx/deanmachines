@@ -9,10 +9,10 @@ const DashboardSidebar = () => {
     <div className="w-64 p-4">
       <Accordion>
         <AccordionItem key="lidar" title="Actions">
-          <Link href="/dashboard/lidar">Lidar 3D Point Cloud</Link>
+          <Link className="text-foreground dark:text-muted-foreground" href="/dashboard/lidar">Lidar 3D Point Cloud</Link>
         </AccordionItem>
         <AccordionItem key="fpv" title="Actions">
-          <Link href="/dashboard/fpv">FPV Video</Link>
+          <Link className="text-foreground dark:text-muted-foreground" href="/dashboard/fpv">FPV Video</Link>
         </AccordionItem>
       </Accordion>
     </div>

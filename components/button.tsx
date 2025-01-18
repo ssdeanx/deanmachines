@@ -12,16 +12,16 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-2 dark:bg-blue-600 dark:text-white dark:hover:bg-blue-700 dark:focus:ring-blue-500",
+          "bg-[hsl(var(--primary))] text-white hover:bg-[hsl(var(--primary-foreground))] focus:ring-[hsl(var(--primary))] focus:ring-offset-2 dark:bg-[hsl(var(--primary))] dark:text-white dark:hover:bg-[hsl(var(--primary-foreground))] dark:focus:ring-[hsl(var(--primary))]",
         destructive:
-          "bg-red-600 text-white hover:bg-red-700 focus:ring-red-500 focus:ring-offset-2 dark:bg-red-600 dark:text-white dark:hover:bg-red-700 dark:focus:ring-red-500",
+          "bg-[hsl(var(--error))] text-white hover:bg-[hsl(var(--error))] focus:ring-[hsl(var(--error))] focus:ring-offset-2 dark:bg-[hsl(var(--error))] dark:text-white dark:hover:bg-[hsl(var(--error))] dark:focus:ring-[hsl(var(--error))]",
         outline:
-          "border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 focus:ring-gray-300 focus:ring-offset-2 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700 dark:focus:ring-gray-600",
+          "border border-gray-300 bg-[hsl(var(--background))] text-foreground hover:bg-gray-50 focus:ring-gray-300 focus:ring-offset-2 dark:border-gray-600 dark:bg-[hsl(var(--default))] dark:text-muted-foreground dark:hover:bg-gray-700 dark:focus:ring-gray-600",
         secondary:
-          "bg-gray-200 text-gray-900 hover:bg-gray-300 focus:ring-gray-300 focus:ring-offset-2 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600 dark:focus:ring-gray-600",
+          "bg-gray-200 text-foreground hover:bg-gray-300 focus:ring-gray-300 focus:ring-offset-2 dark:bg-gray-700 dark:text-muted-foreground dark:hover:bg-gray-600 dark:focus:ring-gray-600",
         ghost:
-          "hover:bg-gray-100 hover:text-gray-900 focus:ring-gray-300 focus:ring-offset-2 dark:hover:bg-gray-700 dark:hover:text-gray-200 dark:focus:ring-gray-600",
-        link: "text-gray-600 underline-offset-4 hover:underline dark:text-gray-500",
+          "hover:bg-gray-100 hover:text-foreground focus:ring-gray-300 focus:ring-offset-2 dark:hover:bg-gray-700 dark:hover:text-muted-foreground dark:focus:ring-gray-600",
+        link: "text-foreground underline-offset-4 hover:underline dark:text-muted-foreground",
       },
       size: {
         default: "h-10 px-4 py-2",

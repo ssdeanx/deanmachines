@@ -118,7 +118,7 @@ export const ContactForm: FC = () => {
   return (
     <form
       noValidate
-      className="flex flex-col gap-6 rounded-lg bg-white p-4 shadow-md dark:bg-gray-800 md:p-6"
+      className="flex flex-col gap-6 rounded-lg bg-[hsl(var(--background))] p-4 shadow-md dark:bg-[hsl(var(--default))] md:p-6"
       onSubmit={handleSubmit}
     >
       <Input
@@ -126,7 +126,7 @@ export const ContactForm: FC = () => {
         aria-label="Name"
         classNames={{
           inputWrapper:
-            "bg-gray-100 dark:bg-gray-700 focus:ring-2 focus:ring-blue-500",
+            "bg-[hsl(var(--gray-100))] dark:bg-[hsl(var(--gray-700))] focus:ring-2 focus:ring-[hsl(var(--primary))]",
         }}
         errorMessage={errors.name}
         isInvalid={!!errors.name}
@@ -141,7 +141,7 @@ export const ContactForm: FC = () => {
         aria-label="Email"
         classNames={{
           inputWrapper:
-            "bg-gray-100 dark:bg-gray-700 focus:ring-2 focus:ring-blue-500",
+            "bg-[hsl(var(--gray-100))] dark:bg-[hsl(var(--gray-700))] focus:ring-2 focus:ring-[hsl(var(--primary))]",
         }}
         errorMessage={errors.email}
         isInvalid={!!errors.email}
@@ -157,7 +157,7 @@ export const ContactForm: FC = () => {
         aria-label="Category"
         classNames={{
           trigger:
-            "bg-gray-100 dark:bg-gray-700 focus:ring-2 focus:ring-blue-500",
+            "bg-[hsl(var(--gray-100))] dark:bg-[hsl(var(--gray-700))] focus:ring-2 focus:ring-[hsl(var(--primary))]",
         }}
         errorMessage={errors.category}
         isInvalid={!!errors.category}
@@ -178,7 +178,7 @@ export const ContactForm: FC = () => {
         aria-label="Message"
         classNames={{
           inputWrapper:
-            "bg-gray-100 dark:bg-gray-700 focus:ring-2 focus:ring-blue-500",
+            "bg-[hsl(var(--gray-100))] dark:bg-[hsl(var(--gray-700))] focus:ring-2 focus:ring-[hsl(var(--primary))]",
         }}
         errorMessage={errors.message}
         isInvalid={!!errors.message}
@@ -192,7 +192,7 @@ export const ContactForm: FC = () => {
         <div className="flex justify-end">
           <Button
             aria-label={isSubmitting ? "Submitting..." : "Submit form"}
-            className="min-w-[120px] bg-blue-600 text-white hover:bg-blue-700"
+            className="min-w-[120px] bg-[hsl(var(--primary))] text-white hover:bg-[hsl(var(--primary-foreground))]"
             color="primary"
             disabled={isSubmitting}
             type="submit"
@@ -203,7 +203,7 @@ export const ContactForm: FC = () => {
 
         {submitStatus === "success" && (
           <div
-            className="rounded-md bg-green-100 p-4 text-gray-600 dark:bg-green-900 dark:text-gray-500"
+            className="rounded-md bg-[hsl(var(--success))] p-4 text-foreground dark:bg-[hsl(var(--success))] dark:text-muted-foreground"
             role="alert"
           >
             Thanks for your inquiry! We&#39;ll get back to you soon.
@@ -212,7 +212,7 @@ export const ContactForm: FC = () => {
 
         {submitStatus === "error" && (
           <div
-            className="rounded-md bg-red-100 p-4 text-gray-600 dark:bg-red-900 dark:text-gray-500"
+            className="rounded-md bg-[hsl(var(--error))] p-4 text-foreground dark:bg-[hsl(var(--error))] dark:text-muted-foreground"
             role="alert"
           >
             Sorry, something went wrong. Please try again later.

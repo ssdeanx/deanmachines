@@ -8,7 +8,7 @@ export const Counter = () => {
 
   return (
     <Button
-      className="bg-primary-500 text-white shadow-md transition-colors duration-200 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+      className="bg-[hsl(var(--primary))] text-white shadow-md transition-colors duration-200 hover:bg-[hsl(var(--primary-foreground))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary))] focus:ring-offset-2"
       radius="full"
       onPress={() => setCount(count + 1)}
     >

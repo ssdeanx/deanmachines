@@ -21,7 +21,7 @@ const FPVVideoDisplay: React.FC<FPVVideoDisplayProps> = ({ videoUrl }) => {
   return (
     <Card className="card">
       <CardHeader>
-        <h3 className="text-xl font-medium text-gray-900 dark:text-gray-100">
+        <h3 className="text-xl font-medium text-foreground dark:text-muted-foreground">
           FPV Video
         </h3>
       </CardHeader>
@@ -31,7 +31,7 @@ const FPVVideoDisplay: React.FC<FPVVideoDisplayProps> = ({ videoUrl }) => {
             <Spinner color="primary" label="Loading video..." />
           </div>
         ) : error ? (
-          <p className="text-red-500">{error}</p>
+          <p className="text-[hsl(var(--error))]">{error}</p>
         ) : (
           videoUrl && (
             <video

@@ -1,3 +1,4 @@
+"use client";
 import {
   Navbar as NextUINavbar,
   NavbarContent,
@@ -14,6 +15,7 @@ import { Input } from "@nextui-org/input";
 import { link as linkStyles } from "@nextui-org/theme";
 import NextLink from "next/link";
 import clsx from "clsx";
+import { useTheme } from "next-themes";
 
 import { siteConfig } from "@/config/site";
 import { ThemeSwitch } from "@/components/theme-switch";
@@ -26,6 +28,8 @@ import {
 } from "@/components/icons";
 
 export const Navbar = () => {
+  const { theme } = useTheme();
+
   const searchInput = (
     <Input
       aria-label="Search"
@@ -54,7 +58,7 @@ export const Navbar = () => {
       position="sticky"
     >
       <NavbarContent className="sm:basis-full" justify="start">
-        <NavbarBrand as="li" className="gap-2">
+        <NavbarBrand as="li" className={clsx("gap-2", theme === "dark" ? "bg-[hsl(var(--default))]" : "bg-[hsl(var(--background))]")}>
           <NextLink className="flex items-center justify-start gap-1" href="/">
             <Logo />
             <p className="navbar-title text-xl font-bold text-white text-stroke dark:text-white">
@@ -67,7 +71,7 @@ export const Navbar = () => {
             <NavbarItem key={item.href}>
               <NextLink
                 className={clsx(
-                  "text-white transition-colors duration-300 hover:text-blue-200",
+                  "text-foreground transition-colors duration-300 hover:text-primary",
                   "data-[active=true]:text-blue-500",
                   "font-medium",
                 )}
@@ -96,7 +100,7 @@ export const Navbar = () => {
         </NavbarItem>
         <NavbarItem className="hidden lg:flex">
           <Link
-            className="rounded-md bg-gray-200 px-4 py-2 text-sm font-medium text-gray-600 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-500 dark:hover:bg-gray-600"
+            className="rounded-md bg-[hsl(var(--gray-200))] px-4 py-2 text-sm font-medium text-foreground hover:bg-[hsl(var(--gray-300))] dark:bg-[hsl(var(--gray-700))] dark:text-muted-foreground dark:hover:bg-[hsl(var(--gray-600))]"
             href="/dashboard"
           >
             Dashboard
@@ -107,7 +111,7 @@ export const Navbar = () => {
           <Button
             isExternal
             as={Link}
-            className="bg-gray-600 text-sm font-normal text-gray-600 dark:text-gray-500"
+            className="bg-[hsl(var(--gray-600))] text-sm font-normal text-foreground dark:text-muted-foreground"
             href={siteConfig.links.sponsor}
             startContent={<HeartFilledIcon className="text-red-500" />}
             variant="flat"
@@ -134,7 +138,7 @@ export const Navbar = () => {
                 className={clsx(
                   linkStyles({ color: "foreground" }),
                   "data-[active=true]:text-blue-500",
-                  "text-gray-600 dark:text-gray-500",
+                  "text-foreground dark:text-muted-foreground",
                 )}
                 color={
                   index === 2
