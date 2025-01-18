@@ -19,18 +19,16 @@ export default function GettingStartedPage() {
           drone autonomy research.
         </p>
         <h2 className="mt-6 text-xl font-semibold">Hardware Stack</h2>
-        <ul className="list-disc pl-5 text-gray-600 dark:text-gray-400">
+        <ul className="list-disc pl-5">
           <li>
-            {/* eslint-disable-next-line */}
-            <strong>Drone Platform</strong>: 5" FPV Racing Drone
+            <span className="font-semibold">Drone Platform</span>: Racing Drone
           </li>
           <li>
-            {/* eslint-disable-next-line */}
-            <strong>AI Computer</strong>: NVIDIA Jetson Orin Nano
+            <span className="font-semibold">AI Computer</span>: NVIDIA Orin Nano
           </li>
           <li>
-            <strong>Sensors</strong>:
-            <ul className="list-disc pl-5 text-gray-600 dark:text-gray-400">
+            <span className="font-semibold">Sensors</span>:
+            <ul className="list-disc pl-5">
               <li>TFmini-S LiDAR</li>
               <li>AI-enabled Camera Module</li>
               <li>IMU/Gyroscope</li>
@@ -38,8 +36,8 @@ export default function GettingStartedPage() {
             </ul>
           </li>
           <li>
-            <strong>Communication</strong>:
-            <ul className="list-disc pl-5 text-gray-600 dark:text-gray-400">
+            <span className="font-semibold">Communication</span>:
+            <ul className="list-disc pl-5">
               <li>YHY 9800 Eng D SDR</li>
               <li>433MHz Receiver</li>
               <li>FPV Video Receiver</li>
@@ -54,7 +52,7 @@ export default function GettingStartedPage() {
           {/* eslint-disable-next-line */}
           We're building a standardized dataset including:
         </p>
-        <ul className="list-disc pl-5 text-gray-600 dark:text-gray-400">
+        <ul className="list-disc pl-5">
           <li>Visual Data (RGB + Depth)</li>
           <li>LiDAR Point Clouds</li>
           <li>Radio Telemetry</li>

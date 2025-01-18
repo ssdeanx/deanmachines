@@ -1,5 +1,6 @@
 import { title, subtitle } from "@/components/primitives";
 import { ClipboardCheckIcon } from "@/components/icons";
+import Code from "@/components/code";
 
 export default function ContributionGuidelinesPage() {
   return (
@@ -23,7 +24,7 @@ export default function ContributionGuidelinesPage() {
         <p className="text-gray-600 dark:text-gray-400">
           When submitting a pull request, please make sure to:
         </p>
-        <ul className="list-disc pl-5 text-gray-600 dark:text-gray-400">
+        <ul className="list-disc pl-5">
           <li>Write a clear description of the changes.</li>
           <li>Include tests for the changes.</li>
           <li>Make sure the tests pass.</li>
@@ -35,7 +36,7 @@ export default function ContributionGuidelinesPage() {
         <h3 className="mt-4 text-lg font-semibold">
           Required Hardware Configuration
         </h3>
-        <ul className="list-disc pl-5 text-gray-600 dark:text-gray-400">
+        <ul className="list-disc pl-5">
           <li>5&quot; FPV Racing Drone Frame</li>
           <li>NVIDIA Jetson Orin Nano</li>
           <li>TFmini-S LiDAR Sensor</li>
@@ -51,7 +52,7 @@ export default function ContributionGuidelinesPage() {
           The data should be collected according to the following interface:
         </p>
         <pre>
-          <code className="text-gray-600 dark:text-gray-400">
+          <Code>
             interface DroneDataPoint &#123; timestamp: number;{" "}
             {/* Unix timestamp (ms) */}
             gps: &#123; lat: number; {/* Latitude */} lon: number;{" "}
@@ -69,17 +70,17 @@ export default function ContributionGuidelinesPage() {
             {/* Frames per second */} format: string; {/* "h264" */} &#125;;
             radio: &#123; frequency: number; {/* MHz */} signalStrength: number;{" "}
             {/* dBm */} bandwidth: number; {/* MHz */} &#125;; &#125;
-          </code>
+          </Code>
         </pre>
         <h3 className="mt-4 text-lg font-semibold">Data Submission Process</h3>
         <p className="text-gray-600 dark:text-gray-400">
           1. <strong>Data Collection</strong>
         </p>
-        <ul className="list-disc pl-5 text-gray-600 dark:text-gray-400">
+        <ul className="list-disc pl-5">
           <li>Minimum 10 minutes of continuous flight</li>
           <li>
             Various flight patterns required:
-            <ul className="list-disc pl-5 text-gray-600 dark:text-gray-400">
+            <ul className="list-disc pl-5">
               <li>Hover</li>
               <li>Forward flight</li>
               <li>Figure-8</li>
@@ -91,26 +92,26 @@ export default function ContributionGuidelinesPage() {
           2. <strong>Data Validation</strong>
         </p>
         <pre>
-          <code className="text-gray-600 dark:text-gray-400">
+          <Code>
             # Validate dataset structure npm run validate-dataset path/to/data #
             Generate validation report npm run generate-report
-          </code>
+          </Code>
         </pre>
         <p className="text-gray-600 dark:text-gray-400">
           3. <strong>Submission Format</strong>
         </p>
         <pre>
-          <code className="text-gray-600 dark:text-gray-400">
+          <Code>
             dataset/ ├── metadata.json # Flight information ├── raw/ # Raw
             sensor data │ ├── camera/ # Video streams │ ├── lidar/ # LiDAR point
             clouds │ ├── imu/ # IMU readings │ └── radio/ # SDR captures └──
             processed/ # Processed data ├── trajectory/ # Flight path ├──
             obstacles/ # Detected obstacles └── annotations/ # Manual
             annotations
-          </code>
+          </Code>
         </pre>
         <h3 className="mt-4 text-lg font-semibold">Quality Standards</h3>
-        <ul className="list-disc pl-5 text-gray-600 dark:text-gray-400">
+        <ul className="list-disc pl-5">
           <li>Camera: 720p minimum at 30fps</li>
           <li>LiDAR: 100Hz minimum sampling rate</li>
           <li>IMU: 200Hz minimum sampling rate</li>
@@ -118,7 +119,7 @@ export default function ContributionGuidelinesPage() {
           <li>Radio: 433MHz band captures at 2MSPS</li>
         </ul>
         <h3 className="mt-4 text-lg font-semibold">Review Process</h3>
-        <ul className="list-disc pl-5 text-gray-600 dark:text-gray-400">
+        <ul className="list-disc pl-5">
           <li>Automated validation check</li>
           <li>Data quality assessment</li>
           <li>Manual review by core team</li>

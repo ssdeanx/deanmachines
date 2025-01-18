@@ -135,4 +135,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [0.2.2]: https://github.com/ssdeanx/deanmachines/releases/tag/v0.2.2
 [0.2.1]: https://github.com/ssdeanx/deanmachines/releases/tag/v0.2.1
 [0.2.0]: https://github.com/ssdeanx/deanmachines/releases/tag/v0.2.0
+## [0.2.4] - 2025-01-18 12:55 PM
+### Changed
+
+- Updated styling in `app/` and `components/` for consistency with `globals.css`.
+- Replaced inline styles with utility classes where applicable.
+- Updated `Link` and `Button` components for better accessibility and styling consistency.
+- Created a custom `Code` component for consistent code styling.
+
 [0.1.0]: https://github.com/ssdeanx/deanmachines/releases/tag/v0.1.0
+
+[0.2.4]: https://github.com/ssdeanx/deanmachines/compare/v0.2.3...v0.2.4

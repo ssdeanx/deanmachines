@@ -118,8 +118,7 @@ export const ContactForm: FC = () => {
   return (
     <form
       noValidate
-      className="rounded-lg bg-white p-4 shadow-md dark:bg-gray-800 md:p-6"
-      style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}
+      className="flex flex-col gap-6 rounded-lg bg-white p-4 shadow-md dark:bg-gray-800 md:p-6"
       onSubmit={handleSubmit}
     >
       <Input
@@ -204,7 +203,7 @@ export const ContactForm: FC = () => {
 
         {submitStatus === "success" && (
           <div
-            className="rounded-md bg-green-100 p-4 text-green-700 dark:bg-green-900 dark:text-green-300"
+            className="rounded-md bg-green-100 p-4 text-gray-600 dark:bg-green-900 dark:text-gray-500"
             role="alert"
           >
             Thanks for your inquiry! We&#39;ll get back to you soon.
@@ -213,7 +212,7 @@ export const ContactForm: FC = () => {
 
         {submitStatus === "error" && (
           <div
-            className="rounded-md bg-red-100 p-4 text-red-700 dark:bg-red-900 dark:text-red-300"
+            className="rounded-md bg-red-100 p-4 text-gray-600 dark:bg-red-900 dark:text-gray-500"
             role="alert"
           >
             Sorry, something went wrong. Please try again later.

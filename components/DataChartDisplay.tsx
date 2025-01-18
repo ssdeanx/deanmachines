@@ -14,7 +14,7 @@ const DataChartDisplay: React.FC<DataChartDisplayProps> = ({
   yAxisLabel,
 }) => {
   return (
-    <Card className="border border-gray-200/20 bg-gray-50/50 backdrop-blur-lg dark:border-gray-700/20 dark:bg-gray-800/50 rounded-lg shadow-md p-4 md:p-6">
+    <Card className="card">
       <CardHeader className="pb-0">
         <h3 className="text-xl font-medium text-gray-900 dark:text-gray-100">
           {title}

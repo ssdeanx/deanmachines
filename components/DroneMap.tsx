@@ -46,7 +46,7 @@ const DroneMap: React.FC<DroneMapProps> = ({
   }
 
   return (
-    <Card className="border border-gray-200/20 bg-gray-50/50 backdrop-blur-lg dark:border-gray-700/20 dark:bg-gray-800/50">
+    <Card className="card">
       <CardHeader>
         <h3 className="text-xl font-medium text-gray-900 dark:text-gray-100">
           Drone Location

@@ -11,10 +11,7 @@ export default function App() {
           Autonomous FPV Drone Platform.
         </p>
       </div>
-      <Divider
-        className="bg-gray-200 shadow-sm dark:bg-gray-700"
-        style={{ margin: "1rem 0" }}
-      />
+      <Divider className="my-4 bg-gray-200 shadow-sm dark:bg-gray-700" />
     </div>
   );
 }

@@ -12,7 +12,7 @@ export const Card = ({ className, ...props }: CardProps) => (
   <NextUICard
     className={cn(
       "card dark:bg-gray-800 dark:text-white rounded-lg shadow-md transition-shadow hover:shadow-lg",
-      "p-4 md:p-6",
+      "px-4 py-2 md:px-6 md:py-3",
       className,
     )}
     {...props}

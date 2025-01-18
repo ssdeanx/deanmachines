@@ -16,27 +16,35 @@
     --transition-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
     /* NextUI Enhanced Theme Colors */
-    --background: 220 20% 12%;
-    --foreground: 240 20% 88%;
-    --default: 220 20% 12%;
-    --default-foreground: 240 20% 88%;
-
-    /* Semantic Colors */
-    --primary: 180 100% 40%;
-    --primary-foreground: 240 20% 88%;
+    --background: 255 255 255;
+    --foreground: 14 14 16;
+    --default: 255 255 255;
+    --default-foreground: 14 14 16;
+    --primary: 250 250 250;
+    --primary-light: 250 250 250;
+    --primary-dark: 9 9 11;
     --secondary: 120 40% 40%;
     --secondary-foreground: 240 20% 88%;
     --success: 142 72% 29%;
     --error: 0 84.2% 60.2%;
     --warning: 38 92% 50%;
     --info: 198 93% 60%;
-
-    /* State Colors */
     --muted: 220 20% 12%;
     --muted-foreground: 240 20% 65%;
     --accent: 220 20% 12%;
     --accent-foreground: 240 20% 88%;
-    --dark-grey: 220 20% 25%; /* Added dark grey color */
+    --dark-grey: 243 243 243; /* Added dark grey color */
+    --gray-50: 243 243 243;
+    --gray-100: 238 238 238;
+    --gray-200: 222 222 222;
+    --gray-300: 206 206 206;
+    --gray-400: 158 158 158;
+    --gray-500: 112 112 112;
+    --gray-600: 80 80 80;
+    --gray-700: 62 62 62;
+    --gray-800: 37 37 37;
+    --gray-900: 23 23 23;
+    --gray-950: 10 10 10;
   }
 
   .chart-container {
@@ -45,21 +53,20 @@
   }
 
   .dark {
-    --background: 240 20% 98%;
-    --foreground: 220 14% 15%;
-    --default: 240 20% 98%;
-    --default-foreground: 220 14% 15%;
-
-    --primary: 180 100% 60%;
-    --primary-foreground: 220 14% 15%;
+    --background: 14 14 16;
+    --foreground: 250 250 250;
+    --default: 14 14 16;
+    --default-foreground: 250 250 250;
+    --primary: 9 9 11;
+    --primary-light: 250 250 250;
+    --primary-dark: 9 9 11;
     --secondary: 120 40% 60%;
     --secondary-foreground: 240 20% 98%;
-
     --muted: 240 20% 98%;
     --muted-foreground: 220 14% 65%;
     --accent: 240 20% 98%;
     --accent-foreground: 220 14% 15%;
-    --dark-grey: 220 14% 98%; /* Added dark grey color for dark mode */
+    --dark-grey: 10 10 10; /* Added dark grey color for dark mode */
   }
 
   body {

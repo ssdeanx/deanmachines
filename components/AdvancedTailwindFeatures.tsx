@@ -8,7 +8,7 @@ const AdvancedTailwindFeatures: React.FC = () => {
         Advanced Tailwind Features
       </h1>
 
-      <div className="space-y-32">
+      <div className="space-y-8">
         <div>
           <h2 className="mb-2 text-lg font-semibold text-gray-700 dark:text-gray-300">
             Custom Spacing

@@ -54,10 +54,10 @@ export const Navbar = () => {
       position="sticky"
     >
       <NavbarContent className="sm:basis-full" justify="start">
-        <NavbarBrand as="li" className="gap-3">
+        <NavbarBrand as="li" className="gap-2">
           <NextLink className="flex items-center justify-start gap-1" href="/">
             <Logo />
-            <p className="text-xl font-bold text-white text-stroke dark:text-white navbar-title">
+            <p className="navbar-title text-xl font-bold text-white text-stroke dark:text-white">
               DeanMachines
             </p>
           </NextLink>
@@ -96,7 +96,7 @@ export const Navbar = () => {
         </NavbarItem>
         <NavbarItem className="hidden lg:flex">
           <Link
-            className="rounded-md bg-gray-200 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
+            className="rounded-md bg-gray-200 px-4 py-2 text-sm font-medium text-gray-600 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-500 dark:hover:bg-gray-600"
             href="/dashboard"
           >
             Dashboard
@@ -107,7 +107,7 @@ export const Navbar = () => {
           <Button
             isExternal
             as={Link}
-            className="bg-gray-600 text-sm font-normal text-white"
+            className="bg-gray-600 text-sm font-normal text-gray-600 dark:text-gray-500"
             href={siteConfig.links.sponsor}
             startContent={<HeartFilledIcon className="text-red-500" />}
             variant="flat"
@@ -134,7 +134,7 @@ export const Navbar = () => {
                 className={clsx(
                   linkStyles({ color: "foreground" }),
                   "data-[active=true]:text-blue-500",
-                  "text-gray-400 dark:text-gray-300",
+                  "text-gray-600 dark:text-gray-500",
                 )}
                 color={
                   index === 2

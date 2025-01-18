@@ -35,7 +35,7 @@ export default function AboutPage() {
               variants={itemVariants}
               whileHover={{ scale: 1.02 }}
             >
-              <Card className="h-full border border-gray-200/20 bg-gray-50/50 backdrop-blur-lg dark:border-gray-700/20 dark:bg-gray-800/50">
+              <Card className="h-full card">
                 <CardHeader>
                   <h3 className="text-xl font-medium text-gray-900 dark:text-gray-100">
                     Drone Platform
@@ -52,7 +52,7 @@ export default function AboutPage() {
               variants={itemVariants}
               whileHover={{ scale: 1.02 }}
             >
-              <Card className="h-full border border-gray-200/20 bg-gray-50/50 backdrop-blur-lg dark:border-gray-700/20 dark:bg-gray-800/50">
+              <Card className="h-full card">
                 <CardHeader>
                   <h3 className="text-xl font-medium text-gray-900 dark:text-gray-100">
                     AI Computer
@@ -69,7 +69,7 @@ export default function AboutPage() {
               variants={itemVariants}
               whileHover={{ scale: 1.02 }}
             >
-              <Card className="h-full border border-gray-200/20 bg-gray-50/50 backdrop-blur-lg dark:border-gray-700/20 dark:bg-gray-800/50">
+              <Card className="h-full card">
                 <CardHeader>
                   <h3 className="text-xl font-medium text-gray-900 dark:text-gray-100">
                     Sensors
@@ -91,7 +91,7 @@ export default function AboutPage() {
               variants={itemVariants}
               whileHover={{ scale: 1.02 }}
             >
-              <Card className="h-full border border-gray-200/20 bg-gray-50/50 backdrop-blur-lg dark:border-gray-700/20 dark:bg-gray-800/50">
+              <Card className="h-full card">
                 <CardHeader>
                   <h3 className="text-xl font-medium text-gray-900 dark:text-gray-100">
                     Communication
@@ -111,7 +111,7 @@ export default function AboutPage() {
         </motion.div>
       </section>
       <section className="container mx-auto max-w-7xl px-6 py-16">
-        <Card className="mb-8">
+        <Card className="mb-8 card">
           <CardHeader>
             <h2>About DeanMachines</h2>
           </CardHeader>
@@ -125,7 +125,7 @@ export default function AboutPage() {
           </CardBody>
         </Card>
 
-        <Card className="mb-8">
+        <Card className="mb-8 card">
           <CardHeader>
             <h2>About the Creator</h2>
           </CardHeader>
@@ -139,7 +139,7 @@ export default function AboutPage() {
           </CardBody>
         </Card>
 
-        <Card>
+        <Card className="card">
           <CardHeader>
             <h2>Contact</h2>
           </CardHeader>

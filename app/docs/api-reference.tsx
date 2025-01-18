@@ -1,5 +1,4 @@
-import { Code } from "@nextui-org/code";
-
+import Code from "@/components/code";
 import { title, subtitle } from "@/components/primitives";
 
 export default function ApiReferencePage() {
@@ -17,7 +16,7 @@ export default function ApiReferencePage() {
         <p className="text-gray-600 dark:text-gray-400">
           The data API provides access to the data used in the project.
         </p>
-        <ul className="list-disc pl-5 text-gray-600 dark:text-gray-400">
+        <ul className="list-disc pl-5">
           <li>
             <Code>GET /api/data</Code> - Get all data.
           </li>
@@ -29,7 +28,7 @@ export default function ApiReferencePage() {
         <p className="text-gray-600 dark:text-gray-400">
           The form API provides an endpoint for submitting contact form data.
         </p>
-        <ul className="list-disc pl-5 text-gray-600 dark:text-gray-400">
+        <ul className="list-disc pl-5">
           <li>
             <Code>POST /api/form</Code> - Submit contact form data.
           </li>
@@ -39,7 +38,7 @@ export default function ApiReferencePage() {
           The onboard systems are responsible for real-time processing on the
           drone.
         </p>
-        <ul className="list-disc pl-5 text-gray-600 dark:text-gray-400">
+        <ul className="list-disc pl-5">
           <li>NVIDIA Orin Nano for real-time processing</li>
           <li>Custom sensor fusion pipeline</li>
           <li>Edge AI inference</li>
@@ -50,7 +49,7 @@ export default function ApiReferencePage() {
           The ground station is responsible for processing and visualizing the
           data collected by the drone.
         </p>
-        <ul className="list-disc pl-5 text-gray-600 dark:text-gray-400">
+        <ul className="list-disc pl-5">
           <li>SDR signal processing</li>
           <li>Real-time data visualization</li>
           <li>Neural network training</li>

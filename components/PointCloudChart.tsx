@@ -107,7 +107,7 @@ const PointCloudChart: React.FC = () => {
   }, [pointSize]);
 
   return (
-    <div className="flex flex-col rounded-lg bg-white p-4 md:p-6 shadow-md dark:bg-gray-800">
+    <div className="flex flex-col rounded-lg bg-white p-4 shadow-md dark:bg-gray-800 md:p-6">
       <div ref={containerRef} />
       <div className="mt-4">
         <Slider
