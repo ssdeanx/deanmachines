@@ -5,8 +5,6 @@ import { Divider } from "@nextui-org/divider";
 
 import { Providers } from "../providers";
 
-import { Navbar } from "@/components/navbar";
-import { ThemeSwitch } from "@/components/theme-switch";
 import CustomTooltip from "@/components/tooltip";
 
 export default function AboutLayout({
@@ -24,13 +22,10 @@ export default function AboutLayout({
         }}
       >
         <div className="relative flex h-screen flex-col">
-          <Navbar />
           <main className="container mx-auto max-w-7xl grow px-6 pt-16">
             {children}
             <Divider className="my-4" />
-            <div className="flex items-center gap-2">
-              <ThemeSwitch />
-            </div>
+            <div className="flex items-center gap-2" />
             <CustomTooltip />
           </main>
           <footer className="flex w-full items-center justify-center py-3">

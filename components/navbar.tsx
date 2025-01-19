@@ -1,4 +1,7 @@
 "use client";
+import React from "react";
+import { useTheme } from "next-themes";
+import { useState } from "react";
 import {
   Navbar as NextUINavbar,
   NavbarContent,
@@ -15,10 +18,8 @@ import { Input } from "@nextui-org/input";
 import { link as linkStyles } from "@nextui-org/theme";
 import NextLink from "next/link";
 import clsx from "clsx";
-import { useTheme } from "next-themes";
 
-import { siteConfig } from "@/config/site";
-import { ThemeSwitch } from "@/components/theme-switch";
+import Sidebar from "@/components/sidebar";
 import {
   TwitterIcon,
   GithubIcon,
@@ -26,9 +27,16 @@ import {
   SearchIcon,
   Logo,
 } from "@/components/icons";
+import { ThemeSwitch } from "@/components/theme-switch";
+import { siteConfig } from "@/config/site";
 
 export const Navbar = () => {
   const { theme } = useTheme();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
 
   const searchInput = (
     <Input
@@ -53,15 +61,28 @@ export const Navbar = () => {
 
   return (
     <NextUINavbar
-      className="navbar-gradient shadow-md"
+      className={clsx(
+        "shadow-md",
+        theme === "dark"
+          ? "bg-gradient-to-r from-[hsl(var(--secondary))] to-[hsl(var(--primary))]"
+          : "bg-[#797979]",
+      )}
       maxWidth="xl"
       position="sticky"
     >
       <NavbarContent className="sm:basis-full" justify="start">
-        <NavbarBrand as="li" className={clsx("gap-2", theme === "dark" ? "bg-[hsl(var(--default))]" : "bg-[hsl(var(--background))]")}>
+        <NavbarBrand
+          as="li"
+          className={clsx(
+            "gap-2",
+            theme === "dark"
+              ? "bg-[hsl(var(--default))]"
+              : "bg-[hsl(var(--background))]",
+          )}
+        >
           <NextLink className="flex items-center justify-start gap-1" href="/">
             <Logo />
-            <p className="navbar-title text-xl font-bold text-white text-stroke dark:text-white">
+            <p className="navbar-title text-xl font-bold text-black text-stroke dark:text-white">
               DeanMachines
             </p>
           </NextLink>
@@ -122,6 +143,9 @@ export const Navbar = () => {
       </NavbarContent>
 
       <NavbarContent className="basis-1 pl-4 sm:hidden" justify="end">
+        <Button className="text-white" onPress={toggleSidebar}>
+          Menu
+        </Button>
         <Link isExternal aria-label="Github" href={siteConfig.links.github}>
           <GithubIcon className="text-white" />
         </Link>
@@ -156,6 +180,7 @@ export const Navbar = () => {
           ))}
         </div>
       </NavbarMenu>
+      <Sidebar isOpen={isSidebarOpen} onClose={toggleSidebar} />
     </NextUINavbar>
   );
 };

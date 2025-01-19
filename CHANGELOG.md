@@ -135,31 +135,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [0.2.2]: https://github.com/ssdeanx/deanmachines/releases/tag/v0.2.2
 [0.2.1]: https://github.com/ssdeanx/deanmachines/releases/tag/v0.2.1
 [0.2.0]: https://github.com/ssdeanx/deanmachines/releases/tag/v0.2.0
+
 ## [0.2.4] - 2025-01-18 12:55 PM
 ### Changed
-
 - Updated styling in `app/` and `components/` for consistency with `globals.css`.
 - Replaced inline styles with utility classes where applicable.
 - Updated `Link` and `Button` components for better accessibility and styling consistency.
 - Created a custom `Code` component for consistent code styling.
 
 [0.1.0]: https://github.com/ssdeanx/deanmachines/releases/tag/v0.1.0
-
 [0.2.4]: https://github.com/ssdeanx/deanmachines/compare/v0.2.3...v0.2.4
 
-## [0.2.5] - 2025-01-18 04:17 PM
-
+## [0.2.5] - 2025-01-19 10:21 AM
 ### Changed
-
-- Configured a robust, project-wide Tailwind CSS theming setup.
-- Added "light" and "dark" themes to `tailwind.config.js`.
-- Implemented dynamic theme switching that affects all elements.
-- The `app/layout.tsx` file now uses a `ThemeContext` component to apply the current theme globally to the `html` tag.
-- Demonstrated component-level theming in `components/navbar.tsx`.
-- The `ThemeSwitch` component manages the theme state and persists it to local storage.
-- Resolved errors regarding `useTheme` being called from the server by moving the theme logic to client components and making `Navbar` a client component.
-- Resolved the background color issue by updating `styles/globals.css` to use the correct CSS variable for the body background.
-- Updated all hardcoded colors in the `components/` directory to use CSS variables, ensuring consistency throughout the project.
-- Used a Tree of Thoughts approach with backtracking to ensure cohesive Chain of Thought reasoning, and incorporating Few-Shot Prompting, ReACT (Reason + Act), and iterative Refinement.
-
-[0.2.5]: https://github.com/ssdeanx/deanmachines/compare/v0.2.4...v0.2.5
+- Updated `styles/globals.css` to use actual `hsl()` values instead of `hsl(var(--color))` for `--muted`, `--accent`, and `--secondary` colors, ensuring they are opposite in the `:root` and `.dark` sections.
+- Removed hardcoded colors in the `themes` section of `tailwind.config.js`.
+- Updated the `addUtilities` section of `tailwind.config.js` to use CSS variables, including the `.btn-primary` class.
+- Verified that `button.tsx` and `card.tsx` are using CSS variables for text colors.
+- Updated the card styles in `styles/globals.css` to use `hsl(var(--background))` and `hsl(var(--default))` for the background colors.
+- Modified `sidebar.tsx` and `navbar.tsx` to avoid the hydration error.
+- Added `"use client";` to the top of `accordion.tsx`.

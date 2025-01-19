@@ -32,11 +32,6 @@ module.exports = {
     },
     extend: {
       colors: {
-        'primary': '#0070f3', // Default primary color
-        'secondary': '#1c64f2', // Default secondary color
-      },
-      fontFamily: {
-        sans: ['Inter', ...defaultTheme.fontFamily.sans],
       },
       fontFamily: {
         sans: ["var(--font-sans)", "system-ui"],
@@ -115,8 +110,8 @@ module.exports = {
         input: "hsl(var(--input))",
         ringOffset: "hsl(var(--ring-offset))",
         "navbar-gradient": {
-          DEFAULT: "linear-gradient(to right, #8360c3, #2ebf91)",
-          "dark": "linear-gradient(to right, #2ebf91, #8360c3)",
+          DEFAULT: "linear-gradient(to right, hsl(var(--primary)), hsl(var(--secondary)))",
+          "dark": "linear-gradient(to right, hsl(var(--secondary)), hsl(var(--primary)))",
         },
       },
       animation: {
@@ -174,14 +169,15 @@ module.exports = {
       themes: {
         light: {
           colors: {
-            primary: '#0070f3', // Light theme primary color
-            secondary: '#ff0000', // Light theme secondary color,
+            primary: 'hsl(var(--primary))',
+            secondary: 'hsl(var(--secondary))',
+            background: 'hsl(var(--background))',
           },
         },
         dark: {
           colors: {
-            primary: '#003060', // Dark theme primary color
-            secondary: '#008000', // Dark theme secondary color
+            primary: 'hsl(var(--primary))', // Dark theme primary color
+            secondary: 'hsl(var(--secondary))', // Dark theme secondary color
           },
         },
       },
@@ -193,7 +189,7 @@ module.exports = {
     plugin(({ addUtilities }) => {
       addUtilities({
         ".glass": {
-          "@apply bg-background/80 backdrop-blur-lg border border-foreground/10":
+          "@apply bg-[hsl(var(--background)/0.8)] backdrop-blur-lg border border-foreground/10":
             {},
           "@apply dark:bg-[hsl(var(--default)/0.8)] dark:border-foreground/5": {},
         },
@@ -208,11 +204,11 @@ module.exports = {
             {},
         },
         ".btn-primary": {
-          "@apply bg-gradient-to-r from-purple-500 to-blue-500 text-white font-bold py-2 px-4 rounded transition-all duration-200 ease-in-out hover:from-purple-600 hover:to-blue-600":
+          "@apply bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--primary-foreground))] text-white font-bold py-2 px-4 rounded transition-all duration-200 ease-in-out hover:from-[hsl(var(--primary-foreground))] hover:to-[hsl(var(--primary))]":
             {},
         },
         ".card": {
-          "@apply bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 transition-all duration-200 ease-in-out hover:shadow-lg":
+          "@apply bg-[hsl(var(--background))] dark:bg-[hsl(var(--default))] rounded-lg shadow-md p-6 transition-all duration-200 ease-in-out hover:shadow-lg":
             {},
         },
         ".section-container": {

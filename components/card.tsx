@@ -11,7 +11,7 @@ import { cn } from "../lib/utils";
 export const Card = ({ className, ...props }: CardProps) => (
   <NextUICard
     className={cn(
-      "card dark:bg-[hsl(var(--default))] dark:text-muted-foreground rounded-lg shadow-md transition-shadow hover:shadow-lg",
+      "card dark:bg-[hsl(var(--default))] rounded-lg shadow-md transition-shadow hover:shadow-lg",
       "px-4 py-2 md:px-6 md:py-3",
       className,
     )}
