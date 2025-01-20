@@ -1,12 +1,25 @@
+version: '3.8'
 services:
-  app:
-    entrypoint:
-    - sleep
-    - infinity
-    image: docker/dev-environments-javascript:stable-1
-    init: true
+  deanmachines:
+    image: deanmachines:latest # Use the image built from the Dockerfile
+    build:
+      context: .
+      dockerfile: Dockerfile # Reference the updated Dockerfile
+    ports:
+      - "3000:3000"
     volumes:
-    - type: bind
-      source: /var/run/docker.sock
-      target: /var/run/docker.sock
+      - .:/app:cached # Mount the project directory for code changes
+      - /app/node_modules # Named volume for node_modules
+    environment:
+      - NODE_ENV=development
+    depends_on:
+      - db # Depend on the database service if present
+    command: npm run dev # Use the dev command from package.json
 
+  db: # Include the database service if needed
+    image: ankane/pgvector
+    environment:
+      POSTGRES_USER: example
+      POSTGRES_PASSWORD: example
+    ports:
+      - "5432:5432"

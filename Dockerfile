@@ -3,27 +3,18 @@ FROM node:18-alpine AS base
 WORKDIR /app
 COPY package*.json ./
 
-# Development stage
-FROM base AS development
-RUN npm install
-COPY . .
-EXPOSE 3000
-CMD ["npm", "run", "dev"]
-
-# Production stages
-FROM base AS prod-deps
-RUN npm install --production
-
-FROM base AS builder
+# Build stage
+FROM base AS build
 RUN npm install
 COPY . .
 RUN npm run build
 
+# Production stage
 FROM node:18-alpine AS production
 WORKDIR /app
-COPY --from=prod-deps /app/node_modules ./node_modules
-COPY --from=builder /app/.next ./.next
-COPY --from=builder /app/public ./public
+COPY --from=build /app/node_modules ./node_modules
+COPY --from=build /app/.next ./.next
+COPY --from=build /app/public ./public
 COPY package*.json ./
 EXPOSE 3000
 CMD ["npm", "start"]

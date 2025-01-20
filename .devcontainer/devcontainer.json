@@ -1,0 +1,19 @@
+{
+  "name": "deanmachines Dev Container",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "deanmachines",
+  "workspaceFolder": "/app",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.shell.linux": "/bin/bash"
+      },
+      "extensions": [
+        "ms-azuretools.vscode-docker",
+        "redhat.vscode-yaml"
+      ]
+    }
+  },
+  "forwardPorts": [3000, 5432],
+  "postCreateCommand": "npm install"
+}
