@@ -137,7 +137,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [0.2.0]: https://github.com/ssdeanx/deanmachines/releases/tag/v0.2.0
 
 ## [0.2.4] - 2025-01-18 12:55 PM
+
 ### Changed
+
 - Updated styling in `app/` and `components/` for consistency with `globals.css`.
 - Replaced inline styles with utility classes where applicable.
 - Updated `Link` and `Button` components for better accessibility and styling consistency.
@@ -147,7 +149,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [0.2.4]: https://github.com/ssdeanx/deanmachines/compare/v0.2.3...v0.2.4
 
 ## [0.2.5] - 2025-01-19 10:21 AM
+
 ### Changed
+
 - Updated `styles/globals.css` to use actual `hsl()` values instead of `hsl(var(--color))` for `--muted`, `--accent`, and `--secondary` colors, ensuring they are opposite in the `:root` and `.dark` sections.
 - Removed hardcoded colors in the `themes` section of `tailwind.config.js`.
 - Updated the `addUtilities` section of `tailwind.config.js` to use CSS variables, including the `.btn-primary` class.
@@ -155,3 +159,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Updated the card styles in `styles/globals.css` to use `hsl(var(--background))` and `hsl(var(--default))` for the background colors.
 - Modified `sidebar.tsx` and `navbar.tsx` to avoid the hydration error.
 - Added `"use client";` to the top of `accordion.tsx`.
+
+## [0.2.6] - 2025-01-19 10:21 AM
+
+### Changed
+
+- Useless AI cant do this so i did.  Whoever cant read needs deleted from knowledge graph.

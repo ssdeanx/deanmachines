@@ -23,8 +23,8 @@ export default function Home() {
         <div className={subtitle({ class: "mt-4" })}>
           Dean Machines is a project by Sean Dean, a software engineer with a
           passion for technology and autonomous systems. This project aims to
-          create an open-source autonomous drone platform using a 5&quot; FPV
-          Racing drone equipped with advanced sensors and AI capabilities.
+          create an open-source autonomous drone platform using a FPV Racing
+          drone equipped with advanced sensors and AI capabilities.
         </div>
       </div>
 

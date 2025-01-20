@@ -18,7 +18,7 @@
 # misc
 .DS_Store
 *.pem
-
+/extras
 # debug
 npm-debug.log*
 yarn-debug.log*
@@ -26,7 +26,6 @@ yarn-error.log*
 
 # local env files
 .env*.local
-
 .env
 
 # vercel
@@ -42,4 +41,6 @@ next-env.d.ts
 
 schema3.json
 
-/extras
+/app/applets/spacial/*  
+
+/app/applets/video/*

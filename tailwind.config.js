@@ -85,8 +85,8 @@ module.exports = {
           foreground: "hsl(var(--success-foreground, var(--foreground)))",
         },
         warning: {
-          DEFAULT: "hsl(var(--warning))",
-          foreground: "hsl(var(--warning-foreground, var(--foreground)))",
+          DEFAULT: "hsl(var(--warning-h), var(--warning-s), var(--warning-l))",
+          foreground: "hsl(var(--warning-foreground-h, var(--foreground-h)), var(--warning-foreground-s, var(--foreground-s)), var(--warning-foreground-l, var(--foreground-l)))",
         },
         danger: {
           DEFAULT: "hsl(var(--danger))",
