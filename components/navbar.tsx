@@ -22,16 +22,16 @@ import clsx from "clsx";
 import Sidebar from "@/components/sidebar";
 import {
   TwitterIcon,
-  GithubIcon,
+    GithubIcon,
   HeartFilledIcon,
   SearchIcon,
   Logo,
-} from "@/components/icons";
-import { ThemeSwitch } from "@/components/theme-switch";
+  } from "@/components/icons";
+import { ThemeButton, DropdownButton } from "@/components/navbar-buttons";
 import { siteConfig } from "@/config/site";
 
 export const Navbar = () => {
-  const { theme } = useTheme();
+  const { theme, setTheme } = useTheme();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const toggleSidebar = () => {
@@ -63,9 +63,7 @@ export const Navbar = () => {
     <NextUINavbar
       className={clsx(
         "shadow-md",
-        theme === "dark"
-          ? "bg-gradient-to-r from-[hsl(var(--secondary))] to-[hsl(var(--primary))]"
-          : "bg-[#797979]",
+        theme === "dark" ? "bg-[hsl(var(--default))]" : "bg-[hsl(var(--background))]",
       )}
       maxWidth="xl"
       position="sticky"
@@ -74,10 +72,8 @@ export const Navbar = () => {
         <NavbarBrand
           as="li"
           className={clsx(
-            "gap-2",
-            theme === "dark"
-              ? "bg-[hsl(var(--default))]"
-              : "bg-[hsl(var(--background))]",
+            "gap-2",            
+            theme === "dark" ? "bg-[hsl(var(--default))] text-foreground dark:text-muted-foreground" : "bg-[hsl(var(--background))] text-foreground dark:text-muted-foreground",
           )}
         >
           <NextLink className="flex items-center justify-start gap-1" href="/">
@@ -117,7 +113,7 @@ export const Navbar = () => {
           <Link isExternal aria-label="Github" href={siteConfig.links.github}>
             <GithubIcon className="text-white" />
           </Link>
-          <ThemeSwitch />
+          <ThemeButton className="text-white" />
         </NavbarItem>
         <NavbarItem className="hidden lg:flex">
           <Link
@@ -149,7 +145,22 @@ export const Navbar = () => {
         <Link isExternal aria-label="Github" href={siteConfig.links.github}>
           <GithubIcon className="text-white" />
         </Link>
-        <ThemeSwitch />
+        <DropdownButton
+          className="text-white"
+          items={[
+            {
+              key: "light",
+              label: "Light",
+              onClick: () => setTheme("light"),
+            },
+            {
+              key: "dark",
+              label: "Dark",
+              onClick: () => setTheme("dark"),
+            },
+          ]}
+        />
+        <ThemeButton className="text-white" />
         <NavbarMenuToggle />
       </NavbarContent>
 

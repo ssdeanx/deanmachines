@@ -14,7 +14,7 @@ const buttonVariants = cva(
         default:
           "bg-[hsl(var(--primary))] text-white hover:bg-[hsl(var(--primary-foreground))] focus:ring-[hsl(var(--primary))] focus:ring-offset-2 dark:bg-[hsl(var(--primary))] dark:text-white dark:hover:bg-[hsl(var(--primary-foreground))] dark:focus:ring-[hsl(var(--primary))]",
         destructive:
-          "bg-[hsl(var(--error))] text-white hover:bg-[hsl(var(--error))] focus:ring-[hsl(var(--error))] focus:ring-offset-2 dark:bg-[hsl(var(--error))] dark:text-white dark:hover:bg-[hsl(var(--error))] dark:focus:ring-[hsl(var(--error))]",
+          "bg-[hsl(var(--error))] text-white hover:bg-[hsl(var(--error-foreground))] focus:ring-[hsl(var(--error))] focus:ring-offset-2 dark:bg-[hsl(var(--error))] dark:text-white dark:hover:bg-[hsl(var(--error-foreground))] dark:focus:ring-[hsl(var(--error))]",
         outline:
           "border border-gray-300 bg-[hsl(var(--background))] text-foreground hover:bg-gray-50 focus:ring-gray-300 focus:ring-offset-2 dark:border-gray-600 dark:bg-[hsl(var(--default))] dark:text-muted-foreground dark:hover:bg-gray-700 dark:focus:ring-gray-600",
         secondary:
