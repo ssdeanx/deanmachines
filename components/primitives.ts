@@ -31,7 +31,7 @@ export const title = {
       tight: "tracking-tight",
     },
     fullWidth: "block w-full",
-    class: "bg-gradient-to-b bg-clip-text text-transparent",
+    class: "bg-clip-text text-transparent",
 };
  
 export const subtitle = {

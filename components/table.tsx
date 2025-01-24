@@ -13,7 +13,7 @@ import {
     Box
 } from "@mui/material";
 import TableSortLabel from '@mui/material/TableSortLabel';
-import { SortDescriptor } from "@nextui-org/react";
+import { visuallyHidden } from '@mui/utils';
  
  interface SensorData {
   timestamp: string;

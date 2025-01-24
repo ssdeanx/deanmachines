@@ -11,7 +11,7 @@ import Button from '@mui/material/Button';
     <section className="flex flex-col gap-4 py-8 md:py-10">
       <div className="text-center">
         <h1 className={title.base} style={{fontSize: title.size.lg}} >Dean Machines</h1>
-        <div className={subtitle.base} style={{marginTop: '1rem'}}>
+        <div className={subtitle.base} style={{marginTop: '1rem'}} >
           Our mission is to create a comprehensive dataset for drone autonomy
           research and build an open-source autonomous drone platform.
         </div>

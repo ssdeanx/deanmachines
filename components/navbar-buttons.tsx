@@ -2,7 +2,8 @@
  
  import React, { useState } from "react";
  import { useTheme } from "next-themes";
- import { Button } from "@nextui-org/button";
+
+ import Button from '@mui/material/Button';
  import Menu from '@mui/material/Menu';
  import MenuItem from '@mui/material/MenuItem';
  import { MoonFilledIcon, SunFilledIcon,  } from "@/components/icons";
@@ -51,7 +52,7 @@
         <>
             <Button
                 className={className}
-                variant="light"
+                variant="text"
                 onClick={handleClick}
             >
                 Menu

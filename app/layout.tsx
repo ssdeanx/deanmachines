@@ -2,7 +2,6 @@ import "@/styles/globals.css";
 import { Metadata, Viewport } from "next";
 import clsx from "clsx";
 import Box from '@mui/material/Box';
-import { ThemeContext } from "@/components/ThemeContext";
  
 import { Providers } from "./providers";
  
@@ -45,16 +44,14 @@ export default function RootLayout({
         )}
       >
         <Providers>
-          <ThemeContext>
-            <Box className="relative flex h-screen flex-col">
-              <Navbar />
-              <ThemeSwitch />
-              <main className="container mx-auto grow pt-16" >
-                <section className="px-4 py-8" >{children}</section>
-              </main>
-              <Footer />
-            </Box>
-          </ThemeContext>
+          <Box className="relative flex h-screen flex-col">
+            <Navbar />
+            <ThemeSwitch />
+            <main className="container mx-auto grow pt-16" >
+              <section className="px-4 py-8" >{children}</section>
+            </main>
+            <Footer />
+          </Box>
         </Providers>
       </body>
     </html>

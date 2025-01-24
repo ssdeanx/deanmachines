@@ -1,28 +1,25 @@
 "use client";
  
  import { FC } from "react";
- import { SwitchProps } from "@nextui-org/switch";
- import Switch from '@mui/material/Switch';
- import { useTheme } from "next-themes";
+ import Switch, { SwitchProps } from '@mui/material/Switch';
+ import { useTheme } from "@/components/ThemeContext";
  import FormControlLabel from '@mui/material/FormControlLabel';
- import clsx from "clsx";
+
  
  export interface ThemeSwitchProps {
   className?: string;
-  classNames?: SwitchProps["classNames"];
  }
  
- export const ThemeSwitch: FC<ThemeSwitchProps> = ({
+ export const SwitchComponent: FC<ThemeSwitchProps> = ({
   className,
-  classNames,
  }) => {
-  const { resolvedTheme, setTheme } = useTheme();
+  const { mode, setMode } = useTheme();
   const isSSR = typeof window === "undefined";
   const onChange = () => {
-    resolvedTheme === "light" ? setTheme("dark") : setTheme("light");
+    setMode(mode === "light" ? "dark" : "light");
   };
  
-  const isSelected = resolvedTheme === "light" || isSSR;
+  const isSelected = mode === "light" || isSSR;
  
   return (
     <FormControlLabel

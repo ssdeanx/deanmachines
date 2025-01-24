@@ -1,39 +1,35 @@
 "use client";
  
- import { FC, useEffect } from "react";
- import { VisuallyHidden } from "@react-aria/visually-hidden";
- import Switch from '@mui/material/Switch';
- import { useTheme } from "next-themes";
- import FormControlLabel from '@mui/material/FormControlLabel';
- import { useIsSSR } from "@react-aria/ssr";
- import clsx from "clsx";
+import { FC, useEffect } from "react";
+import Switch from '@mui/material/Switch';
+import FormControlLabel from "@mui/material/FormControlLabel";
+import { useTheme } from "@/components/ThemeContext";
   
  import { SunFilledIcon, MoonFilledIcon } from "@/components/icons";
- 
+  
  export interface ThemeSwitchProps {
   className?: string;
  }
- 
+  
  export const ThemeSwitch: FC<ThemeSwitchProps> = ({
   className,
  }) => {
-  const { theme, setTheme } = useTheme();
-  const isSSR = useIsSSR();
-  const initialTheme = isSSR
-    ? "light"
-    : localStorage.getItem("theme") || "light";
+  const { mode, setMode } = useTheme();
+  const initialMode = typeof window !== 'undefined' && localStorage
+    ? localStorage.getItem("theme") || "light"
+    : "light";
  
   useEffect(() => {
-    if (!isSSR) {
-      localStorage.setItem("theme", theme || "light");
+    if (typeof window !== 'undefined' && localStorage) {
+      localStorage.setItem("theme", mode || "light");
     }
-  }, [theme, isSSR]);
+  }, [mode]);
  
   const onChange = () => {
-    theme === "light" ? setTheme("dark") : setTheme("light");
+    setMode(mode === "light" ? "dark" : "light");
   };
  
-  const isSelected = initialTheme === "light";
+  const isSelected = mode === "light";
  
   return (
     <FormControlLabel
@@ -41,7 +37,6 @@
             <Switch
                 checked={!isSelected}
                 onChange={onChange}
-                color="primary"
             />
         }
         label={isSelected ? <SunFilledIcon size={22} /> : <MoonFilledIcon size={22} />}

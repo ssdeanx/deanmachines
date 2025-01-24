@@ -1,27 +1,44 @@
 "use client";
 
-import { useTheme } from "next-themes";
-import { ReactNode, useEffect } from "react";
-
+import { ReactNode, createContext, useState, useContext } from "react";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+ 
 interface ThemeContextProps {
-  children: ReactNode;
+ children: ReactNode;
+ }
+  
+interface Theme {
+  mode: "light" | "dark";
+  setMode: (mode: "light" | "dark") => void;
 }
 
-export const ThemeContext = ({ children }: ThemeContextProps) => {
-  const { theme } = useTheme();
+const ThemeContext = createContext<Theme | undefined>(undefined);
 
-  useEffect(() => {
-    console.log("Theme changed to:", theme);
-    if (theme) {
-      document.documentElement.classList.add(theme);
-    }
+export const ThemeContextProvider = ({ children }: ThemeContextProps) => {
+  const [mode, setMode] = useState<"light" | "dark">("light");
 
-    return () => {
-      if (theme) {
-        document.documentElement.classList.remove(theme);
-      }
-    };
-  }, [theme]);
+  const theme = createTheme({
+    palette: {
+      mode,
+    },
+  });
 
-  return <>{children}</>;
+  const value = {
+    mode,
+    setMode,
+  };
+
+  return (
+    <ThemeContext.Provider value={value}>
+      <ThemeProvider theme={theme}>{children}</ThemeProvider>
+    </ThemeContext.Provider>
+  );
+};
+
+export const useTheme = () => {
+  const context = useContext(ThemeContext);
+  if (!context) {
+    throw new Error("useTheme must be used within a ThemeContextProvider");
+  }
+  return context;
 };
