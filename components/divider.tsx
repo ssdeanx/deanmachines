@@ -1,17 +1,19 @@
-import { Divider } from "@nextui-org/react";
-
-export default function App() {
+import React from 'react';
+import Divider from '@mui/material/Divider';
+import Typography from '@mui/material/Typography';
+ 
+ export default function App() {
   return (
     <div className="max-w-md">
       <div className="space-y-1">
-        <h4 className="text-base font-medium text-foreground dark:text-muted-foreground">
+        <Typography variant="h6" className="text-base font-medium text-foreground dark:text-muted-foreground">
           Dean Machines
-        </h4>
-        <p className="text-sm text-foreground dark:text-muted-foreground">
+        </Typography>
+        <Typography variant="body2" className="text-sm text-foreground dark:text-muted-foreground">
           Autonomous FPV Drone Platform.
-        </p>
+        </Typography>
       </div>
-      <Divider className="my-4 bg-[hsl(var(--gray-200))] shadow-sm dark:bg-[hsl(var(--gray-700))]" />
+      <Divider sx={{ my: 2, backgroundColor: 'hsl(var(--gray-200))', boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)' }} />
     </div>
   );
 }

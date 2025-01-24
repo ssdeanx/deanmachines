@@ -1,15 +1,15 @@
 // app/data/layout.tsx
 "use client";
-import { Card } from "@nextui-org/react";
-
-export default function DataLayout({
+import Card from '@mui/material/Card';
+ 
+ export default function DataLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
     <section className="container mx-auto max-w-7xl px-6 py-16">
-      <Card className="p-6">
+      <Card sx={{padding: '1.5rem'}}>
         <div className="flex flex-col gap-4">{children}</div>
       </Card>
     </section>

@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { Input } from "@nextui-org/input";
 import { Button } from "@nextui-org/button";
 
-import FPVVideoDisplay from "@/components/FPVVideoDisplay";
+import FPVVideoDisplay from "@/components/Old/FPVVideoDisplay";
 import DashboardSidebar from "@/components/dashboard-sidebar";
 
 const FPVPage = () => {

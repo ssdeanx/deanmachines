@@ -1,19 +1,25 @@
 "use client";
 
-import { Switch } from "@nextui-org/switch";
 import { useState } from "react";
-export default function ClientSwitch({ checked }: { checked: boolean }) {
-  const [isChecked, setIsChecked] = useState(checked);
-  const onChange = () => {
-    setIsChecked(!isChecked);
-  };
+import Switch from '@mui/material/Switch';
+import FormControlLabel from '@mui/material/FormControlLabel';
 
-  return (
-    <Switch
-      checked={isChecked}
-      className="my-4 focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary))] focus:ring-offset-2"
-      color="primary"
-      onChange={onChange}
-    />
-  );
+export default function ClientSwitch({ checked }: { checked: boolean }) {
+    const [isChecked, setIsChecked] = useState(checked);
+    const onChange = () => {
+        setIsChecked(!isChecked);
+    };
+
+    return (
+        <FormControlLabel
+            control={
+                <Switch
+                    checked={isChecked}
+                    onChange={onChange}
+                    color="primary"
+                />
+            }
+            label="Switch"
+        />
+    );
 }

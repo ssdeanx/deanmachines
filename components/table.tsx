@@ -1,31 +1,34 @@
 import { useAsyncList, AsyncListLoadOptions } from "@react-stately/data";
 import React from "react";
 import {
-  Table,
-  TableHeader,
-  TableColumn,
-  TableBody,
-  TableRow,
-  TableCell,
-  getKeyValue,
-  Spinner,
-} from "@nextui-org/react";
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
+    Paper,
+    CircularProgress,
+    Typography,
+    Box
+} from "@mui/material";
+import TableSortLabel from '@mui/material/TableSortLabel';
 import { SortDescriptor } from "@nextui-org/react";
-
-interface SensorData {
+ 
+ interface SensorData {
   timestamp: string;
   sensor: string;
   value: string;
   unit: string;
   [key: string]: string;
-}
-
-export default function App() {
+ }
+ 
+ export default function App() {
   const [isLoading, setIsLoading] = React.useState(true);
-
+ 
   const load = async ({}: AsyncListLoadOptions<SensorData, string>) => {
     await new Promise((resolve) => setTimeout(resolve, 1000));
-
+ 
     const sensorData = [
       {
         timestamp: new Date().toISOString(),
@@ -46,14 +49,14 @@ export default function App() {
         unit: "lat,lon",
       },
     ];
-
+ 
     setIsLoading(false);
-
+ 
     return {
       items: sensorData,
     };
   };
-
+ 
   const sort = async ({
     items,
     sortDescriptor,
@@ -66,56 +69,53 @@ export default function App() {
         let first = a[sortDescriptor.column as keyof SensorData];
         let second = b[sortDescriptor.column as keyof SensorData];
         let cmp = first < second ? -1 : 1;
-
+ 
         if (sortDescriptor.direction === "descending") {
           cmp *= -1;
         }
-
+ 
         return cmp;
       }),
     };
   };
-
+ 
   let list = useAsyncList<SensorData, string>({ load, sort });
-
+ 
   return (
+    <TableContainer component={Paper} sx={{ minHeight: '400px', backgroundColor: theme => theme.palette.mode === 'dark' ? 'hsl(var(--default))' : 'hsl(var(--background))' }}>
     <Table
       aria-label="Sensor Data Table"
-      classNames={{
-        table: "min-h-[400px] dark:bg-[hsl(var(--default))]",
-      }}
-      sortDescriptor={list.sortDescriptor}
-      onSortChange={list.sort}
     >
-      <TableHeader>
-        <TableColumn key="timestamp" allowsSorting>
+      <TableHead>
+        <TableRow>
+        <TableCell key="timestamp" >
           Timestamp
-        </TableColumn>
-        <TableColumn key="sensor" allowsSorting>
+        </TableCell>
+        <TableCell key="sensor" >
           Sensor
-        </TableColumn>
-        <TableColumn key="value" allowsSorting>
+        </TableCell>
+        <TableCell key="value" >
           Value
-        </TableColumn>
-        <TableColumn key="unit" allowsSorting>
+        </TableCell>
+        <TableCell key="unit" >
           Unit
-        </TableColumn>
-      </TableHeader>
+        </TableCell>
+        </TableRow>
+      </TableHead>
       <TableBody
-        isLoading={isLoading}
-        items={list.items}
-        loadingContent={<Spinner label="Loading..." />}
       >
-        {(item) => (
+        {list.items.map((item) => (
           <TableRow key={item.timestamp}>
-            {(columnKey) => (
+            {Object.keys(item).map((columnKey) => (
               <TableCell key={columnKey}>
-                {getKeyValue(item, columnKey)}
+                {item[columnKey as keyof SensorData]}
               </TableCell>
-            )}
+            ))}
           </TableRow>
-        )}
+        ))}
       </TableBody>
     </Table>
+    {isLoading && <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100px' }}><CircularProgress /></Box>}
+    </TableContainer>
   );
-}
+ }

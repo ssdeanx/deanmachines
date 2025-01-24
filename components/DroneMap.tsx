@@ -1,5 +1,8 @@
 import React, { useState, useCallback } from "react";
-import { Card, CardHeader, CardBody } from "@nextui-org/react";
+import Card from '@mui/material/Card';
+import CardHeader from '@mui/material/CardHeader';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
 import {
   GoogleMap,
   useLoadScript,
@@ -7,14 +10,14 @@ import {
   Polyline,
   DrawingManager,
 } from "@react-google-maps/api";
-
-interface DroneMapProps {
+ 
+ interface DroneMapProps {
   latitude: number;
   longitude: number;
   path?: { lat: number; lng: number }[];
   mapType?: "roadmap" | "satellite" | "hybrid" | "terrain";
 }
-
+ 
 const DroneMap: React.FC<DroneMapProps> = ({
   latitude,
   longitude,
@@ -22,16 +25,16 @@ const DroneMap: React.FC<DroneMapProps> = ({
   mapType = "roadmap",
 }) => {
   const [, setPolygons] = useState<any[]>([]);
-
+ 
   const onPolygonComplete = useCallback((polygon: any) => {
     setPolygons((current) => [...current, polygon]);
   }, []);
-
+ 
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "",
     libraries: ["drawing"],
   });
-
+ 
   const mapContainerStyle = {
     width: "100%",
     height: "100%",
@@ -40,22 +43,22 @@ const DroneMap: React.FC<DroneMapProps> = ({
     lat: latitude,
     lng: longitude,
   };
-
+ 
   if (!isLoaded) {
     return <div>Loading...</div>;
   }
-
+ 
   return (
     <Card className="card">
       <CardHeader>
-        <h3 className="text-xl font-medium text-foreground dark:text-muted-foreground">
+        <Typography variant="h6" component="h3" className="text-xl font-medium text-foreground dark:text-muted-foreground">
           Drone Location
-        </h3>
+        </Typography>
       </CardHeader>
-      <CardBody className="p-6">
+      <CardContent className="p-6">
         <GoogleMap
           center={center}
-          mapContainerStyle={{ ...mapContainerStyle, height: "400px" }}
+          mapContainerStyle={{ ...mapContainerStyle, height: "400px", width: '100%' }}
           mapTypeId={mapType}
           zoom={15}
         >
@@ -68,7 +71,7 @@ const DroneMap: React.FC<DroneMapProps> = ({
                       drawingModes: [google.maps.drawing.OverlayType.POLYGON],
                     },
                     polygonOptions: {
-                      fillColor: "hsl(var(--primary))",
+                      fillColor: "primary",
                       fillOpacity: 0.2,
                       strokeWeight: 2,
                       clickable: true,
@@ -84,16 +87,16 @@ const DroneMap: React.FC<DroneMapProps> = ({
           {path.length > 1 && (
             <Polyline
               options={{
-                strokeColor: "hsl(var(--secondary))",
+                strokeColor: "secondary",
                 strokeWeight: 3,
               }}
               path={path}
             />
           )}
         </GoogleMap>
-      </CardBody>
+      </CardContent>
     </Card>
   );
 };
-
+ 
 export default DroneMap;

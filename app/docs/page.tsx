@@ -1,29 +1,34 @@
 "use client";
-import { Card, CardBody, CardHeader } from "@nextui-org/react";
-import { Link } from "@nextui-org/link";
-
-import { title, subtitle } from "@/components/primitives";
-import { BookOpenIcon } from "@/components/icons";
-
-export default function DocsPage() {
+import Card from '@mui/material/Card';
+import CardHeader from '@mui/material/CardHeader';
+import CardContent from '@mui/material/CardContent';
+import Link from '@mui/material/Link';
+import Typography from '@mui/material/Typography';
+ 
+ import { title, subtitle } from "@/components/primitives";
+ import { BookOpenIcon } from "@/components/icons";
+ 
+ export default function DocsPage() {
   return (
     <div>
       <div className="text-center">
-        <h1 className={title({ size: "lg" })}>
+        <h1 className={title.base} style={{fontSize: title.size.lg}}>
           <BookOpenIcon className="mr-2 inline-block" size={30} />
           Documentation
         </h1>
-        <div className={subtitle({ class: "mt-4" })}>
+        <div className={subtitle.base} style={{marginTop: '1rem'}}>
           Explore the documentation for the Dean Machines project.
         </div>
       </div>
       <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
         <Card className="card">
-          <CardHeader className="text-xl font-semibold">
-            Getting Started
+          <CardHeader  >
+            <Typography variant="h6" component="h3" className="text-xl font-semibold">
+              Getting Started
+            </Typography>
           </CardHeader>
-          <CardBody>
-            <p className="text-gray-600 dark:text-gray-500">
+          <CardContent>
+            <Typography variant="body1" className="text-gray-600 dark:text-gray-500">
               New to Dean Machines? Check out our{" "}
               <Link
                 className="text-gray-600 hover:text-gray-900 dark:text-gray-500 dark:hover:text-gray-200"
@@ -32,15 +37,17 @@ export default function DocsPage() {
                 Getting Started Guide
               </Link>{" "}
               to learn the basics.
-            </p>
-          </CardBody>
+            </Typography>
+          </CardContent>
         </Card>
         <Card className="card">
-          <CardHeader className="text-xl font-semibold">
-            API Reference
+          <CardHeader>
+            <Typography variant="h6" component="h3" className="text-xl font-semibold">
+              API Reference
+            </Typography>
           </CardHeader>
-          <CardBody>
-            <p className="text-gray-600 dark:text-gray-500">
+          <CardContent>
+            <Typography variant="body1" className="text-gray-600 dark:text-gray-500">
               Explore our{" "}
               <Link
                 className="text-gray-600 hover:text-gray-900 dark:text-gray-500 dark:hover:text-gray-200"
@@ -49,15 +56,17 @@ export default function DocsPage() {
                 API Reference
               </Link>{" "}
               for detailed information on our API endpoints.
-            </p>
-          </CardBody>
+            </Typography>
+          </CardContent>
         </Card>
         <Card className="card">
-          <CardHeader className="text-xl font-semibold">
-            Contribution Guidelines
+          <CardHeader>
+            <Typography variant="h6" component="h3" className="text-xl font-semibold">
+              Contribution Guidelines
+            </Typography>
           </CardHeader>
-          <CardBody>
-            <p className="text-gray-600 dark:text-gray-500">
+          <CardContent>
+            <Typography variant="body1" className="text-gray-600 dark:text-gray-500">
               Interested in contributing? Read our{" "}
               <Link
                 className="text-gray-600 hover:text-gray-900 dark:text-gray-500 dark:hover:text-gray-200"
@@ -66,15 +75,17 @@ export default function DocsPage() {
                 Contribution Guidelines
               </Link>{" "}
               to learn how you can help.
-            </p>
-          </CardBody>
+            </Typography>
+          </CardContent>
         </Card>
         <Card className="card">
-          <CardHeader className="text-xl font-semibold">
-            NVIDIA Orin Nano
+          <CardHeader>
+            <Typography variant="h6" component="h3" className="text-xl font-semibold">
+              NVIDIA Orin Nano
+            </Typography>
           </CardHeader>
-          <CardBody>
-            <p className="text-gray-600 dark:text-gray-500">
+          <CardContent>
+            <Typography variant="body1" className="text-gray-600 dark:text-gray-500">
               Learn about using the NVIDIA Orin Nano with PyTorch and TensorFlow
               in our{" "}
               <Link
@@ -83,8 +94,8 @@ export default function DocsPage() {
               >
                 NVIDIA Orin Nano Guide
               </Link>
-            </p>
-          </CardBody>
+            </Typography>
+          </CardContent>
         </Card>
       </div>
       <h2 className="mt-6 text-xl font-semibold">Quick Links</h2>

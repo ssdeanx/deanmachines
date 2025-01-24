@@ -1,39 +1,40 @@
 import React, { FC, useState } from "react";
 import { z } from "zod";
-import {
-  Button,
-  Input,
-  Select,
-  SelectItem,
-  Textarea,
-  Spinner,
-} from "@nextui-org/react";
-
-// Define form value types
-interface FormValues {
+import  Button  from '@mui/material/Button';
+ import TextField from '@mui/material/TextField';
+ import Select from '@mui/material/Select';
+ import MenuItem from '@mui/material/MenuItem';
+ import FormControl from '@mui/material/FormControl';
+ import InputLabel from '@mui/material/InputLabel';
+ import CircularProgress from '@mui/material/CircularProgress';
+ import TextareaAutosize from '@mui/material/TextareaAutosize';
+ import Box from '@mui/material/Box';
+ 
+ // Define form value types
+ interface FormValues {
   name: string;
   email: string;
   category: string;
   message: string;
-}
-
-// Define category options
-const categories = [
+ }
+ 
+ // Define category options
+ const categories = [
   { value: "hardware", label: "Hardware Inquiry" },
   { value: "software", label: "Software Inquiry" },
   { value: "data", label: "Data Inquiry" },
   { value: "general", label: "General Inquiry" },
-] as const;
-
-// Zod schema for form validation
-const formSchema = z.object({
+ ] as const;
+ 
+ // Zod schema for form validation
+ const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
   email: z.string().email("Please enter a valid email address"),
   category: z.string().min(1, "Please select a category"),
   message: z.string().min(10, "Message must be at least 10 characters"),
-});
-
-export const ContactForm: FC = () => {
+ });
+ 
+ export const ContactForm: FC = () => {
   // Form state
   const [values, setValues] = useState<FormValues>({
     name: "",
@@ -41,33 +42,33 @@ export const ContactForm: FC = () => {
     category: "",
     message: "",
   });
-
+ 
   // Error state
   const [errors, setErrors] = useState<Partial<FormValues>>({});
-
+ 
   // Form status
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<
     "idle" | "success" | "error"
   >("idle");
-
+ 
   // Handle field changes
   const handleFieldChange = (field: keyof FormValues, value: string) => {
     setErrors((prev) => ({ ...prev, [field]: "" }));
     setValues((prev) => ({ ...prev, [field]: value }));
   };
-
+ 
   // Validate form
   const validateForm = (): boolean => {
     try {
       formSchema.parse(values);
       setErrors({});
-
+ 
       return true;
     } catch (error) {
       if (error instanceof z.ZodError) {
         const newErrors: Partial<FormValues> = {};
-
+ 
         error.errors.forEach((err) => {
           if (err.path[0]) {
             newErrors[err.path[0] as keyof FormValues] = err.message;
@@ -75,29 +76,29 @@ export const ContactForm: FC = () => {
         });
         setErrors(newErrors);
       }
-
+ 
       return false;
     }
   };
-
+ 
   // Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validateForm()) return;
-
+ 
     setIsSubmitting(true);
     setSubmitStatus("idle");
-
+ 
     try {
       const response = await fetch("/api/form", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(values),
       });
-
+ 
       if (!response.ok)
         throw new Error(`Failed to submit form: ${response.status}`);
-
+ 
       setSubmitStatus("success");
       // Reset form on success
       setValues({
@@ -114,93 +115,96 @@ export const ContactForm: FC = () => {
       setIsSubmitting(false);
     }
   };
-
+ 
   return (
     <form
       noValidate
       className="flex flex-col gap-6 rounded-lg bg-[hsl(var(--background))] p-4 shadow-md dark:bg-[hsl(var(--default))] md:p-6"
       onSubmit={handleSubmit}
     >
-      <Input
-        isRequired
+      <TextField
+        required
         aria-label="Name"
-        classNames={{
+        sx={{
           inputWrapper:
             "bg-[hsl(var(--gray-100))] dark:bg-[hsl(var(--gray-700))] focus:ring-2 focus:ring-[hsl(var(--primary))]",
         }}
-        errorMessage={errors.name}
-        isInvalid={!!errors.name}
         label="Name"
         placeholder="Enter your name"
         value={values.name}
         onChange={(e) => handleFieldChange("name", e.target.value)}
+        error={!!errors.name}
+        helperText={errors.name}
       />
-
-      <Input
-        isRequired
+ 
+      <TextField
+        required
         aria-label="Email"
-        classNames={{
+        sx={{
           inputWrapper:
             "bg-[hsl(var(--gray-100))] dark:bg-[hsl(var(--gray-700))] focus:ring-2 focus:ring-[hsl(var(--primary))]",
         }}
-        errorMessage={errors.email}
-        isInvalid={!!errors.email}
         label="Email"
         placeholder="Enter your email"
         type="email"
         value={values.email}
         onChange={(e) => handleFieldChange("email", e.target.value)}
+        error={!!errors.email}
+        helperText={errors.email}
       />
-
+ 
+      <FormControl fullWidth error={!!errors.category}>
+        <InputLabel id="category-label">Category</InputLabel>
       <Select
-        isRequired
+        required
         aria-label="Category"
-        classNames={{
+        sx={{
           trigger:
             "bg-[hsl(var(--gray-100))] dark:bg-[hsl(var(--gray-700))] focus:ring-2 focus:ring-[hsl(var(--primary))]",
         }}
-        errorMessage={errors.category}
-        isInvalid={!!errors.category}
         label="Category"
-        placeholder="Select a category"
+        labelId="category-label"
         value={values.category}
         onChange={(e) => handleFieldChange("category", e.target.value)}
       >
         {categories.map((category) => (
-          <SelectItem key={category.value} value={category.value}>
+          <MenuItem key={category.value} value={category.value}>
             {category.label}
-          </SelectItem>
+          </MenuItem>
         ))}
       </Select>
-
-      <Textarea
-        isRequired
+      </FormControl>
+ 
+      <TextField
+        multiline
+        required
         aria-label="Message"
-        classNames={{
+        sx={{
           inputWrapper:
             "bg-[hsl(var(--gray-100))] dark:bg-[hsl(var(--gray-700))] focus:ring-2 focus:ring-[hsl(var(--primary))]",
         }}
-        errorMessage={errors.message}
-        isInvalid={!!errors.message}
         label="Message"
         placeholder="Enter your message"
         value={values.message}
         onChange={(e) => handleFieldChange("message", e.target.value)}
+        error={!!errors.message}
+        helperText={errors.message}
       />
-
+ 
       <div className="flex flex-col gap-4">
         <div className="flex justify-end">
           <Button
             aria-label={isSubmitting ? "Submitting..." : "Submit form"}
-            className="min-w-[120px] bg-[hsl(var(--primary))] text-white hover:bg-[hsl(var(--primary-foreground))]"
+            className="min-w-[120px]"
+            variant="contained"
             color="primary"
             disabled={isSubmitting}
             type="submit"
           >
-            {isSubmitting ? <Spinner color="current" size="sm" /> : "Submit"}
+            {isSubmitting ? <CircularProgress size={20} color="inherit" /> : "Submit"}
           </Button>
         </div>
-
+ 
         {submitStatus === "success" && (
           <div
             className="rounded-md bg-[hsl(var(--success))] p-4 text-foreground dark:bg-[hsl(var(--success))] dark:text-muted-foreground"
@@ -209,7 +213,7 @@ export const ContactForm: FC = () => {
             Thanks for your inquiry! We&#39;ll get back to you soon.
           </div>
         )}
-
+ 
         {submitStatus === "error" && (
           <div
             className="rounded-md bg-[hsl(var(--error))] p-4 text-foreground dark:bg-[hsl(var(--error))] dark:text-muted-foreground"
@@ -222,5 +226,5 @@ export const ContactForm: FC = () => {
     </form>
   );
 };
-
+ 
 export default ContactForm;

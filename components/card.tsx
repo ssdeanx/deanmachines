@@ -1,26 +1,20 @@
-import {
-  Card as NextUICard,
-  CardProps,
-  CardBody as NextUICardBody,
-  CardFooter as NextUICardFooter,
-  CardHeader as NextUICardHeader,
-} from "@nextui-org/card";
+import React from 'react';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardActions from '@mui/material/CardActions';
 
-import { cn } from "../lib/utils";
+interface CardProps {
+  children: React.ReactNode;
+}
 
-export const Card = ({ className, ...props }: CardProps) => (
-  <NextUICard
-    className={cn(
-      "card dark:bg-[hsl(var(--default))] rounded-lg shadow-md transition-shadow hover:shadow-lg",
-      "px-4 py-2 md:px-6 md:py-3",
-      className,
-    )}
-    {...props}
-  >
-    {props.children}
-  </NextUICard>
-);
+const MyCard: React.FC<CardProps> = ({ children }) => {
+  return (
+    <Card>
+      <CardContent>
+        {children}
+      </CardContent>
+    </Card>
+  );
+};
 
-export const CardBody = NextUICardBody;
-export const CardFooter = NextUICardFooter;
-export const CardHeader = NextUICardHeader;
+export default MyCard;

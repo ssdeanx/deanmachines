@@ -1,61 +1,63 @@
 "use client";
-import { Card, CardBody, CardHeader, Link } from "@nextui-org/react";
-
-import { Providers } from "../providers";
-
-interface RequirementsLayoutProps {
+import Card from '@mui/material/Card';
+import CardHeader from '@mui/material/CardHeader';
+import CardContent from '@mui/material/CardContent';
+import Link from '@mui/material/Link';
+ 
+ import { Providers } from "../providers";
+ import Typography from '@mui/material/Typography';
+ 
+ interface RequirementsLayoutProps {
   children: React.ReactNode;
-}
-
-export default function RequirementsLayout({
+ }
+ 
+ export default function RequirementsLayout({
   children,
 }: RequirementsLayoutProps) {
   return (
-    <Providers
-      themeProps={{
-        attribute: "class",
-        defaultTheme: "dark",
-        enableSystem: true,
-      }}
-    >
-      <div className="relative flex h-screen flex-col">
-        <main className="container mx-auto px-4 py-8 md:px-6 lg:px-8">
-          <div className="space-y-6">
+    <Providers>
+      <div style={{display: 'flex', flexDirection: 'column', height: '100vh'}}>
+        <main className="container mx-auto px-4 py-8 md:px-6 lg:px-8" style={{flexGrow: 1}}>
+          <div style={{display: 'flex', flexDirection: 'column', gap: '1.5rem'}}>
             {/* Header Section */}
-            <header className="space-y-4">
-              <h1 className="text-4xl font-bold tracking-tight">
+            <header style={{display: 'flex', flexDirection: 'column', gap: '1rem'}}>
+              <Typography variant="h4" component="h1" style={{fontWeight: 'bold', letterSpacing: '-0.025em'}}>
                 Project Requirements
-              </h1>
-              <p className="text-lg text-default-600">
+              </Typography>
+              <Typography variant="body1" style={{fontSize: '1.125rem', color: 'hsl(var(--gray-600))'}}>
                 Essential guidelines and requirements for participating in the
                 DeanMachines project
-              </p>
+              </Typography>
             </header>
-
+ 
             {/* Content Section */}
-            <section className="prose prose-neutral dark:prose-invert max-w-none">
+            <section>
               <Card className="mb-6">
-                <CardHeader className="text-xl font-semibold">
-                  Requirements
+                <CardHeader>
+                  <Typography variant="h6" component="h3" className="text-xl font-semibold">
+                    Requirements
+                  </Typography>
                 </CardHeader>
-                <CardBody>
-                  <ul className="list-disc space-y-2 pl-4">
+                <CardContent>
+                  <ul style={{listStyleType: 'disc', paddingLeft: '1rem', display: 'flex', flexDirection: 'column', gap: '0.5rem'}}>
                     <li>Hardware Compatibility</li>
                     <li>Sensor Calibration</li>
                     <li>Data Format Standards</li>
                     <li>Quality Metrics</li>
                     <li>Validation Process</li>
                   </ul>
-                </CardBody>
+                </CardContent>
               </Card>
-
+ 
               <Card className="mb-6">
-                <CardHeader className="text-xl font-semibold">
-                  Hardware Requirements
+                <CardHeader>
+                  <Typography variant="h6" component="h3" className="text-xl font-semibold">
+                    Hardware Requirements
+                  </Typography>
                 </CardHeader>
-                <CardBody>
-                  <ul className="list-disc space-y-2 pl-4">
-                    <li>5&quot; FPV Racing Drone Frame</li>
+                <CardContent>
+                  <ul style={{listStyleType: 'disc', paddingLeft: '1rem', display: 'flex', flexDirection: 'column', gap: '0.5rem'}}>
+                    <li>5" FPV Racing Drone Frame</li>
                     <li>NVIDIA Jetson Orin Nano</li>
                     <li>TFmini-S LiDAR Sensor</li>
                     <li>HD FPV Camera ({">"}720p)</li>
@@ -63,33 +65,37 @@ export default function RequirementsLayout({
                     <li>IMU (MPU6050 or better)</li>
                     <li>SDR (YHY 9800 or compatible)</li>
                   </ul>
-                </CardBody>
+                </CardContent>
               </Card>
-
+ 
               <Card className="mb-6">
-                <CardHeader className="text-xl font-semibold">
-                  Participation Requirements
+                <CardHeader>
+                  <Typography variant="h6" component="h3" className="text-xl font-semibold">
+                    Participation Requirements
+                  </Typography>
                 </CardHeader>
-                <CardBody>
-                  <ul className="list-disc space-y-2 pl-4">
+                <CardContent>
+                  <ul style={{listStyleType: 'disc', paddingLeft: '1rem', display: 'flex', flexDirection: 'column', gap: '0.5rem'}}>
                     <li>Commit to minimum 5 hours per week</li>
                     <li>Willingness to share and document findings</li>
                     <li>Active participation in project discussions</li>
                     <li>Follow safety guidelines and regulations</li>
                   </ul>
-                </CardBody>
+                </CardContent>
               </Card>
-
+ 
               <Card className="mb-6">
-                <CardHeader className="text-xl font-semibold">
-                  Next Steps
+                <CardHeader>
+                  <Typography variant="h6" component="h3" className="text-xl font-semibold">
+                    Next Steps
+                  </Typography>
                 </CardHeader>
-                <CardBody>
+                <CardContent>
                   <p className="mb-4">
                     If you meet these requirements and are interested in joining
                     the project:
                   </p>
-                  <ol className="list-decimal space-y-2 pl-4">
+                  <ol style={{listStyleType: 'decimal', paddingLeft: '1rem', display: 'flex', flexDirection: 'column', gap: '0.5rem'}}>
                     <li>
                       Review the complete{" "}
                       <Link href="/docs">documentation</Link>
@@ -103,21 +109,21 @@ export default function RequirementsLayout({
                       <Link href="/contact">contact form</Link>
                     </li>
                   </ol>
-                </CardBody>
+                </CardContent>
               </Card>
             </section>
-
+ 
             {children}
-
+ 
             {/* Footer Section */}
-            <footer className="mt-12 border-t border-default-200 pt-6">
-              <p className="text-sm text-default-500">
+            <footer style={{marginTop: '3rem', borderTop: '1px solid hsl(var(--gray-200))', paddingTop: '1.5rem'}}>
+              <Typography variant="body2" style={{color: 'hsl(var(--gray-500))'}}>
                 For questions about requirements, please contact us through the{" "}
-                <Link className="text-primary" href="/contact">
+                <Link  href="/contact" style={{color: 'hsl(var(--primary))'}}>
                   contact form
                 </Link>
                 .
-              </p>
+              </Typography>
             </footer>
           </div>
         </main>

@@ -1,197 +1,255 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { useTheme } from "next-themes";
-import { useState } from "react";
-import {
-  Navbar as NextUINavbar,
-  NavbarContent,
-  NavbarMenu,
-  NavbarMenuToggle,
-  NavbarBrand,
-  NavbarItem,
-  NavbarMenuItem,
-} from "@nextui-org/navbar";
-import { Button } from "@nextui-org/button";
-import { Kbd } from "@nextui-org/kbd";
-import { Link } from "@nextui-org/link";
-import { Input } from "@nextui-org/input";
-import { link as linkStyles } from "@nextui-org/theme";
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import Menu from '@mui/material/Menu';
+import MenuIcon from '@mui/icons-material/Menu';
+import Container from '@mui/material/Container';
+import MenuItem from '@mui/material/MenuItem';
+import Link from '@mui/material/Link';
+import InputBase from '@mui/material/InputBase';
+import SearchIcon from '@mui/icons-material/Search';
+import { styled, alpha } from '@mui/material/styles';
 import NextLink from "next/link";
-import clsx from "clsx";
-
+ 
 import Sidebar from "@/components/sidebar";
 import {
   TwitterIcon,
     GithubIcon,
   HeartFilledIcon,
-  SearchIcon,
   Logo,
   } from "@/components/icons";
 import { ThemeButton, DropdownButton } from "@/components/navbar-buttons";
 import { siteConfig } from "@/config/site";
-
+ 
+const Search = styled('div')(({ theme }) => ({
+  position: 'relative',
+  borderRadius: theme.shape.borderRadius,
+  backgroundColor: alpha(theme.palette.common.white, 0.15),
+  '&:hover': {
+    backgroundColor: alpha(theme.palette.common.white, 0.25),
+  },
+  marginLeft: 0,
+  width: '100%',
+  [theme.breakpoints.up('sm')]: {
+    marginLeft: theme.spacing(1),
+    width: 'auto',
+  },
+}));
+ 
+const SearchIconWrapper = styled('div')(({ theme }) => ({
+  padding: theme.spacing(0, 2),
+  height: '100%',
+  position: 'absolute',
+  pointerEvents: 'none',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+}));
+ 
+const StyledInputBase = styled(InputBase)(({ theme }) => ({
+  color: 'inherit',
+  '& .MuiInputBase-input': {
+    padding: theme.spacing(1, 1, 1, 0),
+    // vertical padding + font size from searchIcon
+    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+    transition: theme.transitions.create('width'),
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      width: '12ch',
+      '&:focus': {
+        width: '20ch',
+      },
+    },
+  },
+}));
+ 
 export const Navbar = () => {
   const { theme, setTheme } = useTheme();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
+  const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
+ 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
-
-  const searchInput = (
-    <Input
-      aria-label="Search"
-      classNames={{
-        inputWrapper: "bg-default-100 dark:bg-gray-700",
-        input: "text-sm",
-      }}
-      endContent={
-        <Kbd className="hidden lg:inline-block" keys={["command"]}>
-          K
-        </Kbd>
-      }
-      labelPlacement="outside"
-      placeholder="Search..."
-      startContent={
-        <SearchIcon className="pointer-events-none shrink-0 text-base text-gray-400" />
-      }
-      type="search"
-    />
-  );
-
+ 
+  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorElNav(event.currentTarget);
+  };
+ 
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
+ 
   return (
-    <NextUINavbar
-      className={clsx(
-        "shadow-md",
-        theme === "dark" ? "bg-[hsl(var(--default))]" : "bg-[hsl(var(--background))]",
-      )}
-      maxWidth="xl"
-      position="sticky"
-    >
-      <NavbarContent className="sm:basis-full" justify="start">
-        <NavbarBrand
-          as="li"
-          className={clsx(
-            "gap-2",            
-            theme === "dark" ? "bg-[hsl(var(--default))] text-foreground dark:text-muted-foreground" : "bg-[hsl(var(--background))] text-foreground dark:text-muted-foreground",
-          )}
-        >
-          <NextLink className="flex items-center justify-start gap-1" href="/">
-            <Logo />
-            <p className="navbar-title text-xl font-bold text-black text-stroke dark:text-white">
-              DeanMachines
-            </p>
-          </NextLink>
-        </NavbarBrand>
-        <ul className="hidden justify-start gap-4 lg:flex">
-          {siteConfig.navItems.map((item) => (
-            <NavbarItem key={item.href}>
-              <NextLink
-                className={clsx(
-                  "text-foreground transition-colors duration-300 hover:text-primary",
-                  "data-[active=true]:text-blue-500",
-                  "font-medium",
-                )}
-                color="foreground"
-                href={item.href}
-              >
-                {item.label}
-              </NextLink>
-            </NavbarItem>
-          ))}
-        </ul>
-      </NavbarContent>
-
-      <NavbarContent
-        className="hidden basis-1/5 sm:flex sm:basis-full"
-        justify="end"
-      >
-        <NavbarItem className="hidden gap-2 sm:flex">
-          <Link isExternal aria-label="Twitter" href={siteConfig.links.twitter}>
-            <TwitterIcon className="text-white" />
-          </Link>
-          <Link isExternal aria-label="Github" href={siteConfig.links.github}>
-            <GithubIcon className="text-white" />
-          </Link>
-          <ThemeButton className="text-white" />
-        </NavbarItem>
-        <NavbarItem className="hidden lg:flex">
-          <Link
-            className="rounded-md bg-[hsl(var(--gray-200))] px-4 py-2 text-sm font-medium text-foreground hover:bg-[hsl(var(--gray-300))] dark:bg-[hsl(var(--gray-700))] dark:text-muted-foreground dark:hover:bg-[hsl(var(--gray-600))]"
-            href="/dashboard"
+    <AppBar position="sticky" sx={{ backgroundColor: theme === "dark" ? 'hsl(var(--default))' : 'hsl(var(--background))', boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)' }}>
+      <Container maxWidth="xl">
+        <Toolbar disableGutters>
+          <Typography
+            variant="h6"
+            noWrap
+            component="div"
+            sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
           >
-            Dashboard
-          </Link>
-        </NavbarItem>
-        <NavbarItem className="hidden lg:flex">{searchInput}</NavbarItem>
-        <NavbarItem className="hidden md:flex">
-          <Button
-            isExternal
-            as={Link}
-            className="bg-[hsl(var(--gray-600))] text-sm font-normal text-foreground dark:text-muted-foreground"
-            href={siteConfig.links.sponsor}
-            startContent={<HeartFilledIcon className="text-red-500" />}
-            variant="flat"
+            <NextLink href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', color: 'inherit' }}>
+              <Logo  />
+              <span style={{ fontWeight: 'bold', color: theme === "dark" ? 'white' : 'black' }}>DeanMachines</span>
+            </NextLink>
+          </Typography>
+ 
+          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' }, alignItems: 'center' }}>
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleOpenNavMenu}
+              color="inherit"
+            >
+              <MenuIcon />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorElNav}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'left',
+              }}
+              open={Boolean(anchorElNav)}
+              onClose={handleCloseNavMenu}
+              sx={{
+                display: { xs: 'block', md: 'none' },
+              }}
+            >
+              {siteConfig.navMenuItems?.map((item) => (
+                <MenuItem key={item.href} onClick={handleCloseNavMenu}>
+                  <Link href={item.href} component={NextLink} style={{ textDecoration: 'none', color: 'inherit' }}>
+                    {item.label}
+                  </Link>
+                </MenuItem>
+              ))}
+            </Menu>
+          </Box>
+          <Typography
+            variant="h5"
+            noWrap
+            component="div"
+            sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
           >
-            Sponsor
-          </Button>
-        </NavbarItem>
-      </NavbarContent>
-
-      <NavbarContent className="basis-1 pl-4 sm:hidden" justify="end">
-        <Button className="text-white" onPress={toggleSidebar}>
-          Menu
-        </Button>
-        <Link isExternal aria-label="Github" href={siteConfig.links.github}>
-          <GithubIcon className="text-white" />
-        </Link>
-        <DropdownButton
-          className="text-white"
-          items={[
-            {
-              key: "light",
-              label: "Light",
-              onClick: () => setTheme("light"),
-            },
-            {
-              key: "dark",
-              label: "Dark",
-              onClick: () => setTheme("dark"),
-            },
-          ]}
-        />
-        <ThemeButton className="text-white" />
-        <NavbarMenuToggle />
-      </NavbarContent>
-
-      <NavbarMenu>
-        {searchInput}
-        <div className="mx-4 mt-2 flex flex-col gap-2">
-          {siteConfig.navMenuItems.map((item, index) => (
-            <NavbarMenuItem key={`${item.label}-${index}`}>
+            <NextLink href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', color: 'inherit' }}>
+              <Logo />
+              <span style={{ fontWeight: 'bold', color: theme === "dark" ? 'white' : 'black' }}>DeanMachines</span>
+            </NextLink>
+          </Typography>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'flex-start', ml: 2 }}>
+            {siteConfig.navItems?.map((item) => (
               <Link
-                className={clsx(
-                  linkStyles({ color: "foreground" }),
-                  "data-[active=true]:text-blue-500",
-                  "text-foreground dark:text-muted-foreground",
-                )}
-                color={
-                  index === 2
-                    ? "primary"
-                    : index === siteConfig.navMenuItems.length - 1
-                      ? "danger"
-                      : "foreground"
-                }
+                key={item.href}
+                component={NextLink}
                 href={item.href}
-                size="lg"
+                sx={{
+                  my: 2,
+                  mx: 2,
+                  color: 'inherit',
+                  display: 'block',
+                  textDecoration: 'none',
+                  '&:hover': {
+                    color: theme === "dark" ? 'white' : 'primary.main',
+                  },
+                }}
               >
                 {item.label}
               </Link>
-            </NavbarMenuItem>
-          ))}
-        </div>
-      </NavbarMenu>
+            ))}
+          </Box>
+          <Box sx={{ flexGrow: 0, display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
+            <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 1, alignItems: 'center' }}>
+              <Link href={siteConfig.links.twitter} target="_blank" rel="noopener noreferrer" sx={{ color: 'white', display: 'flex', alignItems: 'center' }}>
+                <TwitterIcon  />
+              </Link>
+              <Link href={siteConfig.links.github} target="_blank" rel="noopener noreferrer" sx={{ color: 'white', display: 'flex', alignItems: 'center' }}>
+                <GithubIcon />
+              </Link>
+              <ThemeButton  />
+            </Box>
+            <Link
+              component={NextLink}
+              href="/dashboard"
+              sx={{
+                my: 2,
+                mx: 2,
+                color: 'inherit',
+                display: { xs: 'none', lg: 'block' },
+                textDecoration: 'none',
+                padding: '0.5rem 1rem',
+                borderRadius: '0.375rem',
+                backgroundColor: theme === "dark" ? 'hsl(var(--gray-700))' : 'hsl(var(--gray-200))',
+                '&:hover': {
+                  backgroundColor: theme === "dark" ? 'hsl(var(--gray-600))' : 'hsl(var(--gray-300))',
+                },
+              }}
+            >
+              Dashboard
+            </Link>
+            <Search sx={{ display: { xs: 'none', lg: 'block' } }}>
+              <SearchIconWrapper>
+                <SearchIcon />
+              </SearchIconWrapper>
+              <StyledInputBase
+                placeholder="Search…"
+                inputProps={{ 'aria-label': 'search' }}
+              />
+            </Search>
+            <Link
+              component={NextLink}
+              href={siteConfig.links.sponsor}
+              sx={{
+                my: 2,
+                mx: 2,
+                color: 'inherit',
+                display: { xs: 'none', md: 'flex' },
+                textDecoration: 'none',
+              }}
+            >
+              <IconButton sx={{ color: 'inherit' }}>
+                <HeartFilledIcon  />
+                <Typography sx={{ ml: 1, color: theme === "dark" ? 'white' : 'black' }}>Sponsor</Typography>
+              </IconButton>
+            </Link>
+            <Box sx={{ display: { xs: 'flex', md: 'none' }, alignItems: 'center' }}>
+              <IconButton sx={{ color: 'white' }} onClick={toggleSidebar}>
+                <MenuIcon />
+              </IconButton>
+              <Link href={siteConfig.links.github} target="_blank" rel="noopener noreferrer" sx={{ color: 'white', display: 'flex', alignItems: 'center', ml: 1 }}>
+                <GithubIcon />
+              </Link>
+              <DropdownButton items={[
+                {
+                  key: "light",
+                  label: "Light",
+                  onClick: () => setTheme("light"),
+                },
+                {
+                  key: "dark",
+                  label: "Dark",
+                  onClick: () => setTheme("dark"),
+                },
+              ]} />
+              <ThemeButton  />
+            </Box>
+          </Box>
+        </Toolbar>
+      </Container>
       <Sidebar isOpen={isSidebarOpen} onClose={toggleSidebar} />
-    </NextUINavbar>
+    </AppBar>
   );
 };

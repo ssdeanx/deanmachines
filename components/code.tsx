@@ -1,15 +1,14 @@
-import { Code as NextUICode, CodeProps } from "@nextui-org/code";
+import React from 'react';
+import Typography from '@mui/material/Typography';
 
-import { cn } from "../lib/utils";
+interface CodeProps {
+    children: React.ReactNode;
+}
 
-export const Code = ({ className, ...props }: CodeProps) => (
-  <NextUICode
-    {...props}
-    className={cn(
-      "bg-[hsl(var(--gray-100))] dark:bg-[hsl(var(--default))] text-foreground dark:text-muted-foreground",
-      className,
-    )}
-  />
-);
+const Code: React.FC<CodeProps> = ({ children }) => {
+    return (
+        <Typography component="code" sx={{ backgroundColor: 'hsl(var(--gray-100))', color: 'hsl(var(--foreground))', padding: '0.2rem 0.4rem', borderRadius: '0.2rem', fontFamily: 'monospace',  overflowX: 'auto', display: 'inline-block', dark: { backgroundColor: 'hsl(var(--default))', color: 'hsl(var(--muted-foreground))' } }} >{children}</Typography>
+    );
+};
 
 export default Code;

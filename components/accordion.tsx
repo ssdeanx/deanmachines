@@ -1,17 +1,22 @@
 "use client";
-import { Accordion as NextUIAccordion } from "@nextui-org/react";
 import React from "react";
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 interface AccordionProps {
-  children: React.ReactElement | React.ReactElement[];
+  children: React.ReactNode;
+  summary: React.ReactNode;
 }
 
-const Accordion: React.FC<AccordionProps> = ({ children }) => {
+const MyAccordion: React.FC<AccordionProps> = ({ children, summary }) => {
   return (
-    <NextUIAccordion className="rounded-lg bg-[hsl(var(--background))] shadow-md dark:bg-[hsl(var(--default))]">
-      {children}
-    </NextUIAccordion>
+    <Accordion>
+      <AccordionSummary expandIcon={<ExpandMoreIcon />}>{summary}</AccordionSummary>
+      <AccordionDetails>{children}</AccordionDetails>
+    </Accordion>
   );
 };
 
-export default Accordion;
+export default MyAccordion;

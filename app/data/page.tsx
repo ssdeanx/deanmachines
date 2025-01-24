@@ -1,45 +1,48 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
-
-import { useState } from "react";
-import {
-  Card,
-  CardBody,
-  Spinner,
-  Table,
-  TableHeader,
-  TableBody,
-  TableColumn,
-  TableRow,
-  TableCell,
-} from "@nextui-org/react";
-import { motion } from "framer-motion";
-
-import { dataContent } from "@/constants/index";
-import { title } from "@/components/primitives";
-import D3Chart from "@/components/D3Chart";
-import DashboardSidebar from "@/components/dashboard-sidebar";
-import SensorDataPanel from "@/components/SensorDataPanel";
-import PointCloudChart from "@/components/PointCloudChart";
-import Divider from "@/components/divider";
-
-const itemVariants = {
+ 
+ import { useState } from "react";
+ import {
+    Card,
+    CircularProgress,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
+    Paper,
+ } from "@mui/material";
+ import Typography from '@mui/material/Typography';
+ import { motion } from "framer-motion";
+ 
+ import { dataContent } from "@/constants/index";
+ import { title, subtitle } from "@/components/primitives";
+ import D3Chart from "@/components/D3Chart";
+ import DashboardSidebar from "@/components/dashboard-sidebar";
+ import SensorDataPanel from "@/components/Old/SensorDataPanel";
+ import PointCloudChart from "@/components/Old/PointCloudChart";
+ import Divider from "@/components/divider";
+ import CardContent from '@mui/material/CardContent';
+ import CardHeader from '@mui/material/CardHeader';
+ 
+ const itemVariants = {
   hidden: { opacity: 0, y: 20 },
   show: { opacity: 1, y: 0 },
-};
-
-interface DataItem {
+ };
+ 
+ interface DataItem {
   id: number;
   title: string;
   description: string;
-}
-
-export default function DataPage() {
+ }
+ 
+ export default function DataPage() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [data, setData] = useState<DataItem[]>(dataContent);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
+ 
   return (
     <div className="flex">
       <DashboardSidebar />
@@ -50,38 +53,41 @@ export default function DataPage() {
         variants={itemVariants}
       >
         <Card className="mb-8">
-          <CardBody>
-            <h1 className={title({ color: "violet", size: "lg" })}>
+          <CardHeader>
+            <Typography variant="h4" component="h1" className="text-2xl font-bold text-blue-500">
               Data Overview
-            </h1>
+            </Typography>
+          </CardHeader>
+          <CardContent>
             {error ? (
-              <p className="">{error}</p>
+              <Typography variant="body1" className="text-red-500">{error}</Typography>
             ) : isLoading ? (
               <div className="flex justify-center p-8">
-                <Spinner color="primary" label="Loading data..." />
+                <CircularProgress color="primary" />
               </div>
             ) : (
-              <Table
-                aria-label="Data table"
-                classNames={{
-                  wrapper: "min-h-[400px]",
-                }}
-              >
-                <TableHeader>
-                  <TableColumn>ID</TableColumn>
-                  <TableColumn>TITLE</TableColumn>
-                  <TableColumn>DESCRIPTION</TableColumn>
-                </TableHeader>
-                <TableBody>
-                  {data.map((item) => (
-                    <TableRow key={item.id}>
-                      <TableCell>{item.id}</TableCell>
-                      <TableCell>{item.title}</TableCell>
-                      <TableCell>{item.description}</TableCell>
+              <TableContainer component={Paper} sx={{ minHeight: '400px' }}>
+                <Table
+                  aria-label="Data table"
+                >
+                  <TableHead>
+                    <TableRow>
+                      <TableCell>ID</TableCell>
+                      <TableCell>TITLE</TableCell>
+                      <TableCell>DESCRIPTION</TableCell>
                     </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
+                  </TableHead>
+                  <TableBody>
+                    {data.map((item) => (
+                      <TableRow key={item.id}>
+                        <TableCell>{item.id}</TableCell>
+                        <TableCell>{item.title}</TableCell>
+                        <TableCell>{item.description}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
             )}
             <D3Chart data={[10, 30, 50, 20, 60, 40, 80, 70, 90, 100]} />
             <SensorDataPanel
@@ -94,9 +100,9 @@ export default function DataPage() {
             />
             <Divider my-8 />
             <PointCloudChart />
-          </CardBody>
+          </CardContent>
         </Card>
       </motion.div>
     </div>
   );
-}
+ }

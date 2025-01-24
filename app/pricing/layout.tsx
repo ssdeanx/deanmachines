@@ -1,13 +1,13 @@
 "use client";
-
-export default function PricingLayout({
+ 
+ export default function PricingLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
-      <div className="inline-block max-w-lg justify-center text-center">
+    <section style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '1rem', padding: '2rem 0'}}>
+      <div style={{display: 'inline-block', maxWidth: '40rem', justifyContent: 'center', textAlign: 'center'}}>
         {children}
       </div>
     </section>

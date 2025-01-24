@@ -2,7 +2,10 @@
 
 import React from "react";
 import Link from "next/link";
-import { Card, CardHeader, CardBody } from "@nextui-org/react";
+import Card from '@mui/material/Card';
+import CardHeader from '@mui/material/CardHeader';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
 
 interface BlogPost {
   title: string;
@@ -32,27 +35,27 @@ const BlogList: React.FC = () => {
   return (
     <Card className="card">
       <CardHeader>
-        <h3 className="text-xl font-medium text-foreground dark:text-muted-foreground">
+        <Typography variant="h6" component="h3" className="text-xl font-medium text-foreground dark:text-muted-foreground">
           Recent Blog Posts
-        </h3>
+        </Typography>
       </CardHeader>
-      <CardBody className="p-6">
-        <ul className="space-y-4">
+      <CardContent className="p-6">
+        <ul className="space-y-4" style={{ listStyle: 'none', padding: 0 }}>
           {blogPosts.map((post) => (
             <li key={post.slug}>
               <Link
-                className="text-foreground hover:text-primary dark:text-muted-foreground dark:hover:text-primary"
+                className="text-foreground hover:text-primary dark:text-muted-foreground dark:hover:text-primary" style={{ textDecoration: 'none' }}
                 href={post.slug}
               >
                 {post.title}
               </Link>
-              <p className="text-sm text-foreground dark:text-muted-foreground">
+              <Typography variant="body2" className="text-sm text-foreground dark:text-muted-foreground">
                 {post.date}
-              </p>
+              </Typography>
             </li>
           ))}
         </ul>
-      </CardBody>
+      </CardContent>
     </Card>
   );
 };
