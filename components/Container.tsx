@@ -50,7 +50,7 @@ function CustomPageToolbar() {
         <Button
           variant="outlined"
           size="small"
-          color="neutral"
+          color="inherit"
           startIcon={<DownloadIcon fontSize="inherit" />}
         >
           Download
@@ -58,7 +58,7 @@ function CustomPageToolbar() {
         <Button
           variant="outlined"
           size="small"
-          color="neutral"
+          color="inherit"
           startIcon={<PrintIcon fontSize="inherit" />}
         >
           Print

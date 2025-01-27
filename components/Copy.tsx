@@ -1,5 +1,5 @@
-mport * as React from 'react';
-import { DataGridPremium } from '@mui/x-data-grid-premium';
+import React, { useState } from 'react';
+import { DataGrid } from '@mui/x-data-grid';
 import { useDemoData } from '@mui/x-data-grid-generator';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
@@ -11,7 +11,7 @@ export default function ClipboardCopy() {
     maxColumns: 20,
   });
 
-  const [copiedData, setCopiedData] = React.useState('');
+  const [copiedData, setCopiedData] = useState('');
 
   const initialState = {
     ...data.initialState,
@@ -26,12 +26,12 @@ export default function ClipboardCopy() {
   return (
     <div style={{ width: '100%' }}>
       <div style={{ height: 400 }}>
-        <DataGridPremium
+        <DataGrid
           {...data}
           initialState={initialState}
           checkboxSelection
           disableRowSelectionOnClick
-          cellSelection
+          isCellEditable={(_: any) => false}
           onClipboardCopy={(copiedString) => setCopiedData(copiedString)}
           ignoreValueFormatterDuringExport
         />
@@ -51,3 +51,4 @@ export default function ClipboardCopy() {
       </Alert>
     </div>
   );
+}
