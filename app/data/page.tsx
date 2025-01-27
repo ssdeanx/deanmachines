@@ -18,7 +18,7 @@
  
  import { dataContent } from "@/constants/index";
  import { title, subtitle } from "@/components/primitives";
- import D3Chart from "@/components/D3Chart";
+ import D3Chart from "@/components/Old/D3Chart";
  import DashboardSidebar from "@/components/dashboard-sidebar";
  import SensorDataPanel from "@/components/Old/SensorDataPanel";
  import PointCloudChart from "@/components/Old/PointCloudChart";

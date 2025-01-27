@@ -5,7 +5,7 @@ import { Card, CardHeader, CardBody } from "@nextui-org/react";
 
 import DashboardSidebar from "@/components/dashboard-sidebar";
 import { useDataFetch } from "@/hooks";
-import DroneMap from "@/components/DroneMap";
+import DroneMap from "@/components/Old/DroneMap";
 import FlightDataDisplay from "@/components/Old/FlightDataDisplay";
 import IMUDataDisplay from "@/components/Old/IMUDataDisplay";
 import LidarDataDisplay from "@/components/Old/LidarDataDisplay";

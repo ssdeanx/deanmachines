@@ -50,3 +50,6 @@ schema3.json
 .devcontainer*
 /heroui
 /test-dir*
+gcp-oauth.keys.json
+MUI-RAG.md
+MUI.pdf
