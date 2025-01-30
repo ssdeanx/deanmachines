@@ -1,16 +1,16 @@
 import "@/styles/globals.css";
+import Box from "@mui/material/Box";
 import { Metadata, Viewport } from "next";
-import clsx from "clsx";
-import Box from '@mui/material/Box';
- 
+
 import { Providers } from "./providers";
- 
-import { siteConfig } from "@/config/site";
-import { fontSans } from "@/config/fonts";
-import { ThemeSwitch } from "@/components/theme-switch";
-import { Navbar } from "@/components/navbar";
+
 import Footer from "@/components/footer";
- 
+import { Navbar } from "@/components/navbar";
+import Theme from "@/components/Theme";
+import { ThemeSwitch } from "@/components/theme-switch";
+import { fontSans } from "@/config/fonts";
+import { siteConfig } from "@/config/site";
+
 export const metadata: Metadata = {
   title: {
     default: siteConfig.name,
@@ -21,38 +21,48 @@ export const metadata: Metadata = {
     icon: "/favicon.ico",
   },
 };
- 
+
 export const viewport: Viewport = {
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "white" },
     { media: "(prefers-color-scheme: dark)", color: "black" },
   ],
 };
- 
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html suppressHydrationWarning className="motion-safe:scroll-smooth" lang="en">
+    <html
+      suppressHydrationWarning
+      className="motion-safe:scroll-smooth"
+      lang="en"
+    >
       <head />
       <body
-        className={clsx(
-          "min-h-screen overflow-hidden bg-background font-sans antialiased",
-          fontSans.variable,
-        )}
+        style={{
+          minHeight: "100vh",
+          overflow: "hidden",
+          fontFamily: fontSans.variable,
+          fontSmooth: "antialiased",
+        }}
       >
-        <Providers>
-          <Box className="relative flex h-screen flex-col">
-            <Navbar />
-            <ThemeSwitch />
-            <main className="container mx-auto grow pt-16" >
-              <section className="px-4 py-8" >{children}</section>
-            </main>
-            <Footer />
-          </Box>
-        </Providers>
+        <Theme>
+          <Providers>
+            <Box className="relative flex h-screen flex-col">
+              <Navbar />
+              <ThemeSwitch />
+              <main
+                style={{ margin: "0 auto", flexGrow: 1, paddingTop: "4rem" }}
+              >
+                <section style={{ padding: "2rem 1rem" }}>{children}</section>
+              </main>
+              <Footer />
+            </Box>
+          </Providers>
+        </Theme>
       </body>
     </html>
   );

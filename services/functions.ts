@@ -1,132 +1,34 @@
-/**
- * @file functions.ts
- * @description Core utility functions for styling, type checking, and UI operations
- * @module services/functions
- */
-
-import { cn } from "../lib/utils";
-
-// Types
-type ResponsiveValue = string | null | undefined;
-type VariantConfig = Record<string, Record<string, string>>;
-type ThemeValue = string | number;
-type Size = string | number;
-
-interface VariantProps {
-  variant?: string;
-  size?: string;
-  color?: string;
-}
-
-/**
- * Creates responsive class strings for different breakpoints
- * @param base - Base class applied at all breakpoints
- * @param sm - Small breakpoint class
- * @param md - Medium breakpoint class
- * @param lg - Large breakpoint class
- * @param xl - Extra large breakpoint class
- * @returns Combined responsive class string
- */
-export function responsive(
-  base: string,
-  sm?: ResponsiveValue,
-  md?: ResponsiveValue,
-  lg?: ResponsiveValue,
-  xl?: ResponsiveValue,
-): string {
-  if (!base) throw new Error("Base class is required");
-
-  return cn(
-    base,
-    sm && `sm:${sm}`,
-    md && `md:${md}`,
-    lg && `lg:${lg}`,
-    xl && `xl:${xl}`,
-  );
-}
-
-/**
- * Type guard for checking if a value is a non-null object
- * @param value - Value to check
- * @returns Boolean indicating if value is an object
- */
+// Type guards (These are generally useful and can be kept)
 export function isObject(value: unknown): value is Record<string, unknown> {
   return value !== null && typeof value === "object";
 }
 
-/**
- * Type guard for checking if an object has specific properties
- * @param value - Object to check
- * @param properties - Array of required property keys
- * @returns Boolean indicating if object has all specified properties
- */
 export function hasProperties<T extends object>(
   value: unknown,
-  properties: (keyof T)[],
+  properties: (keyof T)[]
 ): value is T {
   if (!isObject(value)) return false;
 
   return properties.every((prop) => prop in value);
 }
 
-/**
- * Creates variant classes for NextUI components
- * @param baseClass - Base component class
- * @param variants - Variant configuration object
- * @returns Function that generates variant classes
- */
-export function variants(
-  baseClass: string,
-  variants: VariantConfig,
-): (props: VariantProps) => string {
-  if (!baseClass) throw new Error("Base class is required");
-  if (!variants) throw new Error("Variants configuration is required");
-
-  return ({ variant, size, color }: VariantProps) => {
-    return cn(
-      baseClass,
-      variant && variants.variant?.[variant],
-      size && variants.size?.[size],
-      color && variants.color?.[color],
-    );
-  };
+// Environment check (Still useful)
+export function isClient(): boolean {
+  return typeof window !== "undefined";
 }
 
-/**
- * Formats theme values with optional units
- * @param value - Numeric or string value
- * @param unit - CSS unit to append (default: "px")
- * @returns Formatted theme value string
- */
-export function formatThemeValue(value: ThemeValue, unit = "px"): string {
-  if (typeof value === "number") {
-    return `${value}${unit}`;
+// Safe JSON parsing (Still useful)
+export function safeJSONParse<T>(value: string): T | null {
+  try {
+    return JSON.parse(value) as T;
+  } catch {
+    return null;
   }
-
-  return value;
 }
 
-/**
- * Creates a compound class string
- * @param classes - Array of class strings
- * @returns Combined class string with falsy values filtered out
- */
-export function compound(...classes: Array<string | undefined | null>): string {
-  return classes.filter(Boolean).join(" ");
-} /**
-export function isDarkMode(): boolean {
-  if (typeof window === "undefined") return false;
-
-  return document.documentElement.classList.contains("dark");
-}
-
-/**
- * Extracts and validates ARIA attributes from props
- * @param props - Component props object
- * @returns Object containing only valid ARIA attributes
- */
+// ARIA attribute validation (Still relevant for accessibility)
 export function validateAriaProps(
-  props: Record<string, unknown>,
+  props: Record<string, unknown>
 ): Record<string, unknown> {
   const ariaPattern = /^aria-[a-z]+$/;
 
@@ -135,56 +37,54 @@ export function validateAriaProps(
       if (ariaPattern.test(key)) {
         acc[key] = value;
       }
-
       return acc;
     },
-    {} as Record<string, unknown>,
+    {} as Record<string, unknown>
   );
 }
 
-/**
- * Creates a size value using NextUI's scale
- * @param value - Size value or scale key
- * @returns Formatted size string
- */
-export function size(value: Size): string {
-  if (typeof value === "number") {
-    return `${value}px`;
-  }
+// Advanced MUI Styling Example (New function demonstrating MUI styling)
+import { SxProps, Theme } from "@mui/material/styles"; // Import Theme
 
-  return `var(--nextui-space-${value})`;
-}
+export type StyleProps = Record<string, unknown>; // Define a type for the props
 
-/**
- * Creates an opacity value using NextUI's scale
- * @param value - Opacity value (0-100)
- * @returns Formatted opacity variable string
- */
-export function opacity(value: number): string {
-  if (value < 0 || value > 100) {
-    throw new Error("Opacity value must be between 0 and 100");
-  }
+export function createSx(
+  baseStyles:
+    | SxProps<Theme>
+    | ((theme: Theme, props: StyleProps) => SxProps<Theme>),
+  conditionalStyles?: Record<
+    string,
+    SxProps<Theme> | ((theme: Theme, props: StyleProps) => SxProps<Theme>)
+  >
+): (props: StyleProps) => SxProps<Theme> {
+  return (props: StyleProps): SxProps<Theme> => {
+    const theme = {} as Theme; //This is a placeholder, ideally you'd get the theme from context
 
-  return `var(--nextui-opacity-${value})`;
-}
+    let styles: SxProps<Theme> =
+      typeof baseStyles === "function" ? baseStyles(theme, props) : baseStyles;
 
-/**
- * Checks if the code is running on the client side
- * @returns Boolean indicating if code is running in browser
- */
-export function isClient(): boolean {
-  return typeof window !== "undefined";
-}
+    if (conditionalStyles && props) {
+      for (const condition in conditionalStyles) {
+        const shouldApply =
+          (condition === "isSmallScreen" && theme.breakpoints?.down("sm")) ||
+          (typeof props[condition] === "boolean" && props[condition]) ||
+          (props[condition] !== undefined &&
+            props[condition] !== null &&
+            props[condition] !== ""); // Check for other defined props
 
-/**
- * Safely parses JSON with error handling
- * @param value - JSON string to parse
- * @returns Parsed object or null if invalid
- */
-export function safeJSONParse<T>(value: string): T | null {
-  try {
-    return JSON.parse(value) as T;
-  } catch {
-    return null;
-  }
+        const conditionStyles =
+          typeof conditionalStyles[condition] === "function"
+            ? conditionalStyles[condition](theme, props)
+            : conditionalStyles[condition];
+
+        if (shouldApply && conditionStyles) {
+          styles = {
+            ...styles,
+            ...(conditionStyles as object),
+          } as SxProps<Theme>;
+        }
+      }
+    }
+    return styles;
+  };
 }

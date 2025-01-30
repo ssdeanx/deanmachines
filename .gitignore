@@ -1,11 +1,15 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
+/.cline-personas
+/.cline-personas
 # dependencies
 /node_modules
 /.pnp
 .pnp.js
-
-# testing
+.cline-personas/**/*.json
+.cline-personas/*
+.cline-personas/personas/*
+.cline-personas/personas/old*
+.cline-personas/components/*
 /coverage
 
 # next.js
@@ -53,3 +57,27 @@ schema3.json
 gcp-oauth.keys.json
 MUI-RAG.md
 MUI.pdf
+.cline-personas/personas/CacheMan.json
+.cline-personas/personas/CodeArchitect.json
+.cline-personas/personas/CodeMaster.json
+.cline-personas/personas/CodeOrchestrator.json
+.cline-personas/personas/CodeSentinel.json
+.cline-personas/personas/CodeUX.json
+.cline-personas/personas/CodeValidator.json
+.cline-personas/personas/Cross-Platform Compatibility Specialist.json
+.cline-personas/personas/DataStructure Specialist.json
+.cline-personas/personas/Dependency Manager.json
+.cline-personas/personas/Documentation Specialist.json
+.cline-personas/personas/Ellie Vance - Intent Interpreter.json
+.cline-personas/personas/Innovation Catalyst.json
+.cline-personas/personas/Integration Specialist.json
+.cline-personas/personas/Knowledge Base Curator.json
+.cline-personas/personas/Performance Engineer.json
+.cline-personas/personas/Process Improvement Specialist.json
+.cline-personas/personas/PromptSchemer.json
+.cline-personas/personas/Release Manager.json
+.cline-personas/personas/Resource Manager.json
+.cline-personas/personas/UserAnalysis Specialist.json
+.cline-personas/personas/CacheMan.json
+.cline-personas/personas/CacheMan.json
+.cline-personas/personas/CacheMan.json

@@ -1,44 +1,75 @@
 "use client";
-import "@/styles/globals.css";
-import Link from '@mui/material/Link';
-import Divider from '@mui/material/Divider';
- 
- import { Providers } from "../providers";
- 
- import CustomTooltip from "@/components/tooltip";
- 
- export default function AboutLayout({
+import Box from "@mui/material/Box";
+import Divider from "@mui/material/Divider";
+import Link from "@mui/material/Link";
+import Typography from "@mui/material/Typography";
+import * as React from "react";
+
+import { Providers } from "../providers";
+
+import CustomTooltip from "@/components/tooltip";
+
+export default function AboutLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <div>
-      <Providers
-        
-      >
-        <div className="relative flex h-screen flex-col">
-          <main className="container mx-auto max-w-7xl grow px-6 pt-16">
+    <Box>
+      <Providers>
+        <Box
+          sx={{
+            position: "relative",
+            display: "flex",
+            height: "100vh",
+            flexDirection: "column",
+          }}
+        >
+          <main
+            style={{
+              margin: "0 auto",
+              maxWidth: "1200px",
+              flexGrow: 1,
+              padding: "4rem 1.5rem",
+            }}
+          >
             {children}
             <Divider sx={{ my: 2 }} />
-            <div className="flex items-center gap-2" />
+            <Box sx={{ display: "flex", alignItems: "center", gap: 2 }} />
             <CustomTooltip />
           </main>
-          <footer className="flex w-full items-center justify-center py-3">
+          <Box
+            sx={{
+              display: "flex",
+              width: "100%",
+              alignItems: "center",
+              justifyContent: "center",
+              py: 3,
+            }}
+          >
             <Link
-              
-              className="flex items-center gap-1 text-gray-600 hover:text-gray-900 dark:text-gray-500 dark:hover:text-gray-200"
               href="https://nextui-docs-v2.vercel.app?utm_source=next-app-template"
               title="nextui.org homepage"
               target="_blank"
               rel="noopener noreferrer"
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                gap: 1,
+                color: "text.secondary",
+                "&:hover": {
+                  color: "text.primary",
+                },
+              }}
             >
-              <span className="text-gray-600">Powered by</span>
-              <p className="text-gray-600 dark:text-gray-500">NextUI</p>
+              <Typography sx={{ color: "text.secondary" }}>
+                Powered by
+              </Typography>
+              <Typography sx={{ color: "text.secondary" }}>NextUI</Typography>
             </Link>
-          </footer>
-        </div>
+          </Box>
+        </Box>
       </Providers>
-    </div>
+    </Box>
   );
 }

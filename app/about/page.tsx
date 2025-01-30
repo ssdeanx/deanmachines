@@ -1,84 +1,100 @@
 "use client";
+import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardHeader from "@mui/material/CardHeader";
+import Link from "@mui/material/Link";
+import Typography from "@mui/material/Typography";
 import { motion } from "framer-motion";
-import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
-import CardContent from '@mui/material/CardContent';
-import Link from '@mui/material/Link';
- 
- import { title, subtitle } from "@/components/primitives";
- import { RocketIcon } from "@/components/icons";
- 
- const itemVariants = {
+
+const itemVariants = {
   hidden: { opacity: 0, y: 20 },
   show: { opacity: 1, y: 0 },
- };
- 
- export default function AboutPage() {
+};
+
+export default function AboutPage() {
   return (
-    <>
-      <div className="text-center">
-        <h1 className={title.base} style={{fontSize: title.size.lg}}>
-          <RocketIcon className="mr-2 inline-block" size={30} />
+    <Box>
+      <Box sx={{ textAlign: "center" }}>
+        <Typography variant="h1" sx={{ fontSize: "4rem" }}>
           About Dean Machines
-        </h1>
-        <div className={subtitle.base} style={{marginTop: '1rem'}}>
+        </Typography>
+        <Typography variant="subtitle1" sx={{ marginTop: "1rem" }}>
           Our mission is to create a comprehensive dataset for drone autonomy
           research and build an open-source autonomous drone platform.
-        </div>
-      </div>
-      <section className="mt-12 space-y-12">
+        </Typography>
+      </Box>
+      <Box sx={{ mt: 12, spaceY: 12 }}>
         <motion.div variants={itemVariants}>
-          <h2 className="mb-6 text-2xl font-semibold text-gray-800 dark:text-gray-200">
+          <Typography
+            variant="h2"
+            sx={{ mb: 6, fontWeight: "semibold", color: "text.primary" }}
+          >
             Hardware Specifications
-          </h2>
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+          </Typography>
+          <Box
+            sx={{
+              display: "grid",
+              gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
+              gap: 6,
+            }}
+          >
             <motion.div
               key="drone-platform"
-              className="h-full"
+              style={{ height: "100%" }}
               variants={itemVariants}
               whileHover={{ scale: 1.02 }}
             >
-              <Card className="h-full card">
+              <Card style={{ height: "100%" }}>
                 <CardHeader>
-                  <h3 className="text-xl font-medium text-gray-900 dark:text-gray-100">
+                  <Typography
+                    variant="h5"
+                    sx={{ fontWeight: "medium", color: "text.primary" }}
+                  >
                     Drone Platform
-                  </h3>
+                  </Typography>
                 </CardHeader>
-                <CardContent className="space-y-3 p-6">
+                <CardContent sx={{ spaceY: 3, p: 6 }}>
                   5" FPV Racing Drone
                 </CardContent>
               </Card>
             </motion.div>
             <motion.div
               key="ai-computer"
-              className="h-full"
+              style={{ height: "100%" }}
               variants={itemVariants}
               whileHover={{ scale: 1.02 }}
             >
-              <Card className="h-full card">
+              <Card style={{ height: "100%" }}>
                 <CardHeader>
-                  <h3 className="text-xl font-medium text-gray-900 dark:text-gray-100">
+                  <Typography
+                    variant="h5"
+                    sx={{ fontWeight: "medium", color: "text.primary" }}
+                  >
                     AI Computer
-                  </h3>
+                  </Typography>
                 </CardHeader>
-                <CardContent className="space-y-3 p-6">
+                <CardContent sx={{ spaceY: 3, p: 6 }}>
                   NVIDIA Jetson Orin Nano
                 </CardContent>
               </Card>
             </motion.div>
             <motion.div
               key="sensors"
-              className="h-full"
+              style={{ height: "100%" }}
               variants={itemVariants}
               whileHover={{ scale: 1.02 }}
             >
-              <Card className="h-full card">
+              <Card style={{ height: "100%" }}>
                 <CardHeader>
-                  <h3 className="text-xl font-medium text-gray-900 dark:text-gray-100">
+                  <Typography
+                    variant="h5"
+                    sx={{ fontWeight: "medium", color: "text.primary" }}
+                  >
                     Sensors
-                  </h3>
+                  </Typography>
                 </CardHeader>
-                <CardContent className="space-y-3 p-6">
+                <CardContent sx={{ spaceY: 3, p: 6 }}>
                   <ul>
                     <li>TFmini-S LiDAR</li>
                     <li>AI-enabled Camera Module</li>
@@ -90,17 +106,20 @@ import Link from '@mui/material/Link';
             </motion.div>
             <motion.div
               key="communication"
-              className="h-full"
+              style={{ height: "100%" }}
               variants={itemVariants}
               whileHover={{ scale: 1.02 }}
             >
-              <Card className="h-full card">
+              <Card style={{ height: "100%" }}>
                 <CardHeader>
-                  <h3 className="text-xl font-medium text-gray-900 dark:text-gray-100">
+                  <Typography
+                    variant="h5"
+                    sx={{ fontWeight: "medium", color: "text.primary" }}
+                  >
                     Communication
-                  </h3>
+                  </Typography>
                 </CardHeader>
-                <CardContent className="space-y-3 p-6">
+                <CardContent sx={{ spaceY: 3, p: 6 }}>
                   <ul>
                     <li>YHY 9800 Eng D SDR</li>
                     <li>433MHz Receiver</li>
@@ -110,13 +129,13 @@ import Link from '@mui/material/Link';
                 </CardContent>
               </Card>
             </motion.div>
-          </div>
+          </Box>
         </motion.div>
-      </section>
-      <section className="container mx-auto max-w-7xl px-6 py-16">
-        <Card className="mb-8 card">
+      </Box>
+      <Box sx={{ maxWidth: "1200px", mx: "auto", px: 6, py: 16 }}>
+        <Card sx={{ mb: 8 }}>
           <CardHeader>
-            <h2>About DeanMachines</h2>
+            <Typography variant="h2">About DeanMachines</Typography>
           </CardHeader>
           <CardContent>
             DeanMachines is a web application built with Next.js, React, NextUI,
@@ -127,10 +146,10 @@ import Link from '@mui/material/Link';
             applications, and accessing documentation.
           </CardContent>
         </Card>
- 
-        <Card className="mb-8 card">
+
+        <Card sx={{ mb: 8 }}>
           <CardHeader>
-            <h2>About the Creator</h2>
+            <Typography variant="h2">About the Creator</Typography>
           </CardHeader>
           <CardContent>
             Hi, I&apos;m Sean Dean, the creator of DeanMachines. I have a
@@ -141,10 +160,10 @@ import Link from '@mui/material/Link';
             what&apos;s with autonomous drones.
           </CardContent>
         </Card>
- 
-        <Card className="card">
+
+        <Card>
           <CardHeader>
-            <h2>Contact</h2>
+            <Typography variant="h2">Contact</Typography>
           </CardHeader>
           <CardContent>
             If you have any questions or would like to get in touch, feel free
@@ -155,7 +174,7 @@ import Link from '@mui/material/Link';
             .
           </CardContent>
         </Card>
-      </section>
-    </>
+      </Box>
+    </Box>
   );
- }
+}

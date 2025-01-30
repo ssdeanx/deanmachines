@@ -1,9 +1,9 @@
 # Changelog
 
- All notable changes to the DeanMachines project will be documented in this file.
+All notable changes to the DeanMachines project will be documented in this file.
 
- The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
- and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [0.2.3] - 2024-04-29
 
@@ -131,10 +131,10 @@
 - Updated the `FPVVideoDisplay` component to use best practices, including a loading state, error handling, and a responsive video element.
 - Added security by ensuring the video URL is valid and adding a `referrerPolicy="no-referrer"` attribute to the video element.
 
- [0.2.3]: https://github.com/ssdeanx/deanmachines/compare/v0.2.2...v0.2.3
- [0.2.2]: https://github.com/ssdeanx/deanmachines/releases/tag/v0.2.2
- [0.2.1]: https://github.com/ssdeanx/deanmachines/releases/tag/v0.2.1
- [0.2.0]: https://github.com/ssdeanx/deanmachines/releases/tag/v0.2.0
+[0.2.3]: https://github.com/ssdeanx/deanmachines/compare/v0.2.2...v0.2.3
+[0.2.2]: https://github.com/ssdeanx/deanmachines/releases/tag/v0.2.2
+[0.2.1]: https://github.com/ssdeanx/deanmachines/releases/tag/v0.2.1
+[0.2.0]: https://github.com/ssdeanx/deanmachines/releases/tag/v0.2.0
 
 ## [0.2.4] - 2025-01-18 12:55 PM
 
@@ -145,8 +145,8 @@
 - Updated `Link` and `Button` components for better accessibility and styling consistency.
 - Created a custom `Code` component for consistent code styling.
 
- [0.1.0]: https://github.com/ssdeanx/deanmachines/releases/tag/v0.1.0
- [0.2.4]: https://github.com/ssdeanx/deanmachines/compare/v0.2.3...v0.2.4
+[0.1.0]: https://github.com/ssdeanx/deanmachines/releases/tag/v0.1.0
+[0.2.4]: https://github.com/ssdeanx/deanmachines/compare/v0.2.3...v0.2.4
 
 ## [0.2.5] - 2025-01-19 10:21 AM
 
@@ -164,7 +164,7 @@
 
 ### Changed new
 
-- Useless AI cant do this so i did.  Whoever cant read needs deleted from knowledge graph.
+- Useless AI cant do this so i did. Whoever cant read needs deleted from knowledge graph.
 
 ## [0.2.7] - 2025-01-24 08:21 AM
 
@@ -175,3 +175,9 @@
 - Updated the `styles/globals.css` file to remove Tailwind CSS directives and use custom CSS properties compatible with MUI.
 - Removed all NextUI and postcss dependencies from the `package.json` file.
 - Checked the `app/`, `app/about/`, `app/data/`, `app/docs/`, `app/guides/`, and `app/pricing/` and `app/requirements/` directories and removed all NextUI components and Tailwind CSS.
+
+## [0.2.8] - 2025-01-30 08:26 AM
+
+### Changed
+
+- Replaced `components/navbar.tsx` with `components/AppBar.tsx` and integrated styles and functionality.
