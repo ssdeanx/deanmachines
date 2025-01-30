@@ -41,12 +41,12 @@ next-env.d.ts
 
 schema3.json
 
-/app/applets/spacial/*  
+/app/applets/spacial/*
 
 /app/applets/video/*
-.cline-personas
-.cline-personas-*
-.cline-personas-*.json
+/.cline-personas/personas/old*
+
+
 .devcontainer*
 /heroui
 /test-dir*
