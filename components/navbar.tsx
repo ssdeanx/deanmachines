@@ -1,3 +1,4 @@
+"use server";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import AppBar from "@mui/material/AppBar";

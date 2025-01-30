@@ -1,4 +1,3 @@
-import "@/styles/globals.css";
 import Box from "@mui/material/Box";
 import { Metadata, Viewport } from "next";
 

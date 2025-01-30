@@ -1,5 +1,4 @@
 "use client";
-import "@/styles/globals.css";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import * as React from "react";
