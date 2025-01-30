@@ -1,6 +1,0 @@
-{
-  "name": "risk-assessment",
-  "description": "Component for assessing project risks",
-  "text": "Potential risks in the project include {{risk1}}, {{risk2}}, and {{risk3}}.",
-  "version": 1
-}
