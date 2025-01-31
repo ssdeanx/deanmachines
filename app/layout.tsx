@@ -4,11 +4,16 @@ import { Metadata, Viewport } from "next";
 import { Providers } from "./providers";
 
 import Footer from "@/components/footer";
-import { Navbar } from "@/components/navbar";
 import Theme from "@/components/Theme";
 import { ThemeSwitch } from "@/components/theme-switch";
 import { fontSans } from "@/config/fonts";
 import { siteConfig } from "@/config/site";
+import dynamic from "next/dynamic";
+
+const Navbar = dynamic(
+  () => import("@/components/navbar") as any, // Explicitly cast to any for Loader type
+  { ssr: false }
+);
 
 export const metadata: Metadata = {
   title: {
