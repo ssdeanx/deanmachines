@@ -1,0 +1,16 @@
+{
+  "name": "@deanmachines/frontend",
+  "version": "0.0.1",
+  "private": true,
+  "nx": {
+    "tags": [
+      "scope:frontend",
+      "type:app"
+    ]
+  },
+  "dependencies": {
+    "next": "~15.2.4",
+    "react": "19.0.0",
+    "react-dom": "19.0.0"
+  }
+}

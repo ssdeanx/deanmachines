@@ -2,5 +2,18 @@
   "extends": "./tsconfig.base.json",
   "compileOnSave": false,
   "files": [],
-  "references": []
+  "references": [
+    {
+      "path": "./apps/backend"
+    },
+    {
+      "path": "./apps/frontend"
+    },
+    {
+      "path": "./libs/shared"
+    },
+    {
+      "path": "./libs/shared"
+    }
+  ]
 }
