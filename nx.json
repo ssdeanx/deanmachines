@@ -22,9 +22,7 @@
     {
       "plugin": "@nx/js/typescript",
       "options": {
-        "typecheck": {
-          "targetName": "typecheck"
-        },
+        "typecheck": { "targetName": "typecheck" },
         "build": {
           "targetName": "build",
           "configName": "tsconfig.lib.json",
@@ -33,12 +31,7 @@
         }
       }
     },
-    {
-      "plugin": "@nx/eslint/plugin",
-      "options": {
-        "targetName": "lint"
-      }
-    },
+    { "plugin": "@nx/eslint/plugin", "options": { "targetName": "lint" } },
     {
       "plugin": "@nx/next/plugin",
       "options": {
@@ -58,28 +51,29 @@
       "inputs": ["production", "^production", "sharedGlobals"]
     },
     "@nx/js:tsc": {
-        "cache": true,
-        "dependsOn": ["^build"],
-        "inputs": ["default", "^default", "sharedGlobals"],
-        "outputs": ["{options.outputPath}"]
+      "cache": true,
+      "dependsOn": ["^build"],
+      "inputs": ["default", "^default", "sharedGlobals"],
+      "outputs": ["{options.outputPath}"]
     },
     "@nx/next:build": {
-        "cache": true,
-        "dependsOn": ["^build"],
-        "inputs": ["production", "^production", "sharedGlobals"],
-        "outputs": ["{options.outputPath}"]
+      "cache": true,
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production", "sharedGlobals"],
+      "outputs": ["{options.outputPath}"]
     },
     "@nx/eslint:lint": {
-        "cache": true,
-        "inputs": ["default", "{workspaceRoot}/.eslintrc.json", "{workspaceRoot}/eslint.config.mjs", "sharedGlobals"]
+      "cache": true,
+      "inputs": [
+        "default",
+        "{workspaceRoot}/.eslintrc.json",
+        "{workspaceRoot}/eslint.config.mjs",
+        "sharedGlobals"
+      ]
     }
   },
   "generators": {
-    "@nx/next": {
-      "application": {
-        "style": "css",
-        "linter": "eslint"
-      }
-    }
-  }
+    "@nx/next": { "application": { "style": "css", "linter": "eslint" } }
+  },
+  "nxCloudId": "67f860820ca166d446f149b8"
 }
