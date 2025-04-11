@@ -16,6 +16,13 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "es2022",
-    "customConditions": ["development"]
+    "customConditions": ["development"],
+    // --- Path Aliases Section ---
+    "baseUrl": ".",
+    "paths": {
+      "@deanmachines/shared-utils": ["libs/shared/src/index.ts"],
+      "@deanmachines/shared-types": ["libs/shared/src/index.ts"]
+    }
+    // --- End Path Aliases ---
   }
 }

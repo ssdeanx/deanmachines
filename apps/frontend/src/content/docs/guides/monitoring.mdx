@@ -1,0 +1,217 @@
+---
+title: Monitoring & Observability
+description: Learn how to monitor, log, and observe your AI applications effectively.
+---
+
+# Monitoring & Observability
+
+Learn how to implement comprehensive monitoring and observability for your deanmachines AI applications.
+
+## Metrics Collection
+
+### Agent Metrics
+
+```typescript
+import { Metrics } from "@deanmachines/monitoring"
+
+const metrics = new Metrics({
+  agent: {
+    responseTime: true,
+    memoryUsage: true,
+    throughput: true,
+    errorRate: true,
+  },
+  customMetrics: {
+    "agent.decisions": {
+      type: "counter",
+      help: "Number of decisions made by the agent",
+    },
+  },
+})
+
+agent.use(metrics)
+```
+
+### Performance Monitoring
+
+```typescript
+const performanceConfig = {
+  metrics: ["cpu", "memory", "latency"],
+  alerts: {
+    cpu: { threshold: 80, window: "5m" },
+    memory: { threshold: 85, window: "5m" },
+    latency: { threshold: 1000, window: "1m" },
+  },
+}
+```
+
+## Logging
+
+### Structured Logging
+
+```typescript
+import { Logger } from "@deanmachines/core"
+
+const logger = new Logger({
+  level: "info",
+  format: "json",
+  metadata: {
+    service: "agent-service",
+    environment: process.env.NODE_ENV,
+  },
+})
+
+agent.onMessage(async (message) => {
+  logger.info("Processing message", {
+    messageId: message.id,
+    type: message.type,
+    timestamp: new Date().toISOString(),
+  })
+})
+```
+
+### Log Levels
+
+- **ERROR**: Errors that need immediate attention
+- **WARN**: Potential issues or degraded performance
+- **INFO**: Normal operation events
+- **DEBUG**: Detailed debugging information
+- **TRACE**: Very detailed flow information
+
+## Tracing
+
+### Distributed Tracing
+
+```typescript
+import { Tracer } from "@deanmachines/monitoring"
+
+const tracer = new Tracer({
+  serviceName: "agent-service",
+  samplingRate: 0.1,
+  exporters: ["jaeger", "zipkin"],
+})
+
+agent.use(tracer)
+```
+
+### Span Management
+
+```typescript
+async function processRequest(req) {
+  const span = tracer.startSpan("process-request")
+  try {
+    // Add context to span
+    span.setAttributes({
+      "request.id": req.id,
+      "request.type": req.type,
+    })
+
+    const result = await handleRequest(req)
+    span.end()
+    return result
+  } catch (error) {
+    span.setStatus("error")
+    span.recordException(error)
+    span.end()
+    throw error
+  }
+}
+```
+
+## Alerting
+
+### Alert Configuration
+
+```typescript
+const alertConfig = {
+  channels: ["email", "slack", "pagerduty"],
+  rules: [
+    {
+      name: "high-error-rate",
+      condition: "error_rate > 0.05",
+      duration: "5m",
+      severity: "critical",
+      notifications: ["slack", "pagerduty"],
+    },
+    {
+      name: "memory-warning",
+      condition: "memory_usage > 80",
+      duration: "10m",
+      severity: "warning",
+      notifications: ["email", "slack"],
+    },
+  ],
+}
+```
+
+### Alert Management
+
+- Set up escalation policies
+- Define on-call rotations
+- Configure alert routing rules
+- Implement alert grouping
+
+## Dashboard Creation
+
+### Metrics Dashboard
+
+```typescript
+const dashboardConfig = {
+  panels: [
+    {
+      title: "Agent Response Time",
+      metric: "agent_response_time",
+      type: "line",
+      duration: "24h",
+    },
+    {
+      title: "Memory Usage",
+      metric: "memory_usage_bytes",
+      type: "gauge",
+      thresholds: [
+        { value: 70, color: "yellow" },
+        { value: 85, color: "red" },
+      ],
+    },
+  ],
+}
+```
+
+### Custom Visualizations
+
+- Response time distributions
+- Error rate trends
+- Resource utilization
+- Agent interaction patterns
+
+## Best Practices
+
+1. **Data Retention**
+   - Define retention policies
+   - Implement data aggregation
+   - Use appropriate storage solutions
+
+2. **Performance Impact**
+   - Monitor the monitoring overhead
+   - Use sampling when appropriate
+   - Optimize metric collection
+
+3. **Alert Fatigue**
+   - Tune alert thresholds carefully
+   - Implement alert deduplication
+   - Use alert severity levels effectively
+
+4. **Documentation**
+   - Document monitoring setup
+   - Maintain runbooks
+   - Keep dashboards updated
+
+<Callout type="info">
+  Regular review and adjustment of monitoring thresholds is essential for maintaining effective observability.
+</Callout>
+
+## Next Steps
+
+- [Scaling Strategies](/docs/guides/scaling)
+- [Performance Optimization](/docs/guides/performance)
+- [Troubleshooting Guide](/docs/guides/troubleshooting)

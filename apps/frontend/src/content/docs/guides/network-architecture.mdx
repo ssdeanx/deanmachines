@@ -1,0 +1,264 @@
+---
+title: Network Architecture
+description: Design and implement scalable AI agent networks with deanmachines.
+---
+
+# Network Architecture Guide
+
+Learn how to design and implement scalable networks of cooperating AI agents.
+
+## Network Topologies
+
+### Mesh Network
+
+Fully connected agents for maximum collaboration:
+
+```typescript
+import { AgentNetwork, NetworkTopology } from '@deanmachines/core'
+
+const meshNetwork = new AgentNetwork({
+  topology: NetworkTopology.MESH,
+  agents: ['analyst', 'researcher', 'writer'],
+  config: {
+    fullConnection: true,
+    redundancy: true,
+    maxLatency: '100ms'
+  }
+})
+```
+
+### Hierarchical Network
+
+Organized hierarchy for complex workflows:
+
+```typescript
+interface HierarchicalConfig {
+  layers: {
+    name: string
+    agents: string[]
+    connections: {
+      up?: string[]
+      down?: string[]
+    }
+  }[]
+}
+
+const hierarchicalNetwork = new AgentNetwork({
+  topology: NetworkTopology.HIERARCHICAL,
+  config: {
+    layers: [
+      {
+        name: 'supervisors',
+        agents: ['coordinator', 'planner'],
+        connections: {
+          down: ['workers']
+        }
+      },
+      {
+        name: 'workers',
+        agents: ['researcher1', 'researcher2', 'analyst1'],
+        connections: {
+          up: ['supervisors'],
+          down: ['specialists']
+        }
+      }
+    ]
+  }
+})
+```
+
+## Communication Patterns
+
+### Message Routing
+
+```typescript
+interface NetworkMessage {
+  from: string
+  to: string | string[]
+  content: unknown
+  metadata: {
+    priority: number
+    ttl: string
+    trace?: string
+  }
+}
+
+// Direct message
+await network.sendMessage({
+  from: 'analyst',
+  to: 'researcher',
+  content: {
+    type: 'research_request',
+    query: 'market analysis 2024'
+  },
+  metadata: {
+    priority: 1,
+    ttl: '30s'
+  }
+})
+
+// Broadcast to layer
+await network.broadcastToLayer('workers', {
+  from: 'coordinator',
+  content: {
+    type: 'task_assignment',
+    deadline: '2h'
+  }
+})
+```
+
+## Network Monitoring
+
+### Health Checks
+
+```typescript
+interface HealthCheckConfig {
+  interval: string
+  timeout: string
+  thresholds: {
+    latency: number
+    errorRate: number
+    messageQueue: number
+  }
+}
+
+await network.configureHealthChecks({
+  interval: '30s',
+  timeout: '5s',
+  thresholds: {
+    latency: 200,    // ms
+    errorRate: 0.01,  // 1%
+    messageQueue: 100 // max queued messages
+  }
+})
+```
+
+### Performance Metrics
+
+```typescript
+// Monitor network performance
+network.on('metrics', (metrics) => {
+  const {
+    messageCount,
+    avgLatency,
+    errorRate,
+    agentUtilization
+  } = metrics
+
+  if (avgLatency > 200) {
+    network.optimizeRouting()
+  }
+})
+```
+
+## Scaling Strategies
+
+### Dynamic Scaling
+
+```typescript
+interface ScalingConfig {
+  metrics: ('load' | 'latency' | 'queue')[]
+  thresholds: {
+    scaleUp: Record<string, number>
+    scaleDown: Record<string, number>
+  }
+  cooldown: {
+    up: string
+    down: string
+  }
+}
+
+await network.configureScaling({
+  metrics: ['load', 'latency', 'queue'],
+  thresholds: {
+    scaleUp: {
+      load: 80,      // 80% CPU
+      latency: 200,  // 200ms
+      queue: 100     // 100 messages
+    },
+    scaleDown: {
+      load: 30,
+      latency: 50,
+      queue: 10
+    }
+  },
+  cooldown: {
+    up: '5m',
+    down: '15m'
+  }
+})
+```
+
+## Error Handling
+
+### Network Resilience
+
+```typescript
+interface ResilienceConfig {
+  retry: {
+    attempts: number
+    backoff: {
+      initial: number
+      multiplier: number
+      max: number
+    }
+  }
+  circuit: {
+    threshold: number
+    timeout: string
+  }
+  fallback: {
+    enabled: boolean
+    strategy: 'cache' | 'alternative' | 'degraded'
+  }
+}
+
+await network.configureResilience({
+  retry: {
+    attempts: 3,
+    backoff: {
+      initial: 1000,
+      multiplier: 2,
+      max: 10000
+    }
+  },
+  circuit: {
+    threshold: 0.5,  // 50% failure rate
+    timeout: '30s'   // Time before retry
+  },
+  fallback: {
+    enabled: true,
+    strategy: 'degraded'
+  }
+})
+```
+
+## Best Practices
+
+1. **Network Design**
+   - Choose appropriate topology
+   - Plan for scalability
+   - Implement proper error handling
+   - Monitor network health
+
+2. **Communication**
+   - Use efficient protocols
+   - Implement message priorities
+   - Handle timeouts properly
+   - Enable message tracing
+
+3. **Security**
+   - Encrypt network traffic
+   - Authenticate agents
+   - Monitor for anomalies
+   - Regular security audits
+
+<Callout type="warning">
+  Always implement proper error handling and recovery mechanisms in distributed networks.
+</Callout>
+
+## Next Steps
+
+- [Performance Optimization](/docs/guides/performance)
+- [Security Best Practices](/docs/guides/security)
+- [Network API Reference](/docs/api-reference/network)

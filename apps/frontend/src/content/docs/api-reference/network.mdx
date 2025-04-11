@@ -1,0 +1,235 @@
+---
+title: Network API Reference
+description: Complete API reference for managing AI agent networks and communication.
+---
+
+# Network API Reference
+
+The Network API enables creating and managing networks of cooperating AI agents.
+
+## Network Creation
+
+### Create Network
+
+```typescript
+interface NetworkConfig {
+  name: string;
+  description?: string;
+  topology: 'mesh' | 'star' | 'hierarchical';
+  maxAgents: number;
+  protocol: {
+    type: 'grpc' | 'websocket' | 'http';
+    options?: Record<string, unknown>;
+  };
+}
+
+const network = await client.createNetwork({
+  name: 'analysis-network',
+  topology: 'hierarchical',
+  maxAgents: 10,
+  protocol: {
+    type: 'grpc',
+    options: {
+      keepAlive: true,
+      timeout: '30s'
+    }
+  }
+});
+```
+
+## Agent Management
+
+### Add Agents
+
+```typescript
+interface AgentNode {
+  agentId: string;
+  role: string;
+  connections: string[];  // Array of agent IDs to connect to
+  priority?: number;      // Priority in hierarchical networks
+}
+
+await network.addAgent({
+  agentId: 'agent-123',
+  role: 'analyzer',
+  connections: ['agent-456', 'agent-789'],
+  priority: 1
+});
+```
+
+### Remove Agents
+
+```typescript
+await network.removeAgent('agent-123', {
+  gracePeriod: '5s',
+  reassignConnections: true
+});
+```
+
+## Communication
+
+### Message Routing
+
+```typescript
+interface NetworkMessage {
+  from: string;
+  to: string | string[];
+  content: unknown;
+  metadata: {
+    priority: number;
+    ttl: string;
+    trace?: string;
+  };
+}
+
+await network.sendMessage({
+  from: 'agent-123',
+  to: 'agent-456',
+  content: {
+    type: 'analysis_request',
+    data: { /* ... */ }
+  },
+  metadata: {
+    priority: 1,
+    ttl: '30s'
+  }
+});
+```
+
+### Broadcast Messages
+
+```typescript
+await network.broadcast({
+  from: 'agent-123',
+  content: {
+    type: 'status_update',
+    status: 'ready'
+  },
+  metadata: {
+    priority: 2,
+    ttl: '10s'
+  }
+});
+```
+
+## Network Topology
+
+### Update Topology
+
+```typescript
+await network.updateTopology({
+  type: 'mesh',
+  connections: [
+    { from: 'agent-1', to: ['agent-2', 'agent-3'] },
+    { from: 'agent-2', to: ['agent-3', 'agent-4'] }
+  ]
+});
+```
+
+### Network Analysis
+
+```typescript
+const analysis = await network.analyze();
+// {
+//   nodes: number;
+//   connections: number;
+//   avgLatency: string;
+//   bottlenecks: string[];
+// }
+```
+
+## Monitoring
+
+### Network Health
+
+```typescript
+const health = await network.checkHealth({
+  timeout: '5s',
+  checkConnections: true
+});
+```
+
+### Network Metrics
+
+```typescript
+const metrics = await network.getMetrics({
+  timeframe: '1h',
+  resolution: '1m'
+});
+```
+
+## Error Handling
+
+```typescript
+try {
+  await network.sendMessage(message);
+} catch (error) {
+  if (error instanceof NetworkError) {
+    switch (error.code) {
+      case 'agent_unavailable':
+        await network.rebalance();
+        break;
+      case 'connection_failed':
+        await network.reconnect(message.to);
+        break;
+    }
+  }
+  throw error;
+}
+```
+
+## Load Balancing
+
+### Configure Load Balancer
+
+```typescript
+await network.configureLoadBalancing({
+  strategy: 'least_loaded',
+  metrics: ['cpu', 'memory', 'queue_length'],
+  updateInterval: '10s',
+  thresholds: {
+    cpu: 80,
+    memory: 85,
+    queue_length: 100
+  }
+});
+```
+
+## Best Practices
+
+1. **Network Design**
+   - Choose appropriate topology
+   - Plan for scalability
+   - Implement proper error handling
+   - Monitor network health
+
+2. **Performance**
+   - Use efficient message formats
+   - Implement message prioritization
+   - Configure appropriate timeouts
+   - Monitor network latency
+
+3. **Security**
+   - Implement authentication
+   - Encrypt network traffic
+   - Monitor for anomalies
+   - Regular security audits
+
+<Callout type="warning">
+  Always implement proper error handling and recovery mechanisms in distributed networks.
+</Callout>
+
+## Rate Limits
+
+| Operation | Rate Limit |
+|-----------|------------|
+| Messages | 1000/minute/agent |
+| Topology Changes | 10/minute |
+| Agent Addition/Removal | 50/minute |
+| Broadcasts | 100/minute |
+
+## Next Steps
+
+- [Deployment API Reference](/docs/api-reference/deployment)
+- [Network Architecture Guide](/docs/guides/network-architecture)
+- [Network Examples](/docs/examples/networks)

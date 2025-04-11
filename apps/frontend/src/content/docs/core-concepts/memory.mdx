@@ -1,0 +1,248 @@
+---
+title: Memory Management
+description: Understanding how AI agents maintain context and learn from interactions using the memory system.
+---
+
+# Memory Management
+
+The memory system is a fundamental component that enables AI agents to maintain context, learn from interactions, and develop over time.
+
+## Memory Types
+
+### Conversational Memory
+
+Maintains dialogue context and conversation history:
+
+```typescript
+import { createMemory } from '@deanmachines/core'
+
+const conversationalMemory = createMemory({
+  type: 'conversational',
+  ttl: '24h',
+  maxItems: 100,
+})
+```
+
+### Semantic Memory
+
+Stores and retrieves information based on meaning:
+
+```typescript
+const semanticMemory = createMemory({
+  type: 'semantic',
+  embedModel: 'ada-002',
+  similarityThreshold: 0.85,
+})
+```
+
+### Episodic Memory
+
+Records sequences of events and experiences:
+
+```typescript
+const episodicMemory = createMemory({
+  type: 'episodic',
+  timeframe: '7d',
+  indexing: 'temporal',
+})
+```
+
+## Storage Options
+
+### In-Memory Storage
+
+Quick access for temporary data:
+
+```typescript
+const volatileMemory = createMemory({
+  type: 'conversational',
+  storage: {
+    type: 'memory',
+    maxSize: '1GB',
+  },
+})
+```
+
+### Redis Storage
+
+Distributed storage for scalability:
+
+```typescript
+const redisMemory = createMemory({
+  type: 'conversational',
+  storage: {
+    type: 'redis',
+    url: process.env.REDIS_URL,
+    prefix: 'agent:memory:',
+  },
+})
+```
+
+### Vector Database
+
+For semantic search and similarity matching:
+
+```typescript
+const vectorMemory = createMemory({
+  type: 'semantic',
+  storage: {
+    type: 'pinecone',
+    apiKey: process.env.PINECONE_API_KEY,
+    environment: 'production',
+  },
+})
+```
+
+## Memory Operations
+
+### Writing to Memory
+
+```typescript
+// Store a new memory
+await memory.store({
+  type: 'conversation',
+  content: 'User asked about pricing',
+  metadata: {
+    timestamp: Date.now(),
+    topic: 'pricing',
+  },
+})
+
+// Update existing memory
+await memory.update(memoryId, {
+  content: 'Updated information',
+})
+```
+
+### Querying Memory
+
+```typescript
+// Retrieve recent memories
+const recent = await memory.query({
+  timeframe: 'last_hour',
+  limit: 10,
+})
+
+// Semantic search
+const relevant = await memory.search('product features', {
+  similarity: 0.8,
+  maxResults: 5,
+})
+
+// Complex queries
+const memories = await memory.query({
+  filter: {
+    topic: 'technical',
+    confidence: { $gt: 0.9 },
+  },
+  sort: { timestamp: -1 },
+})
+```
+
+## Memory Management
+
+### Cleanup and Maintenance
+
+```typescript
+// Remove old memories
+await memory.cleanup({
+  olderThan: '30d',
+  excludeTypes: ['critical'],
+})
+
+// Compact storage
+await memory.optimize()
+```
+
+### Memory Limitations
+
+```typescript
+const limitedMemory = createMemory({
+  maxSize: '1GB',
+  maxItems: 10000,
+  pruning: {
+    strategy: 'lru',
+    threshold: 0.9,
+  },
+})
+```
+
+## Integration with Agents
+
+### Basic Integration
+
+```typescript
+const agent = createAgent({
+  name: 'SmartAgent',
+  memory: conversationalMemory,
+})
+
+agent.onMessage(async (message, context) => {
+  // Access memory in handlers
+  const history = await context.memory.getRecent()
+
+  // Use memory for response
+  return generateResponse(message, history)
+})
+```
+
+### Advanced Memory Usage
+
+```typescript
+const agent = createAgent({
+  name: 'AdvancedAgent',
+  memory: {
+    conversation: conversationalMemory,
+    knowledge: semanticMemory,
+    experience: episodicMemory,
+  },
+})
+
+agent.onMessage(async (message, context) => {
+  // Access different memory types
+  const conversationContext = await context.memory.conversation.getRecent()
+  const relevantKnowledge = await context.memory.knowledge.search(message)
+  const pastExperiences = await context.memory.experience.getSimilar(message)
+
+  // Combine information for response
+  return generateResponse(message, {
+    context: conversationContext,
+    knowledge: relevantKnowledge,
+    experiences: pastExperiences,
+  })
+})
+```
+
+## Best Practices
+
+### Performance Optimization
+
+- Use appropriate TTL values
+- Implement efficient indexing
+- Cache frequently accessed data
+- Use batch operations for bulk updates
+
+### Data Management
+
+- Regular cleanup of old data
+- Implement data retention policies
+- Monitor storage usage
+- Back up critical memories
+
+### Security Considerations
+
+- Encrypt sensitive data
+- Implement access controls
+- Sanitize inputs
+- Regular security audits
+
+<Callout type="warning">
+  Memory usage can significantly impact performance and costs. Monitor and optimize memory usage based on your application's needs.
+</Callout>
+
+## Advanced Topics
+
+- [Memory Persistence Strategies](/docs/advanced-features/memory-persistence)
+- [Custom Storage Backends](/docs/advanced-features/custom-storage)
+- [Memory Optimization](/docs/advanced-features/memory-optimization)
+- [Distributed Memory Systems](/docs/advanced-features/distributed-memory)

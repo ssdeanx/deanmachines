@@ -1,0 +1,133 @@
+---
+title: Quick Start Guide
+description: Learn how to create your first AI agent in just a few minutes.
+---
+
+# Quick Start Guide
+
+Learn how to create your first AI agent in just a few minutes. This guide will walk you through creating a simple conversational agent.
+
+## Create a New Project
+
+Start by creating a new project:
+
+```bash
+pnpm add @mastra/cli -g
+mastra init my-first-agent
+cd my-first-agent
+pnpm install
+```
+
+## Create Your First Agent
+
+Create a new file called `agent.ts`:
+
+```typescript
+import { Agent, type Message } from '@mastra/core'
+import { Memory } from '@mastra/memory'
+
+// Initialize memory system
+const memory = new Memory({
+  type: 'short-term',
+  capacity: 10
+})
+
+// Create the agent
+const assistant = new Agent({
+  name: 'helpful-assistant',
+  description: 'A helpful AI assistant that answers questions',
+  memory,
+  async process(message: Message) {
+    // Store the incoming message in memory
+    await this.memory.store({
+      role: 'user',
+      content: message.content
+    })
+
+    // Get recent conversation history
+    const history = await this.memory.retrieve()
+
+    // Generate a response based on context
+    const response = await this.think({
+      task: 'generate friendly response',
+      context: history
+    })
+
+    return {
+      content: response,
+      type: 'text'
+    }
+  }
+})
+
+export default assistant
+```
+
+## Run Your Agent
+
+Create an `index.ts` file to interact with your agent:
+
+```typescript
+import assistant from './agent'
+
+async function main() {
+  // Send a message to the agent
+  const response = await assistant.send({
+    content: 'Hello! Can you help me learn about AI?',
+    type: 'text'
+  })
+
+  console.log('Agent response:', response.content)
+}
+
+main().catch(console.error)
+```
+
+Run your application:
+
+```bash
+pnpm tsx index.ts
+```
+
+## Add Advanced Features
+
+### Memory Management
+
+Enhance your agent with persistent memory:
+
+```typescript
+import { PgMemory } from '@mastra/memory-pg'
+
+const memory = new PgMemory({
+  connectionString: process.env.DATABASE_URL,
+  tableName: 'agent_memory'
+})
+```
+
+### Voice Capabilities
+
+Add voice interactions:
+
+```typescript
+import { VoiceProcessor } from '@mastra/voice-openai'
+
+const voice = new VoiceProcessor({
+  apiKey: process.env.OPENAI_API_KEY
+})
+
+// In your agent's process method:
+if (message.type === 'voice') {
+  const text = await voice.transcribe(message.content)
+  // Process the transcribed text...
+}
+```
+
+## Next Steps
+
+- [Core Concepts](/docs/core-concepts/overview) - Understand how DeanMachines AI works
+- [Examples](/docs/examples/chatbot) - Explore more complex examples
+- [API Reference](/docs/api-reference/agent) - Learn about the full API
+
+<Callout>
+  Remember to handle errors appropriately in production code and follow security best practices when deploying your agents.
+</Callout>

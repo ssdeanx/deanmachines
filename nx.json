@@ -8,7 +8,15 @@
       "!{projectRoot}/.eslintrc.json",
       "!{projectRoot}/eslint.config.mjs"
     ],
-    "sharedGlobals": []
+    "sharedGlobals": [
+      "{workspaceRoot}/package.json",
+      "{workspaceRoot}/tsconfig.base.json",
+      "{workspaceRoot}/pnpm-lock.yaml",
+      "{workspaceRoot}/nx.json",
+      "{workspaceRoot}/.env*",
+      "{workspaceRoot}/apps/frontend/.env*",
+      "{workspaceRoot}/apps/backend/.env*"
+    ]
   },
   "plugins": [
     {
@@ -47,7 +55,23 @@
     "@nx/esbuild:esbuild": {
       "cache": true,
       "dependsOn": ["^build"],
-      "inputs": ["production", "^production"]
+      "inputs": ["production", "^production", "sharedGlobals"]
+    },
+    "@nx/js:tsc": {
+        "cache": true,
+        "dependsOn": ["^build"],
+        "inputs": ["default", "^default", "sharedGlobals"],
+        "outputs": ["{options.outputPath}"]
+    },
+    "@nx/next:build": {
+        "cache": true,
+        "dependsOn": ["^build"],
+        "inputs": ["production", "^production", "sharedGlobals"],
+        "outputs": ["{options.outputPath}"]
+    },
+    "@nx/eslint:lint": {
+        "cache": true,
+        "inputs": ["default", "{workspaceRoot}/.eslintrc.json", "{workspaceRoot}/eslint.config.mjs", "sharedGlobals"]
     }
   },
   "generators": {

@@ -1,0 +1,63 @@
+---
+title: "CLI Reference"
+description: "Command Line Interface reference for DeanMachines"
+---
+
+# CLI Reference
+
+## Overview
+
+The DeanMachines CLI provides a powerful command-line interface for managing your agents, networks, and deployments.
+
+## Installation
+
+```bash
+npm install -g deanmachines-cli
+```
+
+## Usage
+
+```bash
+deanmachines [command] [options]
+```
+
+## Commands
+
+### Agent Management
+
+```bash
+deanmachines agent create [name]
+deanmachines agent list
+deanmachines agent delete [name]
+```
+
+### Network Management
+
+```bash
+deanmachines network create [name]
+deanmachines network list
+deanmachines network delete [name]
+```
+
+### Deployment
+
+```bash
+deanmachines deploy [environment]
+deanmachines deploy status
+deanmachines deploy rollback
+```
+
+## Configuration
+
+```bash
+deanmachines config set [key] [value]
+deanmachines config get [key]
+deanmachines config list
+```
+
+## Help
+
+```bash
+deanmachines help
+deanmachines [command] --help
+```

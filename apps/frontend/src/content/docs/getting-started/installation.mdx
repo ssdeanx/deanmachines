@@ -1,0 +1,101 @@
+---
+title: Installation Guide | DeanMachines AI
+description: Step-by-step guide to install and set up your development environment for DeanMachines AI platform. Learn how to get started with AI agent development.
+keywords: AI development, installation guide, development setup, AI platform setup, DeanMachines AI
+---
+
+# Installation
+
+This guide will help you set up your development environment for working with DeanMachines AI.
+
+## Prerequisites
+
+Before you begin, ensure you have:
+
+- Node.js 18.x or later
+- pnpm 8.x or later (recommended) or npm 9.x
+- A code editor (we recommend VS Code)
+- Git for version control
+
+## Quick Installation
+
+The fastest way to get started is using our CLI:
+
+```bash
+pnpm add @deanmachines/cli -g
+deanmachines init my-ai-project
+cd my-ai-project
+pnpm install
+```
+
+## Core Packages
+
+Install the core packages for your project:
+
+```bash
+pnpm add @deanmachines/core @deanmachines/client-js @deanmachines/memory
+```
+
+### Optional Packages
+
+Depending on your needs, you might want to install additional packages:
+
+```bash
+# For voice capabilities
+pnpm add @deanmachines/voice-openai
+
+# For advanced memory management
+pnpm add @deanmachines/memory-pg
+
+# For deployment
+pnpm add @deanmachines/deployer
+```
+
+## Environment Setup
+
+Create a `.env` file in your project root:
+
+```env
+DEANMACHINES_API_KEY=your_api_key_here
+DEANMACHINES_PROJECT_ID=your_project_id
+```
+
+<Callout>
+  Get your API key and project ID from the [DeanMachines AI Dashboard](https://dashboard.deanmachines.ai).
+</Callout>
+
+## IDE Setup
+
+We recommend using Visual Studio Code with the following extensions:
+
+- Mastra AI Tools
+- TypeScript and JavaScript Language Features
+- ESLint
+- Prettier
+
+## Verifying Installation
+
+Test your installation by creating a simple agent:
+
+```typescript
+import { Agent } from '@deanmachines/core'
+
+const agent = new Agent({
+  name: 'test-agent',
+  description: 'A test agent'
+})
+
+console.log('Agent created:', agent.id)
+```
+
+Run the test:
+
+```bash
+pnpm tsx test.ts
+```
+
+## Next Steps
+
+- [Quick Start Guide](/docs/getting-started/quick-start) - Build your first agent
+- [Configuration](/docs/getting-started/configuration) - Configure your development environment
+- [Core Concepts](/docs/core-concepts/overview) - Learn about DeanMachines AI architecture

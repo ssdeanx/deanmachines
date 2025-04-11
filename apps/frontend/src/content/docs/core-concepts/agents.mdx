@@ -1,0 +1,206 @@
+---
+title: AI Agents
+description: Understanding AI agents, their capabilities, and how to build them effectively.
+---
+
+# AI Agents
+
+AI agents are autonomous software entities that can perceive their environment, make decisions, and take actions to achieve specific goals.
+
+## Agent Architecture
+
+### Core Components
+
+Every deanmachines AI agent consists of three main components:
+
+1. **Perception System**: Processes inputs and understands context
+2. **Decision Engine**: Analyzes situations and determines actions
+3. **Action System**: Executes decisions and interacts with the environment
+
+```typescript
+interface AgentConfig {
+  name: string;
+  description: string;
+  capabilities: Capability[];
+  modelConfig?: ModelConfig;
+  memory?: MemoryConfig;
+}
+```
+
+## Agent Capabilities
+
+Agents can be enhanced with various capabilities:
+
+### Built-in Capabilities
+
+- **Natural Language Processing**: Understanding and generating human language
+- **Memory Management**: Maintaining context and learning from interactions
+- **Task Planning**: Breaking down complex goals into actionable steps
+- **Error Handling**: Graceful handling of exceptions and edge cases
+
+### Optional Capabilities
+
+- **API Integration**: Connecting with external services and data sources
+- **File Processing**: Handling various file formats and data types
+- **Image Analysis**: Processing and understanding visual information
+- **Code Generation**: Creating and modifying code programmatically
+
+## Creating Agents
+
+### Basic Agent Creation
+
+```typescript
+import { createAgent } from '@deanmachines/core'
+
+const agent = createAgent({
+  name: 'SimpleAgent',
+  description: 'A basic agent with core capabilities',
+  capabilities: ['chat', 'memory'],
+})
+```
+
+### Advanced Configuration
+
+```typescript
+const agent = createAgent({
+  name: 'AdvancedAgent',
+  description: 'An agent with advanced capabilities',
+  capabilities: ['chat', 'memory', 'planning'],
+  modelConfig: {
+    type: 'gpt-4',
+    temperature: 0.7,
+    maxTokens: 2000,
+  },
+  memory: {
+    type: 'conversational',
+    ttl: '24h',
+    storage: 'redis',
+  },
+})
+```
+
+## Agent Lifecycle
+
+### 1. Initialization
+
+```typescript
+await agent.init({
+  loadState: true,  // Load previous state
+  warmup: true,     // Warm up ML models
+})
+```
+
+### 2. Event Handling
+
+```typescript
+// Handle incoming messages
+agent.onMessage(async (message, context) => {
+  // Process message
+  return response
+})
+
+// Handle errors
+agent.onError((error) => {
+  console.error('Agent error:', error)
+})
+```
+
+### 3. State Management
+
+```typescript
+// Save agent state
+await agent.saveState()
+
+// Load agent state
+await agent.loadState()
+
+// Reset agent
+await agent.reset()
+```
+
+## Best Practices
+
+### 1. Agent Design
+
+- Keep agents focused on specific tasks
+- Use appropriate capabilities for the task
+- Implement proper error handling
+- Monitor agent performance
+
+### 2. Memory Usage
+
+- Configure appropriate TTL for memory
+- Clean up unused memory
+- Use efficient storage solutions
+- Implement memory limitations
+
+### 3. Security
+
+- Validate all inputs
+- Implement rate limiting
+- Use secure communication channels
+- Follow least privilege principle
+
+## Examples
+
+### Customer Service Agent
+
+```typescript
+const customerAgent = createAgent({
+  name: 'CustomerSupport',
+  description: 'Handles customer inquiries and support tickets',
+  capabilities: [
+    'chat',
+    'memory',
+    'ticketing',
+    'knowledgeBase',
+  ],
+})
+
+customerAgent.onMessage(async (message, context) => {
+  // Analyze customer intent
+  const intent = await customerAgent.analyzeIntent(message)
+
+  // Access knowledge base
+  const relevant = await customerAgent.searchKnowledge(intent)
+
+  // Generate response
+  return await customerAgent.generateResponse(message, relevant)
+})
+```
+
+### Data Processing Agent
+
+```typescript
+const dataAgent = createAgent({
+  name: 'DataProcessor',
+  description: 'Processes and analyzes data files',
+  capabilities: [
+    'fileProcessing',
+    'dataAnalysis',
+    'visualization',
+  ],
+})
+
+dataAgent.onFile(async (file, context) => {
+  // Process file
+  const data = await dataAgent.processFile(file)
+
+  // Analyze data
+  const analysis = await dataAgent.analyzeData(data)
+
+  // Generate visualizations
+  return await dataAgent.createVisualizations(analysis)
+})
+```
+
+## Advanced Topics
+
+- [Agent Networks](/docs/core-concepts/agent-networks)
+- [Custom Capabilities](/docs/advanced-features/custom-capabilities)
+- [Performance Optimization](/docs/advanced-features/performance)
+- [Testing Strategies](/docs/testing/agents)
+
+<Callout type="warning">
+  Ensure your agents handle rate limits and API quotas appropriately when integrating with external services.
+</Callout>

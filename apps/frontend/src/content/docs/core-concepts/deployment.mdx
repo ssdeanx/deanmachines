@@ -1,0 +1,309 @@
+---
+title: Deployment
+description: Learn how to deploy and scale your AI applications in production environments.
+---
+
+# Deployment
+
+Learn how to deploy your deanmachines AI applications to production environments securely and efficiently.
+
+## Deployment Options
+
+### Cloud Providers
+
+We support deployment across major cloud providers:
+
+- **AWS**: Lambda, ECS, and EKS
+- **Google Cloud**: Cloud Run, GKE
+- **Azure**: Azure Functions, AKS
+- **Custom**: Self-hosted infrastructure
+
+## Quick Deploy
+
+### Using CLI
+
+```bash
+# Initialize deployment configuration
+dm deploy init
+
+# Deploy to development
+dm deploy dev
+
+# Deploy to production
+dm deploy prod --confirm
+```
+
+### Using GitHub Actions
+
+```yaml
+name: Deploy AI Application
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: deanmachines/deploy-action@v1
+        with:
+          environment: production
+          api-key: ${{ secrets.DEANMACHINES_API_KEY }}
+```
+
+## Configuration
+
+### Basic Configuration
+
+```typescript
+// deanmachines.config.ts
+export default {
+  name: 'my-ai-app',
+  runtime: 'node18',
+  region: 'us-east-1',
+  scaling: {
+    minInstances: 1,
+    maxInstances: 10,
+  },
+}
+```
+
+### Advanced Configuration
+
+```typescript
+export default {
+  name: 'my-ai-app',
+  runtime: 'node18',
+  regions: ['us-east-1', 'eu-west-1'],
+  scaling: {
+    minInstances: 1,
+    maxInstances: 10,
+    targetCPUUtilization: 70,
+    scaleDownDelay: '10m',
+  },
+  networking: {
+    vpc: true,
+    privateSubnets: true,
+    natGateways: 1,
+  },
+  security: {
+    encryption: {
+      atRest: true,
+      inTransit: true,
+    },
+    accessControl: {
+      rbac: true,
+      serviceAccounts: true,
+    },
+  },
+}
+```
+
+## Infrastructure as Code
+
+### Terraform Example
+
+```hcl
+module "deanmachines_app" {
+  source  = "deanmachines/app/aws"
+  version = "1.0.0"
+
+  name        = "my-ai-app"
+  environment = "production"
+
+  vpc_config = {
+    cidr = "10.0.0.0/16"
+    azs  = ["us-east-1a", "us-east-1b"]
+  }
+
+  scaling_config = {
+    min_size     = 1
+    max_size     = 10
+    target_cpu   = 70
+  }
+}
+```
+
+### Pulumi Example
+
+```typescript
+import * as deanmachines from "@pulumi/deanmachines"
+
+const app = new deanmachines.App("my-ai-app", {
+  environment: "production",
+  scaling: {
+    minInstances: 1,
+    maxInstances: 10,
+  },
+  networking: {
+    vpc: true,
+    privateSubnets: true,
+  },
+})
+```
+
+## Container Deployment
+
+### Docker Configuration
+
+```dockerfile
+FROM deanmachines/runtime:node18
+
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+
+COPY . .
+RUN npm run build
+
+ENV NODE_ENV=production
+EXPOSE 3000
+
+CMD ["npm", "start"]
+```
+
+### Kubernetes Deployment
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ai-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ai-app
+  template:
+    metadata:
+      labels:
+        app: ai-app
+    spec:
+      containers:
+      - name: ai-app
+        image: my-registry/ai-app:latest
+        env:
+          - name: DEANMACHINES_API_KEY
+            valueFrom:
+              secretKeyRef:
+                name: ai-secrets
+                key: api-key
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+```
+
+## Environment Management
+
+### Environment Variables
+
+```bash
+# .env.production
+DEANMACHINES_API_KEY=your_api_key
+DEANMACHINES_ENVIRONMENT=production
+DEANMACHINES_REGION=us-east-1
+MEMORY_STORAGE_TYPE=redis
+REDIS_URL=redis://cache.example.com
+```
+
+### Secrets Management
+
+```typescript
+import { createSecretsManager } from '@deanmachines/core'
+
+const secrets = createSecretsManager({
+  provider: 'aws', // or 'gcp', 'azure'
+  region: 'us-east-1',
+})
+
+// Access secrets
+const apiKey = await secrets.get('api-key')
+```
+
+## Monitoring and Logging
+
+### Basic Monitoring
+
+```typescript
+import { monitor } from '@deanmachines/core'
+
+monitor.configure({
+  metrics: ['cpu', 'memory', 'requests'],
+  interval: '1m',
+  alerting: {
+    threshold: {
+      cpu: 80,
+      memory: 85,
+    },
+  },
+})
+```
+
+### Advanced Observability
+
+```typescript
+import { observability } from '@deanmachines/core'
+
+observability.configure({
+  tracing: {
+    enabled: true,
+    sampler: 0.1,
+  },
+  metrics: {
+    custom: {
+      'agent.response.time': {
+        type: 'histogram',
+        buckets: [0.1, 0.5, 1, 2],
+      },
+    },
+  },
+  logging: {
+    level: 'info',
+    format: 'json',
+    destination: 'cloudwatch',
+  },
+})
+```
+
+## Best Practices
+
+### Security
+
+- Use environment-specific configurations
+- Implement proper access controls
+- Encrypt sensitive data
+- Regular security audits
+- Use secure communication channels
+
+### Performance
+
+- Implement caching strategies
+- Use appropriate instance sizes
+- Configure auto-scaling properly
+- Monitor resource usage
+- Optimize database queries
+
+### Reliability
+
+- Implement health checks
+- Use multiple availability zones
+- Set up proper backup strategies
+- Implement retry mechanisms
+- Monitor error rates
+
+<Callout type="warning">
+  Always test your deployment configuration in a staging environment before deploying to production.
+</Callout>
+
+## Advanced Topics
+
+- [Blue-Green Deployments](/docs/advanced-features/blue-green)
+- [Canary Releases](/docs/advanced-features/canary)
+- [Custom Runtime Configuration](/docs/advanced-features/custom-runtime)
+- [Multi-Region Deployment](/docs/advanced-features/multi-region)

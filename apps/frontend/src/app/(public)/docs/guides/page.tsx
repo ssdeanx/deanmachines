@@ -1,0 +1,51 @@
+import { type Metadata } from "next"
+import { notFound } from "next/navigation"
+
+import { type Doc } from "@/types/docs"
+import { getTableOfContents } from "@/lib/toc"
+import { Mdx } from "@/components/docs/mdx"
+import { DocsPageLayout } from "@/components/docs/DocsPageLayout"
+import { DocsLayoutWrapper } from "@/components/docs/DocsLayoutWrapper"
+
+// Temporary mock for contentlayer until it's properly set up
+const allDocs: Doc[] = []
+
+export const metadata: Metadata = {
+  title: "Guides - deanmachines AI",
+  description: "Comprehensive guides for building and deploying AI solutions with deanmachines.",
+}
+
+export default async function GuidesPage() {
+  try {
+    const doc = allDocs.find((doc) => doc.slugAsParams === "guides/overview")
+
+    if (!doc) {
+      notFound()
+    }
+
+    const toc = await getTableOfContents(doc.body.raw)
+
+    return (
+      <DocsLayoutWrapper>
+        <DocsPageLayout
+          toc={{ items: toc }}
+          pagination={{
+            prev: {
+              title: "Deployment",
+              href: "/docs/core-concepts/deployment",
+            },
+            next: {
+              title: "Security Best Practices",
+              href: "/docs/guides/security",
+            },
+          }}
+        >
+          <Mdx code={doc.body.code} />
+        </DocsPageLayout>
+      </DocsLayoutWrapper>
+    )
+  } catch (error) {
+    console.error("Error in GuidesPage:", error)
+    throw error
+  }
+}

@@ -1,0 +1,142 @@
+---
+title: API Reference | DeanMachines AI
+description: Comprehensive API reference documentation for the DeanMachines AI platform. Learn about endpoints, parameters, and implementation examples.
+keywords: API reference, DeanMachines AI, AI development, API documentation, AI agents API, machine learning API
+seo:
+  title: "DeanMachines AI - Complete API Reference Documentation"
+  description: "Comprehensive API documentation for DeanMachines AI platform. Includes detailed endpoint references, authentication guides, and implementation examples."
+  keywords: ["API documentation", "AI development", "RESTful API", "AI agents", "DeanMachines API", "machine learning API"]
+---
+
+# API Reference
+
+Welcome to the DeanMachines AI API reference documentation. This section provides detailed information about the APIs, their parameters, and usage examples.
+
+## Core APIs
+
+<div className="grid sm:grid-cols-2 gap-4 mt-6">
+
+<Card href="/docs/api-reference/agent">
+  ### Agent API
+  Create, manage, and control AI agents in your applications.
+</Card>
+
+<Card href="/docs/api-reference/memory">
+  ### Memory API
+  Manage agent memory and context storage systems.
+</Card>
+
+<Card href="/docs/api-reference/network">
+  ### Network API
+  Build and manage networks of cooperating AI agents.
+</Card>
+
+<Card href="/docs/api-reference/deployment">
+  ### Deployment API
+  Deploy and manage your AI applications in production.
+</Card>
+
+</div>
+
+## API Versioning
+
+The deanmachines AI API is versioned to ensure compatibility and smooth upgrades:
+
+```typescript
+import { DeanMachinesClient } from "@deanmachines/core"
+
+const client = new DeanMachinesClient({
+  apiKey: process.env.DEANMACHINES_API_KEY,
+  version: "v1", // Specify API version
+})
+```
+
+## Authentication
+
+All API requests require authentication using your API key:
+
+```typescript
+const headers = {
+  "Authorization": `Bearer ${process.env.DEANMACHINES_API_KEY}`,
+  "Content-Type": "application/json",
+}
+```
+
+## Rate Limiting
+
+Our APIs implement rate limiting to ensure fair usage:
+
+| Plan      | Requests/min | Burst |
+|-----------|-------------|-------|
+| Free      | 60          | 100   |
+| Pro       | 300         | 500   |
+| Enterprise| 3000        | 5000  |
+
+## Error Handling
+
+API errors follow a consistent format:
+
+```typescript
+interface ApiError {
+  code: string;        // Error code
+  message: string;     // Human-readable message
+  details?: unknown;   // Additional error details
+  requestId?: string;  // Request ID for support
+}
+```
+
+Common error codes:
+
+| Code               | Description                           |
+|-------------------|---------------------------------------|
+| auth_failed       | Authentication failed                 |
+| invalid_request   | Invalid request parameters            |
+| rate_limited      | Rate limit exceeded                   |
+| internal_error    | Internal server error                 |
+
+## SDK Support
+
+Official SDKs are available for multiple languages:
+
+- [TypeScript/JavaScript](/docs/api-reference/sdk/typescript)
+- [Python](/docs/api-reference/sdk/python)
+- [Go](/docs/api-reference/sdk/go)
+- [Java](/docs/api-reference/sdk/java)
+
+## API Endpoints
+
+Base URLs:
+
+```
+Production: https://api.deanmachines.com/v1
+Staging: https://api.staging.deanmachines.com/v1
+```
+
+## WebSocket API
+
+For real-time communication with agents:
+
+```typescript
+const ws = new WebSocket("wss://api.deanmachines.com/v1/ws", {
+  headers: {
+    "Authorization": `Bearer ${process.env.DEANMACHINES_API_KEY}`,
+  },
+})
+```
+
+## OpenAPI Specification
+
+Our complete OpenAPI specification is available at:
+- [OpenAPI JSON](/api/openapi.json)
+- [OpenAPI YAML](/api/openapi.yaml)
+
+<Callout type="info">
+  Keep your API keys secure and never expose them in client-side code.
+</Callout>
+
+## Next Steps
+
+- [Agent API Reference](/docs/api-reference/agent)
+- [Memory API Reference](/docs/api-reference/memory)
+- [Network API Reference](/docs/api-reference/network)
+- [Deployment API Reference](/docs/api-reference/deployment)

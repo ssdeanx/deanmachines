@@ -1,0 +1,227 @@
+---
+title: Memory API Reference
+description: Complete API reference for managing AI agent memory systems.
+---
+
+# Memory API Reference
+
+The Memory API enables sophisticated memory management and context storage for AI agents.
+
+## Memory Types
+
+### Short-Term Memory
+
+```typescript
+interface ShortTermMemoryConfig {
+  capacity: number;
+  ttl: string;  // Time-to-live duration
+  strategy: 'fifo' | 'lru';
+}
+
+const memory = await client.createMemory({
+  type: 'short-term',
+  config: {
+    capacity: 100,
+    ttl: '1h',
+    strategy: 'lru'
+  }
+});
+```
+
+### Long-Term Memory
+
+```typescript
+interface LongTermMemoryConfig {
+  storage: 'postgres' | 'redis' | 'vector';
+  indexing: {
+    enabled: boolean;
+    dimensions?: number;
+    similarity?: 'cosine' | 'euclidean';
+  };
+}
+
+const persistentMemory = await client.createMemory({
+  type: 'long-term',
+  config: {
+    storage: 'postgres',
+    indexing: {
+      enabled: true,
+      dimensions: 1536,
+      similarity: 'cosine'
+    }
+  }
+});
+```
+
+## Memory Operations
+
+### Store Data
+
+```typescript
+interface MemoryEntry {
+  key: string;
+  value: unknown;
+  metadata?: Record<string, unknown>;
+  tags?: string[];
+  ttl?: string;
+}
+
+await memory.store({
+  key: 'conversation:123',
+  value: {
+    messages: [],
+    context: { topic: 'support' }
+  },
+  tags: ['conversation', 'support'],
+  ttl: '24h'
+});
+```
+
+### Retrieve Data
+
+```typescript
+const data = await memory.retrieve('conversation:123');
+const taggedData = await memory.retrieveByTags(['conversation']);
+const vectorData = await memory.searchSimilar('query text', {
+  limit: 5,
+  threshold: 0.8
+});
+```
+
+### Update Data
+
+```typescript
+await memory.update('conversation:123', {
+  messages: [...existingMessages, newMessage]
+});
+
+// Partial updates
+await memory.patch('conversation:123', {
+  'messages[-1]': newMessage
+});
+```
+
+### Delete Data
+
+```typescript
+await memory.delete('conversation:123');
+await memory.deleteByTags(['temporary']);
+await memory.clear(); // Clear all data
+```
+
+## Memory Events
+
+### Subscribe to Changes
+
+```typescript
+memory.on('change', (event) => {
+  console.log('Memory changed:', event);
+});
+
+memory.on('expire', (key) => {
+  console.log('Entry expired:', key);
+});
+```
+
+## Batch Operations
+
+### Bulk Store
+
+```typescript
+await memory.bulkStore([
+  { key: 'user:1', value: userData1 },
+  { key: 'user:2', value: userData2 }
+]);
+```
+
+### Bulk Retrieve
+
+```typescript
+const entries = await memory.bulkRetrieve([
+  'user:1',
+  'user:2'
+]);
+```
+
+## Memory Analytics
+
+### Usage Statistics
+
+```typescript
+const stats = await memory.getStats();
+// {
+//   totalEntries: 1000,
+//   totalSize: "500MB",
+//   avgAccessTime: "50ms"
+// }
+```
+
+### Memory Health
+
+```typescript
+const health = await memory.checkHealth();
+// {
+//   status: "healthy",
+//   issues: [],
+//   lastOptimization: "2024-04-07T..."
+// }
+```
+
+## Error Handling
+
+```typescript
+try {
+  await memory.store(entry);
+} catch (error) {
+  if (error instanceof MemoryError) {
+    switch (error.code) {
+      case 'capacity_exceeded':
+        await memory.optimize();
+        break;
+      case 'storage_unavailable':
+        await memory.reconnect();
+        break;
+    }
+  }
+  throw error;
+}
+```
+
+## Best Practices
+
+1. **Memory Management**
+   - Set appropriate TTL values
+   - Implement cleanup strategies
+   - Monitor memory usage
+   - Use batch operations for bulk data
+
+2. **Performance**
+   - Index frequently accessed data
+   - Use appropriate storage backends
+   - Implement caching strategies
+   - Monitor access patterns
+
+3. **Data Security**
+   - Encrypt sensitive data
+   - Implement access controls
+   - Regular backups
+   - Audit access logs
+
+<Callout type="info">
+  Choose memory types based on your specific use case requirements for persistence, speed, and scale.
+</Callout>
+
+## Rate Limits
+
+| Operation | Rate Limit |
+|-----------|------------|
+| Store | 1000/minute |
+| Retrieve | 2000/minute |
+| Update | 500/minute |
+| Delete | 200/minute |
+
+## Next Steps
+
+- [Network API Reference](/docs/api-reference/network)
+- [Memory Management Guide](/docs/guides/memory-management)
+- [Memory Examples](/docs/examples/memory)

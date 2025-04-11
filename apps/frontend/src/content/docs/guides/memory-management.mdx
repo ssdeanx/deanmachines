@@ -1,0 +1,182 @@
+---
+title: Memory Management
+description: Learn how to effectively manage memory in deanmachines AI agents.
+---
+
+# Memory Management Guide
+
+Learn best practices for managing memory in your AI agents to improve performance and reliability.
+
+## Types of Memory
+
+### Short-Term Memory
+
+Short-term memory is used for temporary storage during agent interactions:
+
+```typescript
+import { ShortTermMemory } from '@deanmachines/core'
+
+const shortTermMemory = new ShortTermMemory({
+  capacity: 1000,       // Maximum number of items
+  ttl: '30m',          // Time-to-live
+  strategy: 'lru',     // Least Recently Used eviction
+  compression: true    // Enable compression
+})
+```
+
+### Long-Term Memory
+
+Long-term memory persists important information across sessions:
+
+```typescript
+import { LongTermMemory } from '@deanmachines/core'
+
+const longTermMemory = new LongTermMemory({
+  storage: {
+    type: 'postgres',
+    connection: process.env.DATABASE_URL,
+    tableName: 'agent_memory'
+  },
+  indexing: {
+    enabled: true,
+    type: 'vector',
+    dimensions: 1536
+  }
+})
+```
+
+## Memory Operations
+
+### Storing Information
+
+```typescript
+interface MemoryEntry {
+  key: string
+  value: unknown
+  context?: Record<string, unknown>
+  importance?: number
+  tags?: string[]
+}
+
+await memory.store({
+  key: 'user_preference',
+  value: {
+    theme: 'dark',
+    language: 'en'
+  },
+  context: {
+    userId: 'user123',
+    timestamp: Date.now()
+  },
+  importance: 0.8,
+  tags: ['preferences', 'ui']
+})
+```
+
+### Retrieving Information
+
+```typescript
+// Direct key lookup
+const preference = await memory.retrieve('user_preference')
+
+// Query by tags
+const allPreferences = await memory.queryByTags(['preferences'])
+
+// Semantic search
+const similarMemories = await memory.searchSimilar(
+  'user interface settings',
+  { limit: 5, threshold: 0.7 }
+)
+```
+
+## Memory Management Strategies
+
+### Cleanup and Optimization
+
+```typescript
+interface CleanupConfig {
+  olderThan: string
+  importance: number
+  dryRun?: boolean
+}
+
+// Remove old, low-importance memories
+await memory.cleanup({
+  olderThan: '30d',
+  importance: 0.3,
+  dryRun: true  // Preview what would be removed
+})
+
+// Optimize storage
+await memory.optimize({
+  vacuum: true,
+  reindex: true
+})
+```
+
+### Memory Monitoring
+
+```typescript
+// Get memory usage statistics
+const stats = await memory.getStats()
+// {
+//   totalEntries: 10000,
+//   totalSize: '500MB',
+//   avgAccessTime: '50ms',
+//   hitRate: 0.95
+// }
+
+// Set up monitoring alerts
+memory.on('capacity-warning', async (usage) => {
+  if (usage > 0.9) {  // 90% capacity
+    await memory.cleanup({ importance: 0.2 })
+  }
+})
+```
+
+## Best Practices
+
+1. **Memory Segmentation**
+   - Separate short-term and long-term memory
+   - Use appropriate storage backends
+   - Implement proper TTL values
+   - Consider memory hierarchies
+
+2. **Performance Optimization**
+   - Enable compression for large datasets
+   - Index frequently accessed data
+   - Implement caching strategies
+   - Monitor memory usage
+
+3. **Data Management**
+   - Regular cleanup of stale data
+   - Implement importance scoring
+   - Use appropriate retention policies
+   - Back up critical memories
+
+<Callout type="warning">
+  Always validate and sanitize data before storing in memory to prevent security issues.
+</Callout>
+
+## Error Handling
+
+```typescript
+try {
+  await memory.store(entry)
+} catch (error) {
+  if (error instanceof MemoryCapacityError) {
+    await memory.cleanup({ importance: 0.3 })
+    await memory.store(entry)
+  } else if (error instanceof StorageError) {
+    // Handle storage backend issues
+    await memory.reconnect()
+  }
+  throw error
+}
+```
+
+## Next Steps
+
+- [Network Architecture Guide](/docs/guides/network-architecture)
+- [Performance Optimization](/docs/guides/performance)
+- [Memory API Reference](/docs/api-reference/memory)

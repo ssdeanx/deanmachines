@@ -1,11 +1,13 @@
 {
-  "extends": "../../tsconfig.base.json",
+  "extends": "../../tsconfig.base.json", // Inherits from the root tsconfig.base.json
   "compilerOptions": {
-    "outDir": "dist",
-    "types": ["node"],
-    "rootDir": "src",
-    "tsBuildInfoFile": "dist/tsconfig.app.tsbuildinfo"
+    "outDir": "../../dist/out-tsc",     // Temporary build output directory (usually cleaned)
+    "module": "NodeNext",              // Module system for Node.js (overrides base)
+    "target": "ES2021",                // Target JS version (likely inherited)
+    "types": ["node"],                 // Include Node.js specific types
+    "emitDecoratorMetadata": true,     // Support for decorators (if used)
+    "experimentalDecorators": true     // Support for decorators (if used)
   },
-  "include": ["src/**/*.ts"],
-  "exclude": ["eslint.config.js", "eslint.config.cjs", "eslint.config.mjs"]
+  "exclude": ["node_modules", "dist", "**/*.spec.ts", "**/*.test.ts"], // Exclude these from this specific build
+  "include": ["src/**/*.ts"]           // Only include source files from the backend's src directory
 }

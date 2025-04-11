@@ -1,0 +1,198 @@
+---
+title: Agent API Reference
+description: Complete API reference for creating and managing AI agents.
+---
+
+# Agent API Reference
+
+The Agent API allows you to create, configure, and manage AI agents in your applications.
+
+## Creating an Agent
+
+### `createAgent`
+
+Creates a new AI agent with the specified configuration.
+
+```typescript
+interface AgentConfig {
+  name: string;
+  description?: string;
+  model: {
+    name: string;
+    temperature?: number;
+    maxTokens?: number;
+  };
+  capabilities: string[];
+  memory?: MemoryConfig;
+}
+
+const agent = await client.createAgent({
+  name: "support-agent",
+  description: "Customer support agent",
+  model: {
+    name: "gpt-4",
+    temperature: 0.7,
+  },
+  capabilities: ["chat", "knowledge-base"],
+});
+```
+
+### Parameters
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| name | string | Yes | Unique identifier for the agent |
+| description | string | No | Human-readable description |
+| model | ModelConfig | Yes | AI model configuration |
+| capabilities | string[] | Yes | List of agent capabilities |
+| memory | MemoryConfig | No | Memory system configuration |
+
+### Response
+
+```typescript
+interface Agent {
+  id: string;
+  name: string;
+  status: "active" | "inactive" | "error";
+  created: string;
+  lastActive: string;
+  capabilities: string[];
+  config: AgentConfig;
+}
+```
+
+## Managing Agents
+
+### `listAgents`
+
+Retrieves a list of all agents in your project.
+
+```typescript
+const agents = await client.listAgents({
+  status: "active",
+  limit: 10,
+  offset: 0,
+});
+```
+
+### `updateAgent`
+
+Updates an existing agent's configuration.
+
+```typescript
+await client.updateAgent(agentId, {
+  description: "Updated description",
+  model: {
+    temperature: 0.8,
+  },
+});
+```
+
+### `deleteAgent`
+
+Deletes an agent and its associated resources.
+
+```typescript
+await client.deleteAgent(agentId);
+```
+
+## Agent Interactions
+
+### `sendMessage`
+
+Sends a message to an agent and receives a response.
+
+```typescript
+const response = await agent.sendMessage({
+  content: "Hello, how can I help?",
+  type: "text",
+  context: {
+    userId: "user-123",
+    sessionId: "session-456",
+  },
+});
+```
+
+### `streamResponse`
+
+Streams an agent's response in real-time.
+
+```typescript
+const stream = await agent.streamResponse({
+  content: "Generate a long report",
+  onToken: (token) => {
+    console.log("Received token:", token);
+  },
+});
+```
+
+## Webhooks
+
+### `registerWebhook`
+
+Registers a webhook to receive agent events.
+
+```typescript
+await client.registerWebhook({
+  url: "https://api.yourdomain.com/webhooks/agent",
+  events: ["message.created", "agent.status"],
+  secret: process.env.WEBHOOK_SECRET,
+});
+```
+
+## Error Handling
+
+```typescript
+try {
+  const agent = await client.createAgent(config);
+} catch (error) {
+  if (error instanceof AgentError) {
+    console.error("Agent creation failed:", error.message);
+    // Handle specific error cases
+    switch (error.code) {
+      case "invalid_config":
+        // Handle invalid configuration
+        break;
+      case "quota_exceeded":
+        // Handle quota issues
+        break;
+    }
+  }
+}
+```
+
+## Best Practices
+
+1. **Error Handling**
+   - Always implement proper error handling
+   - Use type-safe error handling with discriminated unions
+   - Handle rate limiting and retry scenarios
+
+2. **Security**
+   - Keep API keys secure
+   - Validate all inputs
+   - Use HTTPS for webhook endpoints
+
+3. **Performance**
+   - Use streaming for long responses
+   - Implement proper connection handling
+   - Consider rate limits in your design
+
+<Callout type="warning">
+  Never expose your API keys in client-side code or version control systems.
+</Callout>
+
+## Rate Limits
+
+| Operation | Rate Limit |
+|-----------|------------|
+| Create Agent | 10/minute |
+| Send Message | 60/minute |
+| Update Agent | 30/minute |
+| Delete Agent | 10/minute |
+
+## Next Steps
+
+- [Memory API Reference](/docs/api-reference/memory)
+- [Agent Tutorial](/docs/tutorials/creating-agents)
+- [Agent Examples](/docs/examples/agents)

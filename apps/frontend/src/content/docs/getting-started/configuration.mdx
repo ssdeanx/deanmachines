@@ -1,0 +1,86 @@
+---
+title: "Configuration"
+description: "Guide to configuring DeanMachines"
+---
+
+# Configuration
+
+## Overview
+
+This guide will help you configure DeanMachines for your specific needs. Configuration can be done through various methods:
+
+1. Environment variables
+2. Configuration files
+3. Command-line options
+
+## Configuration Files
+
+### Default Configuration
+
+The default configuration file is located at `deanmachines.config.js`:
+
+```javascript
+module.exports = {
+  // Core settings
+  port: 3000,
+  environment: 'development',
+  
+  // Agent settings
+  agent: {
+    maxConcurrency: 5,
+    timeout: 30000
+  },
+  
+  // Network settings
+  network: {
+    type: 'local',
+    protocol: 'tcp'
+  }
+}
+```
+
+### Environment Variables
+
+All configuration options can be overridden using environment variables:
+
+```bash
+# Core settings
+DEANMACHINES_PORT=3000
+DEANMACHINES_ENVIRONMENT=production
+
+# Agent settings
+DEANMACHINES_AGENT_MAX_CONCURRENCY=5
+DEANMACHINES_AGENT_TIMEOUT=30000
+
+# Network settings
+DEANMACHINES_NETWORK_TYPE=local
+DEANMACHINES_NETWORK_PROTOCOL=tcp
+```
+
+## Configuration Options
+
+### Core Settings
+
+- `port`: Application port
+- `environment`: Environment mode (development/production)
+- `logLevel`: Logging verbosity
+
+### Agent Settings
+
+- `maxConcurrency`: Maximum concurrent operations
+- `timeout`: Operation timeout
+- `retryCount`: Number of retries
+
+### Network Settings
+
+- `type`: Network type (local/distributed/cloud)
+- `protocol`: Communication protocol
+- `encryption`: Enable encryption
+
+## Best Practices
+
+1. Keep sensitive information in environment variables
+2. Use separate configuration files for different environments
+3. Document all custom configurations
+4. Regularly review and update configurations
+5. Implement configuration validation

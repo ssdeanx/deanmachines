@@ -1,0 +1,148 @@
+---
+title: "CLI Reference"
+description: "Command Line Interface reference for DeanMachines"
+---
+
+# CLI Reference
+
+## Overview
+
+The DeanMachines CLI is a powerful command-line interface that allows you to manage your agents, networks, and deployments. It provides a consistent interface for interacting with the DeanMachines platform from your terminal.
+
+## Installation
+
+```bash
+npm install -g deanmachines-cli
+```
+
+## Usage
+
+```bash
+deanmachines [command] [options]
+```
+
+Run `deanmachines --help` for a list of all available commands.
+
+## Commands
+
+### Agent Management
+
+```bash
+deanmachines agent create [name] [options]
+deanmachines agent list [options]
+deanmachines agent delete [name] [options]
+deanmachines agent update [name] [options]
+```
+
+#### Options
+
+```bash
+--description, -d <description>  Agent description
+--type, -t <type>               Agent type (node, python, etc.)
+--version, -v <version>         Agent version
+--config, -c <path>            Path to configuration file
+```
+
+### Network Management
+
+```bash
+deanmachines network create [name] [options]
+deanmachines network list [options]
+deanmachines network delete [name] [options]
+deanmachines network update [name] [options]
+```
+
+#### Options
+
+```bash
+--type, -t <type>               Network type (local, distributed, cloud)
+--protocol, -p <protocol>      Network protocol (tcp, udp, etc.)
+--encryption, -e <level>       Encryption level
+--nodes, -n <count>           Number of nodes
+```
+
+### Deployment
+
+```bash
+deanmachines deploy [environment] [options]
+deanmachines deploy status [options]
+deanmachines deploy rollback [options]
+```
+
+#### Options
+
+```bash
+--environment, -e <env>    Environment name
+--version, -v <version>   Version to deploy
+--force, -f               Force deployment
+--dry-run                 Show what would be deployed
+```
+
+### Configuration
+
+```bash
+deanmachines config set [key] [value]
+deanmachines config get [key]
+deanmachines config list
+deanmachines config export [path]
+```
+
+### Help
+
+```bash
+deanmachines help
+deanmachines [command] --help
+```
+
+## Environment Variables
+
+You can override CLI configuration using environment variables:
+
+```bash
+# Core settings
+DEANMACHINES_API_KEY=your_api_key
+DEANMACHINES_API_ENDPOINT=https://api.deanmachines.com
+
+# Agent settings
+DEANMACHINES_AGENT_TIMEOUT=30000
+DEANMACHINES_AGENT_MAX_CONCURRENCY=5
+
+# Network settings
+DEANMACHINES_NETWORK_TYPE=distributed
+DEANMACHINES_NETWORK_PROTOCOL=tcp
+```
+
+## Best Practices
+
+1. Use meaningful names for agents and networks
+2. Keep configuration in version control
+3. Use environment variables for sensitive information
+4. Regularly update CLI to latest version
+5. Use dry-run before major deployments
+6. Document all custom configurations
+
+## Troubleshooting
+
+Common issues and solutions:
+
+1. **Authentication Issues**
+   - Check your API key
+   - Verify API endpoint
+   - Check network connectivity
+
+2. **Deployment Failures**
+   - Check environment status
+   - Review deployment logs
+   - Verify configuration
+
+3. **Network Connectivity**
+   - Check firewall rules
+   - Verify network configuration
+   - Test connectivity
+
+## Version History
+
+- 1.0.0 - Initial release
+- 1.1.0 - Added network management
+- 1.2.0 - Added deployment commands
+- 1.3.0 - Added configuration management
