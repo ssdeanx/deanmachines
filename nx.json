@@ -19,6 +19,7 @@
       "{workspaceRoot}/.github/workflows/ci.yml"
     ]
   },
+  "nxCloudAccessToken": "Njg5MjI0OGMtZGRkMC00NWMzLTkzODEtZTdiMjdmZGUxNjA0fHJlYWQtd3JpdGU=",
   "plugins": [
     {
       "plugin": "@nx/js/typescript",
